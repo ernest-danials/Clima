@@ -1,0 +1,1028 @@
+[
+  {
+    "id": "af",
+    "name": "Afghanistan",
+    "territorialMtCO2": 10.5578,
+    "NDGainScore": 33.207456
+  },
+  {
+    "id": "al",
+    "name": "Albania",
+    "territorialMtCO2": 5.1734,
+    "NDGainScore": 51.75718
+  },
+  {
+    "id": "dz",
+    "name": "Algeria",
+    "territorialMtCO2": 184.5581,
+    "NDGainScore": 48.666501
+  },
+  {
+    "id": "ao",
+    "name": "Angola",
+    "territorialMtCO2": 20.2502,
+    "NDGainScore": 38.079516
+  },
+  {
+    "id": "ag",
+    "name": "Antigua and Barbuda",
+    "territorialMtCO2": 0.61811,
+    "NDGainScore": 49.075398
+  },
+  {
+    "id": "ar",
+    "name": "Argentina",
+    "territorialMtCO2": 204.0807,
+    "NDGainScore": 50.206102
+  },
+  {
+    "id": "am",
+    "name": "Armenia",
+    "territorialMtCO2": 7.1646,
+    "NDGainScore": 56.950758
+  },
+  {
+    "id": "au",
+    "name": "Australia",
+    "territorialMtCO2": 384.3621,
+    "NDGainScore": 69.547415
+  },
+  {
+    "id": "at",
+    "name": "Austria",
+    "territorialMtCO2": 61.4891,
+    "NDGainScore": 68.9854
+  },
+  {
+    "id": "az",
+    "name": "Azerbaijan",
+    "territorialMtCO2": 40.3915,
+    "NDGainScore": 51.750345
+  },
+  {
+    "id": "bs",
+    "name": "Bahamas",
+    "territorialMtCO2": 2.4017,
+    "NDGainScore": 48.463745
+  },
+  {
+    "id": "bh",
+    "name": "Bahrain",
+    "territorialMtCO2": 35.652,
+    "NDGainScore": 54.77009
+  },
+  {
+    "id": "bd",
+    "name": "Bangladesh",
+    "territorialMtCO2": 113.8629,
+    "NDGainScore": 36.028379
+  },
+  {
+    "id": "bb",
+    "name": "Barbados",
+    "territorialMtCO2": 1.1433,
+    "NDGainScore": 61.06022
+  },
+  {
+    "id": "by",
+    "name": "Belarus",
+    "territorialMtCO2": 59.3844,
+    "NDGainScore": 57.058484
+  },
+  {
+    "id": "be",
+    "name": "Belgium",
+    "territorialMtCO2": 89.0021,
+    "NDGainScore": 63.452214
+  },
+  {
+    "id": "bz",
+    "name": "Belize",
+    "territorialMtCO2": 0.63244,
+    "NDGainScore": 43.675613
+  },
+  {
+    "id": "bj",
+    "name": "Benin",
+    "territorialMtCO2": 5.7924,
+    "NDGainScore": 38.340518
+  },
+  {
+    "id": "bt",
+    "name": "Bhutan",
+    "territorialMtCO2": 1.6353,
+    "NDGainScore": 47.564463
+  },
+  {
+    "id": "ba",
+    "name": "Bosnia and Herzegovina",
+    "territorialMtCO2": 20.9634,
+    "NDGainScore": 50.975458
+  },
+  {
+    "id": "bw",
+    "name": "Botswana",
+    "territorialMtCO2": 6.5955,
+    "NDGainScore": 50.006159
+  },
+  {
+    "id": "br",
+    "name": "Brazil",
+    "territorialMtCO2": 483.8406,
+    "NDGainScore": 49.523782
+  },
+  {
+    "id": "bn",
+    "name": "Brunei Darussalam",
+    "territorialMtCO2": 11.3544,
+    "NDGainScore": 56.535298
+  },
+  {
+    "id": "bg",
+    "name": "Bulgaria",
+    "territorialMtCO2": 46.9657,
+    "NDGainScore": 54.987567
+  },
+  {
+    "id": "bf",
+    "name": "Burkina Faso",
+    "territorialMtCO2": 6.3739,
+    "NDGainScore": 37.989459
+  },
+  {
+    "id": "bi",
+    "name": "Burundi",
+    "territorialMtCO2": 0.70729,
+    "NDGainScore": 35.899589
+  },
+  {
+    "id": "kh",
+    "name": "Cambodia",
+    "territorialMtCO2": 19.6086,
+    "NDGainScore": 40.329583
+  },
+  {
+    "id": "cm",
+    "name": "Cameroon",
+    "territorialMtCO2": 10.0458,
+    "NDGainScore": 38.671169
+  },
+  {
+    "id": "ca",
+    "name": "Canada",
+    "territorialMtCO2": 550.6116,
+    "NDGainScore": 68.458447
+  },
+  {
+    "id": "cv",
+    "name": "Cape Verde",
+    "territorialMtCO2": 0.55498,
+    "NDGainScore": 51.0737
+  },
+  {
+    "id": "cf",
+    "name": "Central African Republic",
+    "territorialMtCO2": 0.27052,
+    "NDGainScore": 27.894803
+  },
+  {
+    "id": "td",
+    "name": "Chad",
+    "territorialMtCO2": 3.0047,
+    "NDGainScore": 27.155307
+  },
+  {
+    "id": "cl",
+    "name": "Chile",
+    "territorialMtCO2": 82.5369,
+    "NDGainScore": 60.122399
+  },
+  {
+    "id": "cn",
+    "name": "China",
+    "territorialMtCO2": 11350.5377,
+    "NDGainScore": 60.182582
+  },
+  {
+    "id": "co",
+    "name": "Colombia",
+    "territorialMtCO2": 98.2925,
+    "NDGainScore": 48.69047
+  },
+  {
+    "id": "km",
+    "name": "Comoros",
+    "territorialMtCO2": 0.45092,
+    "NDGainScore": 36.8598
+  },
+  {
+    "id": "cg",
+    "name": "Congo",
+    "territorialMtCO2": 8.1112,
+    "NDGainScore": 35.875366
+  },
+  {
+    "id": "cr",
+    "name": "Costa Rica",
+    "territorialMtCO2": 7.8473,
+    "NDGainScore": 53.661706
+  },
+  {
+    "id": "hr",
+    "name": "Croatia",
+    "territorialMtCO2": 17.6082,
+    "NDGainScore": 55.444947
+  },
+  {
+    "id": "cu",
+    "name": "Cuba",
+    "territorialMtCO2": 21.8823,
+    "NDGainScore": 45.608546
+  },
+  {
+    "id": "cy",
+    "name": "Cyprus",
+    "territorialMtCO2": 7.1975,
+    "NDGainScore": 58.063195
+  },
+  {
+    "id": "cz",
+    "name": "Czech Republic",
+    "territorialMtCO2": 95.1078,
+    "NDGainScore": 64.651308
+  },
+  {
+    "id": "dk",
+    "name": "Denmark",
+    "territorialMtCO2": 28.4315,
+    "NDGainScore": 71.095305
+  },
+  {
+    "id": "dj",
+    "name": "Djibouti",
+    "territorialMtCO2": 0.49426,
+    "NDGainScore": 41.122757
+  },
+  {
+    "id": "dm",
+    "name": "Dominica",
+    "territorialMtCO2": 0.1563,
+    "NDGainScore": 52.977843
+  },
+  {
+    "id": "do",
+    "name": "Dominican Republic",
+    "territorialMtCO2": 30.4308,
+    "NDGainScore": 46.733364
+  },
+  {
+    "id": "ec",
+    "name": "Ecuador",
+    "territorialMtCO2": 40.522,
+    "NDGainScore": 44.076283
+  },
+  {
+    "id": "eg",
+    "name": "Egypt",
+    "territorialMtCO2": 271.1685,
+    "NDGainScore": 47.589421
+  },
+  {
+    "id": "sv",
+    "name": "El Salvador",
+    "territorialMtCO2": 7.8002,
+    "NDGainScore": 46.081895
+  },
+  {
+    "id": "gq",
+    "name": "Equatorial Guinea",
+    "territorialMtCO2": 6.8259,
+    "NDGainScore": 42.189353
+  },
+  {
+    "id": "er",
+    "name": "Eritrea",
+    "territorialMtCO2": 0.62345,
+    "NDGainScore": 30.646246
+  },
+  {
+    "id": "ee",
+    "name": "Estonia",
+    "territorialMtCO2": 11.7572,
+    "NDGainScore": 64.516423
+  },
+  {
+    "id": "et",
+    "name": "Ethiopia",
+    "territorialMtCO2": 15.1569,
+    "NDGainScore": 38.694872
+  },
+  {
+    "id": "fj",
+    "name": "Fiji",
+    "territorialMtCO2": 1.1218,
+    "NDGainScore": 50.896341
+  },
+  {
+    "id": "fi",
+    "name": "Finland",
+    "territorialMtCO2": 36.367,
+    "NDGainScore": 72.93826
+  },
+  {
+    "id": "fr",
+    "name": "France",
+    "territorialMtCO2": 293.5017,
+    "NDGainScore": 67.725978
+  },
+  {
+    "id": "ga",
+    "name": "Gabon",
+    "territorialMtCO2": 5.8347,
+    "NDGainScore": 42.982068
+  },
+  {
+    "id": "gm",
+    "name": "Gambia",
+    "territorialMtCO2": 0.73748,
+    "NDGainScore": 39.815618
+  },
+  {
+    "id": "ge",
+    "name": "Georgia",
+    "territorialMtCO2": 11.5271,
+    "NDGainScore": 58.715302
+  },
+  {
+    "id": "de",
+    "name": "Germany",
+    "territorialMtCO2": 671.4715,
+    "NDGainScore": 69.48249
+  },
+  {
+    "id": "gh",
+    "name": "Ghana",
+    "territorialMtCO2": 20.287,
+    "NDGainScore": 45.180412
+  },
+  {
+    "id": "gr",
+    "name": "Greece",
+    "territorialMtCO2": 58.0795,
+    "NDGainScore": 59.53258
+  },
+  {
+    "id": "gd",
+    "name": "Grenada",
+    "territorialMtCO2": 0.32096,
+    "NDGainScore": 57.374509
+  },
+  {
+    "id": "gt",
+    "name": "Guatemala",
+    "territorialMtCO2": 19.1137,
+    "NDGainScore": 43.697564
+  },
+  {
+    "id": "gn",
+    "name": "Guinea",
+    "territorialMtCO2": 4.194,
+    "NDGainScore": 38.75918
+  },
+  {
+    "id": "gw",
+    "name": "Guinea-Bissau",
+    "territorialMtCO2": 0.30915,
+    "NDGainScore": 32.896035
+  },
+  {
+    "id": "gy",
+    "name": "Guyana",
+    "territorialMtCO2": 3.6272,
+    "NDGainScore": 45.223703
+  },
+  {
+    "id": "ht",
+    "name": "Haiti",
+    "territorialMtCO2": 3.3809,
+    "NDGainScore": 35.343316
+  },
+  {
+    "id": "hn",
+    "name": "Honduras",
+    "territorialMtCO2": 10.4815,
+    "NDGainScore": 40.811319
+  },
+  {
+    "id": "hu",
+    "name": "Hungary",
+    "territorialMtCO2": 44.8425,
+    "NDGainScore": 57.064849
+  },
+  {
+    "id": "is",
+    "name": "Iceland",
+    "territorialMtCO2": 3.6132,
+    "NDGainScore": 67.615588
+  },
+  {
+    "id": "in",
+    "name": "India",
+    "territorialMtCO2": 2831.1663,
+    "NDGainScore": 47.064341
+  },
+  {
+    "id": "id",
+    "name": "Indonesia",
+    "territorialMtCO2": 737.0726,
+    "NDGainScore": 48.545432
+  },
+  {
+    "id": "iq",
+    "name": "Iraq",
+    "territorialMtCO2": 171.2792,
+    "NDGainScore": 43.584316
+  },
+  {
+    "id": "ie",
+    "name": "Ireland",
+    "territorialMtCO2": 36.7114,
+    "NDGainScore": 64.495621
+  },
+  {
+    "id": "il",
+    "name": "Israel",
+    "territorialMtCO2": 60.9462,
+    "NDGainScore": 62.132325
+  },
+  {
+    "id": "it",
+    "name": "Italy",
+    "territorialMtCO2": 340.6723,
+    "NDGainScore": 59.57766
+  },
+  {
+    "id": "jm",
+    "name": "Jamaica",
+    "territorialMtCO2": 7.1368,
+    "NDGainScore": 49.512964
+  },
+  {
+    "id": "jp",
+    "name": "Japan",
+    "territorialMtCO2": 1032.6868,
+    "NDGainScore": 66.533967
+  },
+  {
+    "id": "jo",
+    "name": "Jordan",
+    "territorialMtCO2": 20.2545,
+    "NDGainScore": 52.276571
+  },
+  {
+    "id": "kz",
+    "name": "Kazakhstan",
+    "territorialMtCO2": 254.4142,
+    "NDGainScore": 59.882736
+  },
+  {
+    "id": "ke",
+    "name": "Kenya",
+    "territorialMtCO2": 21.3974,
+    "NDGainScore": 40.813772
+  },
+  {
+    "id": "ki",
+    "name": "Kiribati",
+    "territorialMtCO2": 0.067531,
+    "NDGainScore": 43.620614
+  },
+  {
+    "id": "kw",
+    "name": "Kuwait",
+    "territorialMtCO2": 97.4606,
+    "NDGainScore": 55.197776
+  },
+  {
+    "id": "kg",
+    "name": "Kyrgyzstan",
+    "territorialMtCO2": 10.0321,
+    "NDGainScore": 53.514943
+  },
+  {
+    "id": "lv",
+    "name": "Latvia",
+    "territorialMtCO2": 6.6197,
+    "NDGainScore": 60.831724
+  },
+  {
+    "id": "lb",
+    "name": "Lebanon",
+    "territorialMtCO2": 18.9224,
+    "NDGainScore": 44.706728
+  },
+  {
+    "id": "ls",
+    "name": "Lesotho",
+    "territorialMtCO2": 3.8326,
+    "NDGainScore": 41.301289
+  },
+  {
+    "id": "lr",
+    "name": "Liberia",
+    "territorialMtCO2": 0.79208,
+    "NDGainScore": 36.901826
+  },
+  {
+    "id": "lt",
+    "name": "Lithuania",
+    "territorialMtCO2": 12.8567,
+    "NDGainScore": 61.663156
+  },
+  {
+    "id": "lu",
+    "name": "Luxembourg",
+    "territorialMtCO2": 7.2767,
+    "NDGainScore": 67.345088
+  },
+  {
+    "id": "mg",
+    "name": "Madagascar",
+    "territorialMtCO2": 4.3095,
+    "NDGainScore": 35.193523
+  },
+  {
+    "id": "mw",
+    "name": "Malawi",
+    "territorialMtCO2": 1.7482,
+    "NDGainScore": 36.930451
+  },
+  {
+    "id": "my",
+    "name": "Malaysia",
+    "territorialMtCO2": 285.448,
+    "NDGainScore": 57.071903
+  },
+  {
+    "id": "mv",
+    "name": "Maldives",
+    "territorialMtCO2": 2.0184,
+    "NDGainScore": 44.344661
+  },
+  {
+    "id": "ml",
+    "name": "Mali",
+    "territorialMtCO2": 6.9884,
+    "NDGainScore": 34.242135
+  },
+  {
+    "id": "mt",
+    "name": "Malta",
+    "territorialMtCO2": 1.7736,
+    "NDGainScore": 59.168968
+  },
+  {
+    "id": "mh",
+    "name": "Marshall Islands",
+    "territorialMtCO2": 0.15007,
+    "NDGainScore": 41.570617
+  },
+  {
+    "id": "mr",
+    "name": "Mauritania",
+    "territorialMtCO2": 4.5776,
+    "NDGainScore": 38.628869
+  },
+  {
+    "id": "mu",
+    "name": "Mauritius",
+    "territorialMtCO2": 3.9282,
+    "NDGainScore": 57.77095
+  },
+  {
+    "id": "mx",
+    "name": "Mexico",
+    "territorialMtCO2": 465.3357,
+    "NDGainScore": 49.62963
+  },
+  {
+    "id": "mn",
+    "name": "Mongolia",
+    "territorialMtCO2": 43.4148,
+    "NDGainScore": 55.971775
+  },
+  {
+    "id": "me",
+    "name": "Montenegro",
+    "territorialMtCO2": 2.3905,
+    "NDGainScore": 54.334753
+  },
+  {
+    "id": "ma",
+    "name": "Morocco",
+    "territorialMtCO2": 69.5055,
+    "NDGainScore": 53.375442
+  },
+  {
+    "id": "mz",
+    "name": "Mozambique",
+    "territorialMtCO2": 8.3578,
+    "NDGainScore": 39.172992
+  },
+  {
+    "id": "mm",
+    "name": "Myanmar",
+    "territorialMtCO2": 29.5327,
+    "NDGainScore": 37.079974
+  },
+  {
+    "id": "na",
+    "name": "Namibia",
+    "territorialMtCO2": 4.0848,
+    "NDGainScore": 46.065578
+  },
+  {
+    "id": "nr",
+    "name": "Nauru",
+    "territorialMtCO2": 0.056276,
+    "NDGainScore": 53.321031
+  },
+  {
+    "id": "np",
+    "name": "Nepal",
+    "territorialMtCO2": 16.089,
+    "NDGainScore": 43.267547
+  },
+  {
+    "id": "nl",
+    "name": "Netherlands",
+    "territorialMtCO2": 127.241,
+    "NDGainScore": 66.035108
+  },
+  {
+    "id": "nz",
+    "name": "New Zealand",
+    "territorialMtCO2": 31.6101,
+    "NDGainScore": 68.789374
+  },
+  {
+    "id": "ni",
+    "name": "Nicaragua",
+    "territorialMtCO2": 5.2961,
+    "NDGainScore": 40.591394
+  },
+  {
+    "id": "ne",
+    "name": "Niger",
+    "territorialMtCO2": 2.6974,
+    "NDGainScore": 35.480389
+  },
+  {
+    "id": "ng",
+    "name": "Nigeria",
+    "territorialMtCO2": 131.5682,
+    "NDGainScore": 39.414386
+  },
+  {
+    "id": "no",
+    "name": "Norway",
+    "territorialMtCO2": 40.808,
+    "NDGainScore": 74.678262
+  },
+  {
+    "id": "om",
+    "name": "Oman",
+    "territorialMtCO2": 76.6058,
+    "NDGainScore": 53.925633
+  },
+  {
+    "id": "pk",
+    "name": "Pakistan",
+    "territorialMtCO2": 223.8344,
+    "NDGainScore": 40.268159
+  },
+  {
+    "id": "pw",
+    "name": "Palau",
+    "territorialMtCO2": 0.2176,
+    "NDGainScore": 48.574571
+  },
+  {
+    "id": "pa",
+    "name": "Panama",
+    "territorialMtCO2": 11.3555,
+    "NDGainScore": 47.802993
+  },
+  {
+    "id": "pg",
+    "name": "Papua New Guinea",
+    "territorialMtCO2": 8.2006,
+    "NDGainScore": 36.884996
+  },
+  {
+    "id": "py",
+    "name": "Paraguay",
+    "territorialMtCO2": 8.1074,
+    "NDGainScore": 48.399636
+  },
+  {
+    "id": "pe",
+    "name": "Peru",
+    "territorialMtCO2": 54.793,
+    "NDGainScore": 49.111462
+  },
+  {
+    "id": "ph",
+    "name": "Philippines",
+    "territorialMtCO2": 144.8978,
+    "NDGainScore": 44.840569
+  },
+  {
+    "id": "pl",
+    "name": "Poland",
+    "territorialMtCO2": 315.0423,
+    "NDGainScore": 61.594789
+  },
+  {
+    "id": "pt",
+    "name": "Portugal",
+    "territorialMtCO2": 40.6871,
+    "NDGainScore": 63.017102
+  },
+  {
+    "id": "qa",
+    "name": "Qatar",
+    "territorialMtCO2": 106.1519,
+    "NDGainScore": 59.644513
+  },
+  {
+    "id": "ro",
+    "name": "Romania",
+    "territorialMtCO2": 72.9928,
+    "NDGainScore": 51.258853
+  },
+  {
+    "id": "ru",
+    "name": "Russian Federation",
+    "territorialMtCO2": 1802.1899,
+    "NDGainScore": 58.849485
+  },
+  {
+    "id": "rw",
+    "name": "Rwanda",
+    "territorialMtCO2": 1.5408,
+    "NDGainScore": 42.981039
+  },
+  {
+    "id": "lc",
+    "name": "Saint Lucia",
+    "territorialMtCO2": 0.49023,
+    "NDGainScore": 53.774802
+  },
+  {
+    "id": "vc",
+    "name": "Saint Vincent and the Grenadines",
+    "territorialMtCO2": 0.22735,
+    "NDGainScore": 52.7524
+  },
+  {
+    "id": "ws",
+    "name": "Samoa",
+    "territorialMtCO2": 0.25136,
+    "NDGainScore": 45.785698
+  },
+  {
+    "id": "st",
+    "name": "Sao Tome and Principe",
+    "territorialMtCO2": 0.15985,
+    "NDGainScore": 41.455245
+  },
+  {
+    "id": "sa",
+    "name": "Saudi Arabia",
+    "territorialMtCO2": 723.3314,
+    "NDGainScore": 57.560828
+  },
+  {
+    "id": "sn",
+    "name": "Senegal",
+    "territorialMtCO2": 12.2747,
+    "NDGainScore": 40.85948
+  },
+  {
+    "id": "rs",
+    "name": "Serbia",
+    "territorialMtCO2": 43.5168,
+    "NDGainScore": 51.133024
+  },
+  {
+    "id": "sc",
+    "name": "Seychelles",
+    "territorialMtCO2": 0.5537,
+    "NDGainScore": 52.078076
+  },
+  {
+    "id": "sl",
+    "name": "Sierra Leone",
+    "territorialMtCO2": 1.2776,
+    "NDGainScore": 35.006593
+  },
+  {
+    "id": "sg",
+    "name": "Singapore",
+    "territorialMtCO2": 47.8727,
+    "NDGainScore": 71.085355
+  },
+  {
+    "id": "sk",
+    "name": "Slovakia",
+    "territorialMtCO2": 31.5502,
+    "NDGainScore": 57.863392
+  },
+  {
+    "id": "si",
+    "name": "Slovenia",
+    "territorialMtCO2": 12.7013,
+    "NDGainScore": 63.920767
+  },
+  {
+    "id": "sb",
+    "name": "Solomon Islands",
+    "territorialMtCO2": 0.29639,
+    "NDGainScore": 38.148323
+  },
+  {
+    "id": "so",
+    "name": "Somalia",
+    "territorialMtCO2": 0.56033,
+    "NDGainScore": 37.426221
+  },
+  {
+    "id": "za",
+    "name": "South Africa",
+    "territorialMtCO2": 405.3117,
+    "NDGainScore": 48.567936
+  },
+  {
+    "id": "es",
+    "name": "Spain",
+    "territorialMtCO2": 234.657,
+    "NDGainScore": 61.944717
+  },
+  {
+    "id": "lk",
+    "name": "Sri Lanka",
+    "territorialMtCO2": 19.9031,
+    "NDGainScore": 45.635619
+  },
+  {
+    "id": "sd",
+    "name": "Sudan",
+    "territorialMtCO2": 20.2401,
+    "NDGainScore": 32.718752
+  },
+  {
+    "id": "sr",
+    "name": "Suriname",
+    "territorialMtCO2": 2.6398,
+    "NDGainScore": 45.248854
+  },
+  {
+    "id": "sz",
+    "name": "Swaziland",
+    "territorialMtCO2": 1.0797,
+    "NDGainScore": 42.558493
+  },
+  {
+    "id": "se",
+    "name": "Sweden",
+    "territorialMtCO2": 37.4744,
+    "NDGainScore": 69.8566
+  },
+  {
+    "id": "ch",
+    "name": "Switzerland",
+    "territorialMtCO2": 32.8189,
+    "NDGainScore": 72.123302
+  },
+  {
+    "id": "tj",
+    "name": "Tajikistan",
+    "territorialMtCO2": 8.9659,
+    "NDGainScore": 47.646553
+  },
+  {
+    "id": "th",
+    "name": "Thailand",
+    "territorialMtCO2": 272.5734,
+    "NDGainScore": 53.927899
+  },
+  {
+    "id": "tl",
+    "name": "Timor-Leste",
+    "territorialMtCO2": 0.6493,
+    "NDGainScore": 41.27966
+  },
+  {
+    "id": "tg",
+    "name": "Togo",
+    "territorialMtCO2": 2.6823,
+    "NDGainScore": 42.955004
+  },
+  {
+    "id": "to",
+    "name": "Tonga",
+    "territorialMtCO2": 0.19509,
+    "NDGainScore": 41.25
+  },
+  {
+    "id": "tt",
+    "name": "Trinidad and Tobago",
+    "territorialMtCO2": 36.3059,
+    "NDGainScore": 48.183626
+  },
+  {
+    "id": "tn",
+    "name": "Tunisia",
+    "territorialMtCO2": 31.9476,
+    "NDGainScore": 53.032604
+  },
+  {
+    "id": "tr",
+    "name": "Turkey",
+    "territorialMtCO2": 437.3053,
+    "NDGainScore": 56.451886
+  },
+  {
+    "id": "tm",
+    "name": "Turkmenistan",
+    "territorialMtCO2": 64.1544,
+    "NDGainScore": 43.329671
+  },
+  {
+    "id": "tv",
+    "name": "Tuvalu",
+    "territorialMtCO2": 0.011255,
+    "NDGainScore": 52.141207
+  },
+  {
+    "id": "ug",
+    "name": "Uganda",
+    "territorialMtCO2": 5.6379,
+    "NDGainScore": 37.893265
+  },
+  {
+    "id": "ua",
+    "name": "Ukraine",
+    "territorialMtCO2": 141.1264,
+    "NDGainScore": 52.339571
+  },
+  {
+    "id": "ae",
+    "name": "United Arab Emirates",
+    "territorialMtCO2": 225.9772,
+    "NDGainScore": 60.274589
+  },
+  {
+    "id": "gb",
+    "name": "United Kingdom",
+    "territorialMtCO2": 313.8348,
+    "NDGainScore": 70.299925
+  },
+  {
+    "id": "uy",
+    "name": "Uruguay",
+    "territorialMtCO2": 7.8198,
+    "NDGainScore": 56.166
+  },
+  {
+    "id": "uz",
+    "name": "Uzbekistan",
+    "territorialMtCO2": 125.0388,
+    "NDGainScore": 53.471655
+  },
+  {
+    "id": "vu",
+    "name": "Vanuatu",
+    "territorialMtCO2": 0.22135,
+    "NDGainScore": 41.246684
+  },
+  {
+    "id": "ye",
+    "name": "Yemen",
+    "territorialMtCO2": 10.2961,
+    "NDGainScore": 36.168169
+  },
+  {
+    "id": "zm",
+    "name": "Zambia",
+    "territorialMtCO2": 7.5218,
+    "NDGainScore": 42.119343
+  },
+  {
+    "id": "zw",
+    "name": "Zimbabwe",
+    "territorialMtCO2": 10.4249,
+    "NDGainScore": 36.214472
+  }
+]
