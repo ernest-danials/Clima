@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct ClimaApp: App {
+    @StateObject var countryDataManager = CountryDataManager()
     var body: some Scene {
         WindowGroup {
             AppTabView()
+                .environmentObject(countryDataManager)
         }
     }
 }

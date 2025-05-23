@@ -2,1026 +2,1416 @@
   {
     "id": "af",
     "name": "Afghanistan",
+    "latitude": 33,
+    "longitude": 65,
     "territorialMtCO2": 10.5578,
     "NDGainScore": 33.207456
   },
   {
     "id": "al",
     "name": "Albania",
+    "latitude": 41,
+    "longitude": 20,
     "territorialMtCO2": 5.1734,
     "NDGainScore": 51.75718
   },
   {
     "id": "dz",
     "name": "Algeria",
+    "latitude": 28,
+    "longitude": 3,
     "territorialMtCO2": 184.5581,
     "NDGainScore": 48.666501
   },
   {
     "id": "ao",
     "name": "Angola",
+    "latitude": -12.5,
+    "longitude": 18.5,
     "territorialMtCO2": 20.2502,
     "NDGainScore": 38.079516
   },
   {
     "id": "ag",
     "name": "Antigua and Barbuda",
+    "latitude": 17.05,
+    "longitude": -61.8,
     "territorialMtCO2": 0.61811,
     "NDGainScore": 49.075398
   },
   {
     "id": "ar",
     "name": "Argentina",
+    "latitude": -34,
+    "longitude": -64,
     "territorialMtCO2": 204.0807,
     "NDGainScore": 50.206102
   },
   {
     "id": "am",
     "name": "Armenia",
+    "latitude": 40,
+    "longitude": 45,
     "territorialMtCO2": 7.1646,
     "NDGainScore": 56.950758
   },
   {
     "id": "au",
     "name": "Australia",
+    "latitude": -27,
+    "longitude": 133,
     "territorialMtCO2": 384.3621,
     "NDGainScore": 69.547415
   },
   {
     "id": "at",
     "name": "Austria",
+    "latitude": 47.3333,
+    "longitude": 13.3333,
     "territorialMtCO2": 61.4891,
     "NDGainScore": 68.9854
   },
   {
     "id": "az",
     "name": "Azerbaijan",
+    "latitude": 40.5,
+    "longitude": 47.5,
     "territorialMtCO2": 40.3915,
     "NDGainScore": 51.750345
   },
   {
     "id": "bs",
     "name": "Bahamas",
+    "latitude": 24.25,
+    "longitude": -76,
     "territorialMtCO2": 2.4017,
     "NDGainScore": 48.463745
   },
   {
     "id": "bh",
     "name": "Bahrain",
+    "latitude": 26,
+    "longitude": 50.55,
     "territorialMtCO2": 35.652,
     "NDGainScore": 54.77009
   },
   {
     "id": "bd",
     "name": "Bangladesh",
+    "latitude": 24,
+    "longitude": 90,
     "territorialMtCO2": 113.8629,
     "NDGainScore": 36.028379
   },
   {
     "id": "bb",
     "name": "Barbados",
+    "latitude": 13.1667,
+    "longitude": -59.5333,
     "territorialMtCO2": 1.1433,
     "NDGainScore": 61.06022
   },
   {
     "id": "by",
     "name": "Belarus",
+    "latitude": 53,
+    "longitude": 28,
     "territorialMtCO2": 59.3844,
     "NDGainScore": 57.058484
   },
   {
     "id": "be",
     "name": "Belgium",
+    "latitude": 50.8333,
+    "longitude": 4,
     "territorialMtCO2": 89.0021,
     "NDGainScore": 63.452214
   },
   {
     "id": "bz",
     "name": "Belize",
+    "latitude": 17.25,
+    "longitude": -88.75,
     "territorialMtCO2": 0.63244,
     "NDGainScore": 43.675613
   },
   {
     "id": "bj",
     "name": "Benin",
+    "latitude": 9.5,
+    "longitude": 2.25,
     "territorialMtCO2": 5.7924,
     "NDGainScore": 38.340518
   },
   {
     "id": "bt",
     "name": "Bhutan",
+    "latitude": 27.5,
+    "longitude": 90.5,
     "territorialMtCO2": 1.6353,
     "NDGainScore": 47.564463
   },
   {
     "id": "ba",
     "name": "Bosnia and Herzegovina",
+    "latitude": 44,
+    "longitude": 18,
     "territorialMtCO2": 20.9634,
     "NDGainScore": 50.975458
   },
   {
     "id": "bw",
     "name": "Botswana",
+    "latitude": -22,
+    "longitude": 24,
     "territorialMtCO2": 6.5955,
     "NDGainScore": 50.006159
   },
   {
     "id": "br",
     "name": "Brazil",
+    "latitude": -10,
+    "longitude": -55,
     "territorialMtCO2": 483.8406,
     "NDGainScore": 49.523782
   },
   {
     "id": "bn",
     "name": "Brunei Darussalam",
+    "latitude": 4.5,
+    "longitude": 114.6667,
     "territorialMtCO2": 11.3544,
     "NDGainScore": 56.535298
   },
   {
     "id": "bg",
     "name": "Bulgaria",
+    "latitude": 43,
+    "longitude": 25,
     "territorialMtCO2": 46.9657,
     "NDGainScore": 54.987567
   },
   {
     "id": "bf",
     "name": "Burkina Faso",
+    "latitude": 13,
+    "longitude": -2,
     "territorialMtCO2": 6.3739,
     "NDGainScore": 37.989459
   },
   {
     "id": "bi",
     "name": "Burundi",
+    "latitude": -3.5,
+    "longitude": 30,
     "territorialMtCO2": 0.70729,
     "NDGainScore": 35.899589
   },
   {
     "id": "kh",
     "name": "Cambodia",
+    "latitude": 13,
+    "longitude": 105,
     "territorialMtCO2": 19.6086,
     "NDGainScore": 40.329583
   },
   {
     "id": "cm",
     "name": "Cameroon",
+    "latitude": 6,
+    "longitude": 12,
     "territorialMtCO2": 10.0458,
     "NDGainScore": 38.671169
   },
   {
     "id": "ca",
     "name": "Canada",
+    "latitude": 56.1304,
+    "longitude": -106.3468,
     "territorialMtCO2": 550.6116,
     "NDGainScore": 68.458447
   },
   {
     "id": "cv",
     "name": "Cape Verde",
+    "latitude": 16,
+    "longitude": -24,
     "territorialMtCO2": 0.55498,
     "NDGainScore": 51.0737
   },
   {
     "id": "cf",
     "name": "Central African Republic",
+    "latitude": 7,
+    "longitude": 21,
     "territorialMtCO2": 0.27052,
     "NDGainScore": 27.894803
   },
   {
     "id": "td",
     "name": "Chad",
+    "latitude": 15,
+    "longitude": 19,
     "territorialMtCO2": 3.0047,
     "NDGainScore": 27.155307
   },
   {
     "id": "cl",
     "name": "Chile",
+    "latitude": -30,
+    "longitude": -71,
     "territorialMtCO2": 82.5369,
     "NDGainScore": 60.122399
   },
   {
     "id": "cn",
     "name": "China",
+    "latitude": 35,
+    "longitude": 105,
     "territorialMtCO2": 11350.5377,
     "NDGainScore": 60.182582
   },
   {
     "id": "co",
     "name": "Colombia",
+    "latitude": 4,
+    "longitude": -72,
     "territorialMtCO2": 98.2925,
     "NDGainScore": 48.69047
   },
   {
     "id": "km",
     "name": "Comoros",
+    "latitude": -12.1667,
+    "longitude": 44.25,
     "territorialMtCO2": 0.45092,
     "NDGainScore": 36.8598
   },
   {
     "id": "cg",
     "name": "Congo",
+    "latitude": -1,
+    "longitude": 15,
     "territorialMtCO2": 8.1112,
     "NDGainScore": 35.875366
   },
   {
     "id": "cr",
     "name": "Costa Rica",
+    "latitude": 10,
+    "longitude": -84,
     "territorialMtCO2": 7.8473,
     "NDGainScore": 53.661706
   },
   {
     "id": "hr",
     "name": "Croatia",
+    "latitude": 45.1667,
+    "longitude": 15.5,
     "territorialMtCO2": 17.6082,
     "NDGainScore": 55.444947
   },
   {
     "id": "cu",
     "name": "Cuba",
+    "latitude": 21.5,
+    "longitude": -80,
     "territorialMtCO2": 21.8823,
     "NDGainScore": 45.608546
   },
   {
     "id": "cy",
     "name": "Cyprus",
+    "latitude": 35,
+    "longitude": 33,
     "territorialMtCO2": 7.1975,
     "NDGainScore": 58.063195
   },
   {
     "id": "cz",
     "name": "Czech Republic",
+    "latitude": 49.75,
+    "longitude": 15.5,
     "territorialMtCO2": 95.1078,
     "NDGainScore": 64.651308
   },
   {
     "id": "dk",
     "name": "Denmark",
+    "latitude": 56,
+    "longitude": 10,
     "territorialMtCO2": 28.4315,
     "NDGainScore": 71.095305
   },
   {
     "id": "dj",
     "name": "Djibouti",
+    "latitude": 11.5,
+    "longitude": 43,
     "territorialMtCO2": 0.49426,
     "NDGainScore": 41.122757
   },
   {
     "id": "dm",
     "name": "Dominica",
+    "latitude": 15.4167,
+    "longitude": -61.3333,
     "territorialMtCO2": 0.1563,
     "NDGainScore": 52.977843
   },
   {
     "id": "do",
     "name": "Dominican Republic",
+    "latitude": 19,
+    "longitude": -70.6667,
     "territorialMtCO2": 30.4308,
     "NDGainScore": 46.733364
   },
   {
     "id": "ec",
     "name": "Ecuador",
+    "latitude": -2,
+    "longitude": -77.5,
     "territorialMtCO2": 40.522,
     "NDGainScore": 44.076283
   },
   {
     "id": "eg",
     "name": "Egypt",
+    "latitude": 27,
+    "longitude": 30,
     "territorialMtCO2": 271.1685,
     "NDGainScore": 47.589421
   },
   {
     "id": "sv",
     "name": "El Salvador",
+    "latitude": 13.8333,
+    "longitude": -88.9167,
     "territorialMtCO2": 7.8002,
     "NDGainScore": 46.081895
   },
   {
     "id": "gq",
     "name": "Equatorial Guinea",
+    "latitude": 2,
+    "longitude": 10,
     "territorialMtCO2": 6.8259,
     "NDGainScore": 42.189353
   },
   {
     "id": "er",
     "name": "Eritrea",
+    "latitude": 15,
+    "longitude": 39,
     "territorialMtCO2": 0.62345,
     "NDGainScore": 30.646246
   },
   {
     "id": "ee",
     "name": "Estonia",
+    "latitude": 59,
+    "longitude": 26,
     "territorialMtCO2": 11.7572,
     "NDGainScore": 64.516423
   },
   {
     "id": "et",
     "name": "Ethiopia",
+    "latitude": 8,
+    "longitude": 38,
     "territorialMtCO2": 15.1569,
     "NDGainScore": 38.694872
   },
   {
     "id": "fj",
     "name": "Fiji",
+    "latitude": -18,
+    "longitude": 175,
     "territorialMtCO2": 1.1218,
     "NDGainScore": 50.896341
   },
   {
     "id": "fi",
     "name": "Finland",
+    "latitude": 64,
+    "longitude": 26,
     "territorialMtCO2": 36.367,
     "NDGainScore": 72.93826
   },
   {
     "id": "fr",
     "name": "France",
+    "latitude": 46,
+    "longitude": 2,
     "territorialMtCO2": 293.5017,
     "NDGainScore": 67.725978
   },
   {
     "id": "ga",
     "name": "Gabon",
+    "latitude": -1,
+    "longitude": 11.75,
     "territorialMtCO2": 5.8347,
     "NDGainScore": 42.982068
   },
   {
     "id": "gm",
     "name": "Gambia",
+    "latitude": 13.4667,
+    "longitude": -16.5667,
     "territorialMtCO2": 0.73748,
     "NDGainScore": 39.815618
   },
   {
     "id": "ge",
     "name": "Georgia",
+    "latitude": 42,
+    "longitude": 43.5,
     "territorialMtCO2": 11.5271,
     "NDGainScore": 58.715302
   },
   {
     "id": "de",
     "name": "Germany",
+    "latitude": 51,
+    "longitude": 9,
     "territorialMtCO2": 671.4715,
     "NDGainScore": 69.48249
   },
   {
     "id": "gh",
     "name": "Ghana",
+    "latitude": 8,
+    "longitude": -2,
     "territorialMtCO2": 20.287,
     "NDGainScore": 45.180412
   },
   {
     "id": "gr",
     "name": "Greece",
+    "latitude": 39,
+    "longitude": 22,
     "territorialMtCO2": 58.0795,
     "NDGainScore": 59.53258
   },
   {
     "id": "gd",
     "name": "Grenada",
+    "latitude": 12.1167,
+    "longitude": -61.6667,
     "territorialMtCO2": 0.32096,
     "NDGainScore": 57.374509
   },
   {
     "id": "gt",
     "name": "Guatemala",
+    "latitude": 15.5,
+    "longitude": -90.25,
     "territorialMtCO2": 19.1137,
     "NDGainScore": 43.697564
   },
   {
     "id": "gn",
     "name": "Guinea",
+    "latitude": 11,
+    "longitude": -10,
     "territorialMtCO2": 4.194,
     "NDGainScore": 38.75918
   },
   {
     "id": "gw",
     "name": "Guinea-Bissau",
+    "latitude": 12,
+    "longitude": -15,
     "territorialMtCO2": 0.30915,
     "NDGainScore": 32.896035
   },
   {
     "id": "gy",
     "name": "Guyana",
+    "latitude": 5,
+    "longitude": -59,
     "territorialMtCO2": 3.6272,
     "NDGainScore": 45.223703
   },
   {
     "id": "ht",
     "name": "Haiti",
+    "latitude": 19,
+    "longitude": -72.4167,
     "territorialMtCO2": 3.3809,
     "NDGainScore": 35.343316
   },
   {
     "id": "hn",
     "name": "Honduras",
+    "latitude": 15,
+    "longitude": -86.5,
     "territorialMtCO2": 10.4815,
     "NDGainScore": 40.811319
   },
   {
     "id": "hu",
     "name": "Hungary",
+    "latitude": 47,
+    "longitude": 20,
     "territorialMtCO2": 44.8425,
     "NDGainScore": 57.064849
   },
   {
     "id": "is",
     "name": "Iceland",
+    "latitude": 65,
+    "longitude": -18,
     "territorialMtCO2": 3.6132,
     "NDGainScore": 67.615588
   },
   {
     "id": "in",
     "name": "India",
+    "latitude": 20,
+    "longitude": 77,
     "territorialMtCO2": 2831.1663,
     "NDGainScore": 47.064341
   },
   {
     "id": "id",
     "name": "Indonesia",
+    "latitude": -5,
+    "longitude": 120,
     "territorialMtCO2": 737.0726,
     "NDGainScore": 48.545432
   },
   {
     "id": "iq",
     "name": "Iraq",
+    "latitude": 33,
+    "longitude": 44,
     "territorialMtCO2": 171.2792,
     "NDGainScore": 43.584316
   },
   {
     "id": "ie",
     "name": "Ireland",
+    "latitude": 53,
+    "longitude": -8,
     "territorialMtCO2": 36.7114,
     "NDGainScore": 64.495621
   },
   {
     "id": "il",
     "name": "Israel",
+    "latitude": 31.5,
+    "longitude": 34.75,
     "territorialMtCO2": 60.9462,
     "NDGainScore": 62.132325
   },
   {
     "id": "it",
     "name": "Italy",
+    "latitude": 42.8333,
+    "longitude": 12.8333,
     "territorialMtCO2": 340.6723,
     "NDGainScore": 59.57766
   },
   {
     "id": "jm",
     "name": "Jamaica",
+    "latitude": 18.25,
+    "longitude": -77.5,
     "territorialMtCO2": 7.1368,
     "NDGainScore": 49.512964
   },
   {
     "id": "jp",
     "name": "Japan",
+    "latitude": 36,
+    "longitude": 138,
     "territorialMtCO2": 1032.6868,
     "NDGainScore": 66.533967
   },
   {
     "id": "jo",
     "name": "Jordan",
+    "latitude": 31,
+    "longitude": 36,
     "territorialMtCO2": 20.2545,
     "NDGainScore": 52.276571
   },
   {
     "id": "kz",
     "name": "Kazakhstan",
+    "latitude": 48,
+    "longitude": 68,
     "territorialMtCO2": 254.4142,
     "NDGainScore": 59.882736
   },
   {
     "id": "ke",
     "name": "Kenya",
+    "latitude": 1,
+    "longitude": 38,
     "territorialMtCO2": 21.3974,
     "NDGainScore": 40.813772
   },
   {
     "id": "ki",
     "name": "Kiribati",
+    "latitude": 1.4167,
+    "longitude": 173,
     "territorialMtCO2": 0.067531,
     "NDGainScore": 43.620614
   },
   {
     "id": "kw",
     "name": "Kuwait",
+    "latitude": 29.3375,
+    "longitude": 47.6581,
     "territorialMtCO2": 97.4606,
     "NDGainScore": 55.197776
   },
   {
     "id": "kg",
     "name": "Kyrgyzstan",
+    "latitude": 41,
+    "longitude": 75,
     "territorialMtCO2": 10.0321,
     "NDGainScore": 53.514943
   },
   {
     "id": "lv",
     "name": "Latvia",
+    "latitude": 57,
+    "longitude": 25,
     "territorialMtCO2": 6.6197,
     "NDGainScore": 60.831724
   },
   {
     "id": "lb",
     "name": "Lebanon",
+    "latitude": 33.8333,
+    "longitude": 35.8333,
     "territorialMtCO2": 18.9224,
     "NDGainScore": 44.706728
   },
   {
     "id": "ls",
     "name": "Lesotho",
+    "latitude": -29.5,
+    "longitude": 28.5,
     "territorialMtCO2": 3.8326,
     "NDGainScore": 41.301289
   },
   {
     "id": "lr",
     "name": "Liberia",
+    "latitude": 6.5,
+    "longitude": -9.5,
     "territorialMtCO2": 0.79208,
     "NDGainScore": 36.901826
   },
   {
     "id": "lt",
     "name": "Lithuania",
+    "latitude": 56,
+    "longitude": 24,
     "territorialMtCO2": 12.8567,
     "NDGainScore": 61.663156
   },
   {
     "id": "lu",
     "name": "Luxembourg",
+    "latitude": 49.75,
+    "longitude": 6.1667,
     "territorialMtCO2": 7.2767,
     "NDGainScore": 67.345088
   },
   {
     "id": "mg",
     "name": "Madagascar",
+    "latitude": -20,
+    "longitude": 47,
     "territorialMtCO2": 4.3095,
     "NDGainScore": 35.193523
   },
   {
     "id": "mw",
     "name": "Malawi",
+    "latitude": -13.5,
+    "longitude": 34,
     "territorialMtCO2": 1.7482,
     "NDGainScore": 36.930451
   },
   {
     "id": "my",
     "name": "Malaysia",
+    "latitude": 2.5,
+    "longitude": 112.5,
     "territorialMtCO2": 285.448,
     "NDGainScore": 57.071903
   },
   {
     "id": "mv",
     "name": "Maldives",
+    "latitude": 3.25,
+    "longitude": 73,
     "territorialMtCO2": 2.0184,
     "NDGainScore": 44.344661
   },
   {
     "id": "ml",
     "name": "Mali",
+    "latitude": 17,
+    "longitude": -4,
     "territorialMtCO2": 6.9884,
     "NDGainScore": 34.242135
   },
   {
     "id": "mt",
     "name": "Malta",
+    "latitude": 35.8333,
+    "longitude": 14.5833,
     "territorialMtCO2": 1.7736,
     "NDGainScore": 59.168968
   },
   {
     "id": "mh",
     "name": "Marshall Islands",
+    "latitude": 9,
+    "longitude": 168,
     "territorialMtCO2": 0.15007,
     "NDGainScore": 41.570617
   },
   {
     "id": "mr",
     "name": "Mauritania",
+    "latitude": 20,
+    "longitude": -12,
     "territorialMtCO2": 4.5776,
     "NDGainScore": 38.628869
   },
   {
     "id": "mu",
     "name": "Mauritius",
+    "latitude": -20.2833,
+    "longitude": 57.55,
     "territorialMtCO2": 3.9282,
     "NDGainScore": 57.77095
   },
   {
     "id": "mx",
     "name": "Mexico",
+    "latitude": 23,
+    "longitude": -102,
     "territorialMtCO2": 465.3357,
     "NDGainScore": 49.62963
   },
   {
     "id": "mn",
     "name": "Mongolia",
+    "latitude": 46,
+    "longitude": 105,
     "territorialMtCO2": 43.4148,
     "NDGainScore": 55.971775
   },
   {
     "id": "me",
     "name": "Montenegro",
+    "latitude": 42,
+    "longitude": 19,
     "territorialMtCO2": 2.3905,
     "NDGainScore": 54.334753
   },
   {
     "id": "ma",
     "name": "Morocco",
+    "latitude": 32,
+    "longitude": -5,
     "territorialMtCO2": 69.5055,
     "NDGainScore": 53.375442
   },
   {
     "id": "mz",
     "name": "Mozambique",
+    "latitude": -18.25,
+    "longitude": 35,
     "territorialMtCO2": 8.3578,
     "NDGainScore": 39.172992
   },
   {
     "id": "mm",
     "name": "Myanmar",
+    "latitude": 22,
+    "longitude": 98,
     "territorialMtCO2": 29.5327,
     "NDGainScore": 37.079974
   },
   {
     "id": "na",
     "name": "Namibia",
+    "latitude": -22,
+    "longitude": 17,
     "territorialMtCO2": 4.0848,
     "NDGainScore": 46.065578
   },
   {
     "id": "nr",
     "name": "Nauru",
+    "latitude": -0.5333,
+    "longitude": 166.9167,
     "territorialMtCO2": 0.056276,
     "NDGainScore": 53.321031
   },
   {
     "id": "np",
     "name": "Nepal",
+    "latitude": 28,
+    "longitude": 84,
     "territorialMtCO2": 16.089,
     "NDGainScore": 43.267547
   },
   {
     "id": "nl",
     "name": "Netherlands",
+    "latitude": 52.5,
+    "longitude": 5.75,
     "territorialMtCO2": 127.241,
     "NDGainScore": 66.035108
   },
   {
     "id": "nz",
     "name": "New Zealand",
+    "latitude": -41,
+    "longitude": 174,
     "territorialMtCO2": 31.6101,
     "NDGainScore": 68.789374
   },
   {
     "id": "ni",
     "name": "Nicaragua",
+    "latitude": 13,
+    "longitude": -85,
     "territorialMtCO2": 5.2961,
     "NDGainScore": 40.591394
   },
   {
     "id": "ne",
     "name": "Niger",
+    "latitude": 16,
+    "longitude": 8,
     "territorialMtCO2": 2.6974,
     "NDGainScore": 35.480389
   },
   {
     "id": "ng",
     "name": "Nigeria",
+    "latitude": 10,
+    "longitude": 8,
     "territorialMtCO2": 131.5682,
     "NDGainScore": 39.414386
   },
   {
     "id": "no",
     "name": "Norway",
+    "latitude": 62,
+    "longitude": 10,
     "territorialMtCO2": 40.808,
     "NDGainScore": 74.678262
   },
   {
     "id": "om",
     "name": "Oman",
+    "latitude": 21,
+    "longitude": 57,
     "territorialMtCO2": 76.6058,
     "NDGainScore": 53.925633
   },
   {
     "id": "pk",
     "name": "Pakistan",
+    "latitude": 30,
+    "longitude": 70,
     "territorialMtCO2": 223.8344,
     "NDGainScore": 40.268159
   },
   {
     "id": "pw",
     "name": "Palau",
+    "latitude": 7.5,
+    "longitude": 134.5,
     "territorialMtCO2": 0.2176,
     "NDGainScore": 48.574571
   },
   {
     "id": "pa",
     "name": "Panama",
+    "latitude": 9,
+    "longitude": -80,
     "territorialMtCO2": 11.3555,
     "NDGainScore": 47.802993
   },
   {
     "id": "pg",
     "name": "Papua New Guinea",
+    "latitude": -6,
+    "longitude": 147,
     "territorialMtCO2": 8.2006,
     "NDGainScore": 36.884996
   },
   {
     "id": "py",
     "name": "Paraguay",
+    "latitude": -23,
+    "longitude": -58,
     "territorialMtCO2": 8.1074,
     "NDGainScore": 48.399636
   },
   {
     "id": "pe",
     "name": "Peru",
+    "latitude": -10,
+    "longitude": -76,
     "territorialMtCO2": 54.793,
     "NDGainScore": 49.111462
   },
   {
     "id": "ph",
     "name": "Philippines",
+    "latitude": 13,
+    "longitude": 122,
     "territorialMtCO2": 144.8978,
     "NDGainScore": 44.840569
   },
   {
     "id": "pl",
     "name": "Poland",
+    "latitude": 52,
+    "longitude": 20,
     "territorialMtCO2": 315.0423,
     "NDGainScore": 61.594789
   },
   {
     "id": "pt",
     "name": "Portugal",
+    "latitude": 39.5,
+    "longitude": -8,
     "territorialMtCO2": 40.6871,
     "NDGainScore": 63.017102
   },
   {
     "id": "qa",
     "name": "Qatar",
+    "latitude": 25.5,
+    "longitude": 51.25,
     "territorialMtCO2": 106.1519,
     "NDGainScore": 59.644513
   },
   {
+    "id": "kr",
+    "name": "Republic of Korea",
+    "latitude": 35.9078,
+    "longitude": 127.7669,
+    "territorialMtCO2": 602.0924,
+    "NDGainScore": 68.83750785
+  },
+  {
+    "id": "ke",
+    "name": "Kenya",
+    "latitude": 1,
+    "longitude": 38,
+    "territorialMtCO2": 21.3974,
+    "NDGainScore": 40.813772
+  },
+  {
+    "id": "ki",
+    "name": "Kiribati",
+    "latitude": 1.4167,
+    "longitude": 173,
+    "territorialMtCO2": 0.067531,
+    "NDGainScore": 43.620614
+  },
+  {
+    "id": "kw",
+    "name": "Kuwait",
+    "latitude": 29.3375,
+    "longitude": 47.6581,
+    "territorialMtCO2": 97.4606,
+    "NDGainScore": 55.197776
+  },
+  {
+    "id": "kg",
+    "name": "Kyrgyzstan",
+    "latitude": 41,
+    "longitude": 75,
+    "territorialMtCO2": 10.0321,
+    "NDGainScore": 53.514943
+  },
+  {
     "id": "ro",
     "name": "Romania",
+    "latitude": 46,
+    "longitude": 25,
     "territorialMtCO2": 72.9928,
     "NDGainScore": 51.258853
   },
   {
     "id": "ru",
     "name": "Russian Federation",
+    "latitude": 60,
+    "longitude": 100,
     "territorialMtCO2": 1802.1899,
     "NDGainScore": 58.849485
   },
   {
     "id": "rw",
     "name": "Rwanda",
+    "latitude": -2,
+    "longitude": 30,
     "territorialMtCO2": 1.5408,
     "NDGainScore": 42.981039
   },
   {
     "id": "lc",
     "name": "Saint Lucia",
+    "latitude": 13.8833,
+    "longitude": -61.1333,
     "territorialMtCO2": 0.49023,
     "NDGainScore": 53.774802
   },
   {
     "id": "vc",
     "name": "Saint Vincent and the Grenadines",
+    "latitude": 13.25,
+    "longitude": -61.2,
     "territorialMtCO2": 0.22735,
     "NDGainScore": 52.7524
   },
   {
     "id": "ws",
     "name": "Samoa",
+    "latitude": -13.5833,
+    "longitude": -172.3333,
     "territorialMtCO2": 0.25136,
     "NDGainScore": 45.785698
   },
   {
     "id": "st",
     "name": "Sao Tome and Principe",
+    "latitude": 1,
+    "longitude": 7,
     "territorialMtCO2": 0.15985,
     "NDGainScore": 41.455245
   },
   {
     "id": "sa",
     "name": "Saudi Arabia",
+    "latitude": 25,
+    "longitude": 45,
     "territorialMtCO2": 723.3314,
     "NDGainScore": 57.560828
   },
   {
     "id": "sn",
     "name": "Senegal",
+    "latitude": 14,
+    "longitude": -14,
     "territorialMtCO2": 12.2747,
     "NDGainScore": 40.85948
   },
   {
     "id": "rs",
     "name": "Serbia",
+    "latitude": 44,
+    "longitude": 21,
     "territorialMtCO2": 43.5168,
     "NDGainScore": 51.133024
   },
   {
     "id": "sc",
     "name": "Seychelles",
+    "latitude": -4.5833,
+    "longitude": 55.6667,
     "territorialMtCO2": 0.5537,
     "NDGainScore": 52.078076
   },
   {
     "id": "sl",
     "name": "Sierra Leone",
+    "latitude": 8.5,
+    "longitude": -11.5,
     "territorialMtCO2": 1.2776,
     "NDGainScore": 35.006593
   },
   {
     "id": "sg",
     "name": "Singapore",
+    "latitude": 1.3667,
+    "longitude": 103.8,
     "territorialMtCO2": 47.8727,
     "NDGainScore": 71.085355
   },
   {
     "id": "sk",
     "name": "Slovakia",
+    "latitude": 48.6667,
+    "longitude": 19.5,
     "territorialMtCO2": 31.5502,
     "NDGainScore": 57.863392
   },
   {
     "id": "si",
     "name": "Slovenia",
+    "latitude": 46,
+    "longitude": 15,
     "territorialMtCO2": 12.7013,
     "NDGainScore": 63.920767
   },
   {
     "id": "sb",
     "name": "Solomon Islands",
+    "latitude": -8,
+    "longitude": 159,
     "territorialMtCO2": 0.29639,
     "NDGainScore": 38.148323
   },
   {
     "id": "so",
     "name": "Somalia",
+    "latitude": 10,
+    "longitude": 49,
     "territorialMtCO2": 0.56033,
     "NDGainScore": 37.426221
   },
   {
     "id": "za",
     "name": "South Africa",
+    "latitude": -29,
+    "longitude": 24,
     "territorialMtCO2": 405.3117,
     "NDGainScore": 48.567936
   },
   {
     "id": "es",
     "name": "Spain",
+    "latitude": 40,
+    "longitude": -4,
     "territorialMtCO2": 234.657,
     "NDGainScore": 61.944717
   },
   {
     "id": "lk",
     "name": "Sri Lanka",
+    "latitude": 7,
+    "longitude": 81,
     "territorialMtCO2": 19.9031,
     "NDGainScore": 45.635619
   },
   {
     "id": "sd",
     "name": "Sudan",
+    "latitude": 15,
+    "longitude": 30,
     "territorialMtCO2": 20.2401,
     "NDGainScore": 32.718752
   },
   {
     "id": "sr",
     "name": "Suriname",
+    "latitude": 4,
+    "longitude": -56,
     "territorialMtCO2": 2.6398,
     "NDGainScore": 45.248854
   },
   {
     "id": "sz",
     "name": "Swaziland",
+    "latitude": -26.5,
+    "longitude": 31.5,
     "territorialMtCO2": 1.0797,
     "NDGainScore": 42.558493
   },
   {
     "id": "se",
     "name": "Sweden",
+    "latitude": 62,
+    "longitude": 15,
     "territorialMtCO2": 37.4744,
     "NDGainScore": 69.8566
   },
   {
     "id": "ch",
     "name": "Switzerland",
+    "latitude": 47,
+    "longitude": 8,
     "territorialMtCO2": 32.8189,
     "NDGainScore": 72.123302
   },
   {
     "id": "tj",
     "name": "Tajikistan",
+    "latitude": 39,
+    "longitude": 71,
     "territorialMtCO2": 8.9659,
     "NDGainScore": 47.646553
   },
   {
     "id": "th",
     "name": "Thailand",
+    "latitude": 15,
+    "longitude": 100,
     "territorialMtCO2": 272.5734,
     "NDGainScore": 53.927899
   },
   {
     "id": "tl",
     "name": "Timor-Leste",
+    "latitude": -8.55,
+    "longitude": 125.5167,
     "territorialMtCO2": 0.6493,
     "NDGainScore": 41.27966
   },
   {
     "id": "tg",
     "name": "Togo",
+    "latitude": 8,
+    "longitude": 1.1667,
     "territorialMtCO2": 2.6823,
     "NDGainScore": 42.955004
   },
   {
     "id": "to",
     "name": "Tonga",
+    "latitude": -20,
+    "longitude": -175,
     "territorialMtCO2": 0.19509,
     "NDGainScore": 41.25
   },
   {
     "id": "tt",
     "name": "Trinidad and Tobago",
+    "latitude": 11,
+    "longitude": -61,
     "territorialMtCO2": 36.3059,
     "NDGainScore": 48.183626
   },
   {
     "id": "tn",
     "name": "Tunisia",
+    "latitude": 34,
+    "longitude": 9,
     "territorialMtCO2": 31.9476,
     "NDGainScore": 53.032604
   },
   {
     "id": "tr",
     "name": "Turkey",
+    "latitude": 39,
+    "longitude": 35,
     "territorialMtCO2": 437.3053,
     "NDGainScore": 56.451886
   },
   {
     "id": "tm",
     "name": "Turkmenistan",
+    "latitude": 40,
+    "longitude": 60,
     "territorialMtCO2": 64.1544,
     "NDGainScore": 43.329671
   },
   {
     "id": "tv",
     "name": "Tuvalu",
+    "latitude": -8,
+    "longitude": 178,
     "territorialMtCO2": 0.011255,
     "NDGainScore": 52.141207
   },
   {
     "id": "ug",
     "name": "Uganda",
+    "latitude": 1,
+    "longitude": 32,
     "territorialMtCO2": 5.6379,
     "NDGainScore": 37.893265
   },
   {
     "id": "ua",
     "name": "Ukraine",
+    "latitude": 49,
+    "longitude": 32,
     "territorialMtCO2": 141.1264,
     "NDGainScore": 52.339571
   },
   {
     "id": "ae",
     "name": "United Arab Emirates",
+    "latitude": 24,
+    "longitude": 54,
     "territorialMtCO2": 225.9772,
     "NDGainScore": 60.274589
   },
   {
     "id": "gb",
     "name": "United Kingdom",
+    "latitude": 54,
+    "longitude": -2,
     "territorialMtCO2": 313.8348,
     "NDGainScore": 70.299925
   },
   {
+    "id": "us",
+    "name": "United States",
+    "latitude": 38.7946,
+    "longitude": -106.5348,
+    "territorialMtCO2": 5078.8713,
+    "NDGainScore": 67.65573053
+  },
+  {
     "id": "uy",
     "name": "Uruguay",
+    "latitude": -33,
+    "longitude": -56,
     "territorialMtCO2": 7.8198,
     "NDGainScore": 56.166
   },
   {
     "id": "uz",
     "name": "Uzbekistan",
+    "latitude": 41,
+    "longitude": 64,
     "territorialMtCO2": 125.0388,
     "NDGainScore": 53.471655
   },
   {
     "id": "vu",
     "name": "Vanuatu",
+    "latitude": -16,
+    "longitude": 167,
     "territorialMtCO2": 0.22135,
     "NDGainScore": 41.246684
   },
   {
     "id": "ye",
     "name": "Yemen",
+    "latitude": 15,
+    "longitude": 48,
     "territorialMtCO2": 10.2961,
     "NDGainScore": 36.168169
   },
   {
     "id": "zm",
     "name": "Zambia",
+    "latitude": -15,
+    "longitude": 30,
     "territorialMtCO2": 7.5218,
     "NDGainScore": 42.119343
   },
   {
     "id": "zw",
     "name": "Zimbabwe",
+    "latitude": -20,
+    "longitude": 30,
     "territorialMtCO2": 10.4249,
     "NDGainScore": 36.214472
   }

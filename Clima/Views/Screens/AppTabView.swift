@@ -11,7 +11,7 @@ struct AppTabView: View {
     var body: some View {
         TabView {
             Tab(TabViewItem.home.rawValue, systemImage: TabViewItem.home.imageName) {
-                Text("Home")
+                HomeView()
             }
             
             Tab(TabViewItem.graphs.rawValue, systemImage: TabViewItem.graphs.imageName) {
@@ -23,9 +23,11 @@ struct AppTabView: View {
             }
         }
         .tabViewStyle(.sidebarAdaptable)
+        .defaultAdaptableTabBarPlacement(.tabBar)
     }
 }
 
 #Preview {
     AppTabView()
+        .environmentObject(CountryDataManager())
 }
