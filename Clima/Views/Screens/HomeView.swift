@@ -68,7 +68,6 @@ struct HomeView: View {
             }
         }
         .safeAreaPadding(25)
-        .statusBarHidden()
     }
     
     private func changeSelectedCountry(to country: Country?) {
