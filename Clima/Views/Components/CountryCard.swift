@@ -27,11 +27,11 @@ struct CountryCard: View {
                     .customFont(size: 17, weight: .bold)
                     .multilineTextAlignment(.leading)
                 
-                Text("\(country.territorialMtCO2)")
-                    .foregroundStyle(.secondary)
-                
-                Text("\(country.NDGainScore)")
-                    .foregroundStyle(.secondary)
+//                Text("\(country.territorialMtCO2)")
+//                    .foregroundStyle(.secondary)
+//                
+//                Text("\(country.NDGainScore)")
+//                    .foregroundStyle(.secondary)
             }
         }
         .alignView(to: .leading)
