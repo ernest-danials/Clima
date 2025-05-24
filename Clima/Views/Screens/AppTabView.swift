@@ -22,7 +22,7 @@ struct AppTabView: View {
                 Text("Settings")
             }
         }
-        .tabViewStyle(.sidebarAdaptable)
+        .tabViewStyle(.tabBarOnly)
         .defaultAdaptableTabBarPlacement(.tabBar)
     }
 }

@@ -49,11 +49,11 @@ struct HomeView: View {
                     }
                 }
                 
-                VStack {
+                HStack {
                     // MARK: Selected Country Detail
-                    if let country = self.selectedCountry {
-                        countryDetailView(for: country, geo: geo)
-                    }
+                    countryDetailView(geo: geo)
+                    
+                    Spacer()
                     
                     // MARK: Country List
                     VStack {
@@ -78,12 +78,11 @@ struct HomeView: View {
                         }
                         .prioritiseScaleButtonStyle()
                     }
-                    .frame(minWidth: 300)
+                    .frame(width: max(300, geo.size.width / 3.5))
                     .safeAreaPadding(25)
                     .background(Material.ultraThin)
                     .cornerRadius(20, corners: .allCorners)
                 }
-                .frame(width: 300)
                 .frame(maxHeight: geo.size.height)
                 .padding(.trailing, 20)
             }
@@ -91,79 +90,108 @@ struct HomeView: View {
         .safeAreaPadding(.all, 20)
     }
     
-    private func countryDetailView(for country: Country, geo: GeometryProxy) -> some View {
-        ScrollView {
-            let (minLog, rangeLog) = self.countryDataManager.countries.logCO2Scaling()
-            let climaJusticeScore = country.getClimaJusticeScore(minLog: minLog, rangeLog: rangeLog)
-            
-            VStack(spacing: 15) {
-                Image(country.id)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 90)
-                    .cornerRadius(11, corners: .allCorners)
-                
-                Text(country.name)
-                    .customFont(size: 27, weight: .bold)
-                    .multilineTextAlignment(.center)
-                    .minimumScaleFactor(0.4)
-                    .clipped()
-                
-                VStack {
-                    Text("Clima Justice Score")
+    private func countryDetailView(geo: GeometryProxy) -> some View {
+        VStack {
+            if let country = self.selectedCountry {
+                ScrollView {
+                    let (minLog, rangeLog) = self.countryDataManager.countries.logCO2Scaling()
+                    let climaJusticeScore = country.getClimaJusticeScore(minLog: minLog, rangeLog: rangeLog)
                     
-                    LinearGradient(colors: [.red, .green], startPoint: .leading, endPoint: .trailing)
-                        .frame(height: 10)
-                        .cornerRadius(10, corners: .allCorners)
-                }
-                .alignView(to: .center)
-                .padding()
-                .background(Material.ultraThin)
-                .cornerRadius(16, corners: .allCorners)
-                
-                VStack(spacing: 13) {
-                    HStack {
-                        Image(systemName: "flag.fill")
-                            .customFont(size: 25)
-                            .frame(width: 30)
+                    VStack(spacing: 15) {
+                        Spacer().frame(height: 10)
                         
-                        VStack(alignment: .leading) {
+                        Image(country.id)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 90)
+                            .cornerRadius(11, corners: .allCorners)
+                        
+                        Text(country.name)
+                            .customFont(size: 27, weight: .bold)
+                            .multilineTextAlignment(.center)
+                            .minimumScaleFactor(0.4)
+                            .contentTransition(.numericText())
+                        
+                        VStack(spacing: 8) {
+                            Text("Clima Justice Score")
+                                .customFont(size: 19, weight: .bold)
+                            
+                            Text(String(format: "%.1f", climaJusticeScore))
+                                .customFont(size: 20, weight: .heavy)
+                                .contentTransition(.numericText(value: climaJusticeScore))
+                            
+                            LinearGradient(colors: [.red, .green], startPoint: .leading, endPoint: .trailing)
+                                .frame(height: 10)
+                                .cornerRadius(10, corners: .allCorners)
+                                .overlay {
+                                    GeometryReader { geometry in
+                                        Circle()
+                                            .fill(.white)
+                                            .frame(width: 18, height: 18)
+                                            .shadow(color: .black.opacity(0.2), radius: 2, x: 0, y: 1)
+                                            .position(
+                                                x: geometry.size.width * (climaJusticeScore / 100.0),
+                                                y: geometry.size.height / 2
+                                            )
+                                            .animation(.spring(response: 0.5, dampingFraction: 0.8), value: climaJusticeScore)
+                                    }
+                                }
+                        }
+                        .alignView(to: .center)
+                        .padding()
+                        .background(Material.ultraThin)
+                        .cornerRadius(16, corners: .allCorners)
+                        
+                        VStack {
+                            Image(systemName: "flag.fill")
+                                .customFont(size: 35)
+                                .foregroundStyle(.secondary)
+                                .padding(.bottom, 3)
+                            
                             Text("ND-Gain Score")
-                                .customFont(size: 16, weight: .medium)
+                                .customFont(size: 17, weight: .medium)
                                 .multilineTextAlignment(.center)
                             
                             Text(String(format: "%.1f", country.NDGainScore))
-                                .customFont(size: 17, weight: .bold)
+                                .customFont(size: 18, weight: .bold)
+                                .contentTransition(.numericText(value: country.NDGainScore))
                         }
+                        .alignView(to: .center)
+                        .padding()
+                        .background(Material.ultraThin)
+                        .cornerRadius(16, corners: .allCorners)
                         
-                        Spacer()
-                    }
-                    
-                    HStack {
-                        Image(systemName: "carbon.dioxide.cloud.fill")
-                            .customFont(size: 25)
-                            .frame(width: 30)
-                        
-                        VStack(alignment: .leading) {
+                        VStack {
+                            Image(systemName: "carbon.dioxide.cloud.fill")
+                                .customFont(size: 35)
+                                .foregroundStyle(.secondary)
+                                .padding(.bottom, 3)
+                            
                             Text("Territorial MtCO2")
-                                .customFont(size: 16, weight: .medium)
+                                .customFont(size: 17, weight: .medium)
                                 .multilineTextAlignment(.center)
                             
                             Text(String(format: "%.1f", country.territorialMtCO2))
-                                .customFont(size: 17, weight: .bold)
+                                .customFont(size: 18, weight: .bold)
+                                .contentTransition(.numericText(value: country.territorialMtCO2))
                         }
-                        
-                        Spacer()
+                        .alignView(to: .center)
+                        .padding()
+                        .background(Material.ultraThin)
+                        .cornerRadius(16, corners: .allCorners)
                     }
                 }
+                .transition(.blurReplace)
+            } else {
+                ContentUnavailableView("Select a Country", systemImage: "flag.fill", description: Text("Select a country from the list to view its details"))
+                    .transition(.blurReplace)
             }
         }
-        .frame(minWidth: 300, maxHeight: geo.size.height / 3)
+        .frame(width: max(300, geo.size.width / 3.5))
         .scrollIndicators(.hidden)
         .safeAreaPadding(25)
         .background(Material.ultraThin)
         .cornerRadius(20, corners: .allCorners)
-        .transition(.blurReplace)
     }
     
     private func countryListHeader() -> some View {
