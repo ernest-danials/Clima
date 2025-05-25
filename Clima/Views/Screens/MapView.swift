@@ -26,7 +26,28 @@ struct MapView: View {
     }
     
     private var displayedCountriesOnList: [Country] {
-        return self.countryDataManager.countries.filter { $0.name.lowercased().replacingOccurrences(of: "ü", with: "u").hasPrefix(self.searchText.lowercased().replacingOccurrences(of: "ü", with: "u")) }
+        let baseList = self.countryDataManager.countries.filter { $0.name.lowercased().replacingOccurrences(of: "ü", with: "u").hasPrefix(self.searchText.lowercased().replacingOccurrences(of: "ü", with: "u")) }
+        
+        switch self.currentListSortOption {
+        case .nameAtoZ:
+            return baseList.sorted { $0.name < $1.name }
+        case .nameZtoA:
+            return baseList.sorted { $0.name > $1.name }
+        case .climaJusticeScoreHighToLow:
+            let (minLog, rangeLog) = self.countryDataManager.countries.logCO2Scaling()
+            return baseList.sorted { $0.getClimaJusticeScore(minLog: minLog, rangeLog: rangeLog) > $1.getClimaJusticeScore(minLog: minLog, rangeLog: rangeLog) }
+        case .climaJusticeScoreLowToHigh:
+            let (minLog, rangeLog) = self.countryDataManager.countries.logCO2Scaling()
+            return baseList.sorted { $0.getClimaJusticeScore(minLog: minLog, rangeLog: rangeLog) < $1.getClimaJusticeScore(minLog: minLog, rangeLog: rangeLog) }
+        case .ndGainScoreHighToLow:
+            return baseList.sorted { $0.NDGainScore > $1.NDGainScore }
+        case .ndGainScoreLowToHigh:
+            return baseList.sorted { $0.NDGainScore < $1.NDGainScore }
+        case .territorialMtCO2HighToLow:
+            return baseList.sorted { $0.territorialMtCO2 > $1.territorialMtCO2 }
+        case .territorialMtCO2LowToHigh:
+            return baseList.sorted { $0.territorialMtCO2 < $1.territorialMtCO2 }
+        }
     }
     
     var body: some View {
@@ -270,14 +291,14 @@ struct MapView: View {
                                 changeListSortOption(to: .nameAtoZ)
                                 HapticManager.shared.impact(style: .soft)
                             } label: {
-                                Label("A to Z", systemImage: "arrow.down")
+                                Label("A to Z", systemImage: self.currentListSortOption == .nameAtoZ ? "checkmark" : "arrow.down")
                             }
                             
                             Button {
                                 changeListSortOption(to: .nameZtoA)
                                 HapticManager.shared.impact(style: .soft)
                             } label: {
-                                Label("Z to A", systemImage: "arrow.up")
+                                Label("Z to A", systemImage: self.currentListSortOption == .nameZtoA ? "checkmark" : "arrow.up")
                             }
                         }
                         
@@ -286,14 +307,14 @@ struct MapView: View {
                                 changeListSortOption(to: .climaJusticeScoreHighToLow)
                                 HapticManager.shared.impact(style: .soft)
                             } label: {
-                                Label("High to Low", systemImage: "arrow.down")
+                                Label("High to Low", systemImage: self.currentListSortOption == .climaJusticeScoreHighToLow ? "checkmark" : "arrow.down")
                             }
                             
                             Button {
                                 changeListSortOption(to: .climaJusticeScoreLowToHigh)
                                 HapticManager.shared.impact(style: .soft)
                             } label: {
-                                Label("Low to High", systemImage: "arrow.up")
+                                Label("Low to High", systemImage: self.currentListSortOption == .climaJusticeScoreLowToHigh ? "checkmark" : "arrow.up")
                             }
                         }
                         
@@ -302,14 +323,14 @@ struct MapView: View {
                                 changeListSortOption(to: .ndGainScoreHighToLow)
                                 HapticManager.shared.impact(style: .soft)
                             } label: {
-                                Label("High to Low", systemImage: "arrow.down")
+                                Label("High to Low", systemImage: self.currentListSortOption == .ndGainScoreHighToLow ? "checkmark" : "arrow.down")
                             }
                             
                             Button {
                                 changeListSortOption(to: .ndGainScoreLowToHigh)
                                 HapticManager.shared.impact(style: .soft)
                             } label: {
-                                Label("Low to High", systemImage: "arrow.up")
+                                Label("Low to High", systemImage: self.currentListSortOption == .ndGainScoreLowToHigh ? "checkmark" : "arrow.up")
                             }
                         }
                         
@@ -318,14 +339,14 @@ struct MapView: View {
                                 changeListSortOption(to: .territorialMtCO2HighToLow)
                                 HapticManager.shared.impact(style: .soft)
                             } label: {
-                                Label("High to Low", systemImage: "arrow.down")
+                                Label("High to Low", systemImage: self.currentListSortOption == .territorialMtCO2HighToLow ? "checkmark" : "arrow.down")
                             }
                             
                             Button {
                                 changeListSortOption(to: .territorialMtCO2LowToHigh)
                                 HapticManager.shared.impact(style: .soft)
                             } label: {
-                                Label("Low to High", systemImage: "arrow.up")
+                                Label("Low to High", systemImage: self.currentListSortOption == .territorialMtCO2LowToHigh ? "checkmark" : "arrow.up")
                             }
                         }
                     }
