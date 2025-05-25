@@ -86,28 +86,30 @@ struct MapView: View {
                     
                     // MARK: Country List
                     VStack {
-                        countryListHeader()
-                        
-                        ScrollView {
-                            LazyVStack(alignment: .leading) {
-                                if !displayedCountriesOnList.isEmpty {
-                                    ForEach(displayedCountriesOnList) { country in
-                                        Button {
-                                            changeSelectedCountry(to: country)
-                                            HapticManager.shared.impact(style: .soft)
-                                        } label: {
-                                            CountryCard(country)
-                                                .opacity(self.selectedCountry == country ? 0.5 : 1.0)
+                        ScrollViewReader { scrollProxy in
+                            countryListHeader(scrollProxy: scrollProxy)
+                            
+                            ScrollView {
+                                LazyVStack(alignment: .leading) {
+                                    if !displayedCountriesOnList.isEmpty {
+                                        ForEach(displayedCountriesOnList) { country in
+                                            Button {
+                                                changeSelectedCountry(to: country)
+                                                HapticManager.shared.impact(style: .soft)
+                                            } label: {
+                                                CountryCard(country)
+                                                    .opacity(self.selectedCountry == country ? 0.5 : 1.0)
+                                            }
+                                            .scaleButtonStyle()
+                                            .disabled(self.selectedCountry == country)
                                         }
-                                        .scaleButtonStyle()
-                                        .disabled(self.selectedCountry == country)
+                                    } else {
+                                        countryListNoResultsView()
                                     }
-                                } else {
-                                    countryListNoResultsView()
                                 }
                             }
+                            .prioritiseScaleButtonStyle()
                         }
-                        .prioritiseScaleButtonStyle()
                     }
                     .frame(width: max(300, geo.size.width / 3.5))
                     .safeAreaPadding(25)
@@ -236,7 +238,7 @@ struct MapView: View {
         }
     }
     
-    private func countryListHeader() -> some View {
+    private func countryListHeader(scrollProxy: ScrollViewProxy) -> some View {
         VStack(spacing: 10) {
             HStack {
                 Text("Clima")
@@ -283,12 +285,22 @@ struct MapView: View {
                 .padding()
                 .background(Material.ultraThin)
                 .cornerRadius(17, corners: .allCorners)
+                .onChange(of: self.searchText) { _, _ in
+                    if let id = self.displayedCountriesOnList.first?.id {
+                        withAnimation { scrollProxy.scrollTo(id) }
+                    }
+                }
                 
                 Menu {
                     Section("Sort by") {
                         Menu("Name", systemImage: "character") {
                             Button {
                                 changeListSortOption(to: .nameAtoZ)
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                    if let id = self.displayedCountriesOnList.first?.id {
+                                        withAnimation { scrollProxy.scrollTo(id) }
+                                    }
+                                }
                                 HapticManager.shared.impact(style: .soft)
                             } label: {
                                 Label("A to Z", systemImage: self.currentListSortOption == .nameAtoZ ? "checkmark" : "arrow.down")
@@ -296,6 +308,11 @@ struct MapView: View {
                             
                             Button {
                                 changeListSortOption(to: .nameZtoA)
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                    if let id = self.displayedCountriesOnList.first?.id {
+                                        withAnimation { scrollProxy.scrollTo(id) }
+                                    }
+                                }
                                 HapticManager.shared.impact(style: .soft)
                             } label: {
                                 Label("Z to A", systemImage: self.currentListSortOption == .nameZtoA ? "checkmark" : "arrow.up")
@@ -305,6 +322,11 @@ struct MapView: View {
                         Menu("Clima Justice Score", systemImage: "scale.3d") {
                             Button {
                                 changeListSortOption(to: .climaJusticeScoreHighToLow)
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                    if let id = self.displayedCountriesOnList.first?.id {
+                                        withAnimation { scrollProxy.scrollTo(id) }
+                                    }
+                                }
                                 HapticManager.shared.impact(style: .soft)
                             } label: {
                                 Label("High to Low", systemImage: self.currentListSortOption == .climaJusticeScoreHighToLow ? "checkmark" : "arrow.down")
@@ -312,6 +334,11 @@ struct MapView: View {
                             
                             Button {
                                 changeListSortOption(to: .climaJusticeScoreLowToHigh)
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                    if let id = self.displayedCountriesOnList.first?.id {
+                                        withAnimation { scrollProxy.scrollTo(id) }
+                                    }
+                                }
                                 HapticManager.shared.impact(style: .soft)
                             } label: {
                                 Label("Low to High", systemImage: self.currentListSortOption == .climaJusticeScoreLowToHigh ? "checkmark" : "arrow.up")
@@ -321,6 +348,11 @@ struct MapView: View {
                         Menu("ND-Gain Score", systemImage: "shield.lefthalf.filled") {
                             Button {
                                 changeListSortOption(to: .ndGainScoreHighToLow)
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                    if let id = self.displayedCountriesOnList.first?.id {
+                                        withAnimation { scrollProxy.scrollTo(id) }
+                                    }
+                                }
                                 HapticManager.shared.impact(style: .soft)
                             } label: {
                                 Label("High to Low", systemImage: self.currentListSortOption == .ndGainScoreHighToLow ? "checkmark" : "arrow.down")
@@ -328,6 +360,11 @@ struct MapView: View {
                             
                             Button {
                                 changeListSortOption(to: .ndGainScoreLowToHigh)
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                    if let id = self.displayedCountriesOnList.first?.id {
+                                        withAnimation { scrollProxy.scrollTo(id) }
+                                    }
+                                }
                                 HapticManager.shared.impact(style: .soft)
                             } label: {
                                 Label("Low to High", systemImage: self.currentListSortOption == .ndGainScoreLowToHigh ? "checkmark" : "arrow.up")
@@ -337,6 +374,11 @@ struct MapView: View {
                         Menu("Territorial MtCO2", systemImage: "carbon.dioxide.cloud.fill") {
                             Button {
                                 changeListSortOption(to: .territorialMtCO2HighToLow)
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                    if let id = self.displayedCountriesOnList.first?.id {
+                                        withAnimation { scrollProxy.scrollTo(id) }
+                                    }
+                                }
                                 HapticManager.shared.impact(style: .soft)
                             } label: {
                                 Label("High to Low", systemImage: self.currentListSortOption == .territorialMtCO2HighToLow ? "checkmark" : "arrow.down")
@@ -344,6 +386,11 @@ struct MapView: View {
                             
                             Button {
                                 changeListSortOption(to: .territorialMtCO2LowToHigh)
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                    if let id = self.displayedCountriesOnList.first?.id {
+                                        withAnimation { scrollProxy.scrollTo(id) }
+                                    }
+                                }
                                 HapticManager.shared.impact(style: .soft)
                             } label: {
                                 Label("Low to High", systemImage: self.currentListSortOption == .territorialMtCO2LowToHigh ? "checkmark" : "arrow.up")
