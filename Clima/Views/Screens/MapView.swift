@@ -139,11 +139,17 @@ struct MapView: View {
                             .frame(width: 90)
                             .cornerRadius(11, corners: .allCorners)
                         
-                        Text(country.name)
-                            .customFont(size: 27, weight: .bold)
-                            .multilineTextAlignment(.center)
-                            .minimumScaleFactor(0.4)
-                            .contentTransition(.numericText())
+                        VStack {
+                            Text(country.name)
+                                .customFont(size: 27, weight: .bold)
+                                .multilineTextAlignment(.center)
+                                .minimumScaleFactor(0.4)
+                                .contentTransition(.numericText())
+                            
+                            Text(country.getRegion().rawValue)
+                                .customFont(size: 20, weight: .medium)
+                                .foregroundStyle(.gray)
+                        }
                         
                         VStack(spacing: 8) {
                             Image(systemName: "scale.3d")
