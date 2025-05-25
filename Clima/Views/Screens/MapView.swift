@@ -8,12 +8,14 @@
 import SwiftUI
 import MapKit
 
-struct HomeView: View {
+struct MapView: View {
     @EnvironmentObject var countryDataManager: CountryDataManager
     
     @State private var selectedCountry: Country? = nil
     @State private var mapCameraPosition: MapCameraPosition = .automatic
     @State private var searchText: String = ""
+    @State private var isShowingDetailView: Bool = true
+    @State private var currentListSortOption: CountrySortOption = .nameAtoZ
     
     private var displayedCountriesOnMap: [Country] {
         if let selectedCountry = self.selectedCountry {
@@ -32,8 +34,11 @@ struct HomeView: View {
             ZStack(alignment: .trailing) {
                 Map(position: $mapCameraPosition) {
                     ForEach(self.displayedCountriesOnMap) { country in
-                        MapCircle(center: country.getCoordinate(), radius: 500000)
-                            .foregroundStyle(.red.opacity(0.3))
+                        let (minLog, rangeLog) = self.countryDataManager.countries.logCO2Scaling()
+                        let climaJusticeScore = country.getClimaJusticeScore(minLog: minLog, rangeLog: rangeLog)
+                        
+                        MapCircle(center: country.getCoordinate(), radius: 500000 * country.getScaleFactor(for: climaJusticeScore))
+                            .foregroundStyle(country.getColorForClimaJusticeScore(climaJusticeScore).opacity(0.5))
                         
                         Annotation(country.name, coordinate: country.getCoordinate()) {}
                     }
@@ -51,7 +56,10 @@ struct HomeView: View {
                 
                 HStack {
                     // MARK: Selected Country Detail
-                    countryDetailView(geo: geo)
+                    if self.isShowingDetailView {
+                        countryDetailView(geo: geo)
+                            .transition(.move(edge: .leading).combined(with: .blurReplace))
+                    }
                     
                     Spacer()
                     
@@ -68,8 +76,10 @@ struct HomeView: View {
                                             HapticManager.shared.impact(style: .soft)
                                         } label: {
                                             CountryCard(country)
+                                                .opacity(self.selectedCountry == country ? 0.5 : 1.0)
                                         }
                                         .scaleButtonStyle()
+                                        .disabled(self.selectedCountry == country)
                                     }
                                 } else {
                                     countryListNoResultsView()
@@ -113,6 +123,10 @@ struct HomeView: View {
                             .contentTransition(.numericText())
                         
                         VStack(spacing: 8) {
+                            Image(systemName: "scale.3d")
+                                .customFont(size: 35)
+                                .foregroundStyle(.secondary)
+                                
                             Text("Clima Justice Score")
                                 .customFont(size: 19, weight: .bold)
                             
@@ -143,7 +157,7 @@ struct HomeView: View {
                         .cornerRadius(16, corners: .allCorners)
                         
                         VStack {
-                            Image(systemName: "flag.fill")
+                            Image(systemName: "shield.lefthalf.filled")
                                 .customFont(size: 35)
                                 .foregroundStyle(.secondary)
                                 .padding(.bottom, 3)
@@ -192,6 +206,13 @@ struct HomeView: View {
         .safeAreaPadding(25)
         .background(Material.ultraThin)
         .cornerRadius(20, corners: .allCorners)
+        .onChange(of: self.mapCameraPosition) { _, _ in
+            if self.selectedCountry == nil && self.mapCameraPosition != .automatic {
+                withAnimation(.spring) {
+                    self.isShowingDetailView = false
+                }
+            }
+        }
     }
     
     private func countryListHeader() -> some View {
@@ -210,36 +231,113 @@ struct HomeView: View {
                         .customFont(size: 20, weight: .semibold)
                         .foregroundColor(.white)
                 }
-                .scaleButtonStyle(scaleAmount: 0.97)
+                .scaleButtonStyle(scaleAmount: 0.96)
                 .disabled(self.selectedCountry == nil)
                 .opacity(self.selectedCountry == nil ? 0.0 : 1.0)
             }
             
             HStack {
-                Image(systemName: "magnifyingglass")
-                    .fontWeight(.medium)
-                
-                TextField("Search", text: $searchText)
-                
-                Spacer()
-                
-                if !searchText.isEmpty {
-                    Button {
-                        withAnimation {
-                            self.searchText.removeAll()
-                            HapticManager.shared.impact(style: .soft)
+                HStack {
+                    Image(systemName: "magnifyingglass")
+                        .fontWeight(.medium)
+                    
+                    TextField("Search", text: $searchText)
+                    
+                    Spacer()
+                    
+                    if !searchText.isEmpty {
+                        Button {
+                            withAnimation {
+                                self.searchText.removeAll()
+                                HapticManager.shared.impact(style: .soft)
+                            }
+                        } label: {
+                            Image(systemName: "xmark.circle.fill")
+                                .fontWeight(.medium)
                         }
-                    } label: {
-                        Image(systemName: "xmark.circle.fill")
-                            .fontWeight(.medium)
+                        .scaleButtonStyle()
+                        .transition(.blurReplace)
                     }
-                    .scaleButtonStyle()
-                    .transition(.blurReplace)
                 }
+                .padding()
+                .background(Material.ultraThin)
+                .cornerRadius(17, corners: .allCorners)
+                
+                Menu {
+                    Section("Sort by") {
+                        Menu("Name", systemImage: "character") {
+                            Button {
+                                changeListSortOption(to: .nameAtoZ)
+                                HapticManager.shared.impact(style: .soft)
+                            } label: {
+                                Label("A to Z", systemImage: "arrow.down")
+                            }
+                            
+                            Button {
+                                changeListSortOption(to: .nameZtoA)
+                                HapticManager.shared.impact(style: .soft)
+                            } label: {
+                                Label("Z to A", systemImage: "arrow.up")
+                            }
+                        }
+                        
+                        Menu("Clima Justice Score", systemImage: "scale.3d") {
+                            Button {
+                                changeListSortOption(to: .climaJusticeScoreHighToLow)
+                                HapticManager.shared.impact(style: .soft)
+                            } label: {
+                                Label("High to Low", systemImage: "arrow.down")
+                            }
+                            
+                            Button {
+                                changeListSortOption(to: .climaJusticeScoreLowToHigh)
+                                HapticManager.shared.impact(style: .soft)
+                            } label: {
+                                Label("Low to High", systemImage: "arrow.up")
+                            }
+                        }
+                        
+                        Menu("ND-Gain Score", systemImage: "shield.lefthalf.filled") {
+                            Button {
+                                changeListSortOption(to: .ndGainScoreHighToLow)
+                                HapticManager.shared.impact(style: .soft)
+                            } label: {
+                                Label("High to Low", systemImage: "arrow.down")
+                            }
+                            
+                            Button {
+                                changeListSortOption(to: .ndGainScoreLowToHigh)
+                                HapticManager.shared.impact(style: .soft)
+                            } label: {
+                                Label("Low to High", systemImage: "arrow.up")
+                            }
+                        }
+                        
+                        Menu("Territorial MtCO2", systemImage: "carbon.dioxide.cloud.fill") {
+                            Button {
+                                changeListSortOption(to: .territorialMtCO2HighToLow)
+                                HapticManager.shared.impact(style: .soft)
+                            } label: {
+                                Label("High to Low", systemImage: "arrow.down")
+                            }
+                            
+                            Button {
+                                changeListSortOption(to: .territorialMtCO2LowToHigh)
+                                HapticManager.shared.impact(style: .soft)
+                            } label: {
+                                Label("Low to High", systemImage: "arrow.up")
+                            }
+                        }
+                    }
+                } label: {
+                    Image(systemName: "arrow.up.arrow.down")
+                        .customFont(size: 20, weight: .semibold)
+                }
+                .scaleButtonStyle(scaleAmount: 0.92)
+                .simultaneousGesture(TapGesture().onEnded {
+                    HapticManager.shared.impact(style: .soft)
+                })
             }
-            .padding()
-            .background(Material.ultraThin)
-            .cornerRadius(17, corners: .allCorners)
         }
     }
     
@@ -265,15 +363,22 @@ struct HomeView: View {
             if let country = country {
                 self.selectedCountry = country
                 self.mapCameraPosition = country.getMapCameraPosition()
+                self.isShowingDetailView = true
             } else {
                 self.selectedCountry = nil
                 self.mapCameraPosition = .automatic
             }
         }
     }
+    
+    private func changeListSortOption(to option: CountrySortOption) {
+        withAnimation {
+            self.currentListSortOption = option
+        }
+    }
 }
 
 #Preview {
-    HomeView()
+    MapView()
         .environmentObject(CountryDataManager())
 }

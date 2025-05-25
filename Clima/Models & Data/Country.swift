@@ -44,6 +44,26 @@ extension Country {
         let score = (c + g) == 0 ? 0 : 2 * c * g / (c + g)
         return score * 100
     }
+    
+    func getColorForClimaJusticeScore(_ score: Double) -> Color {
+        // Normalise score to 0-1 range
+        let normalisedScore = max(0, min(100, score)) / 100.0
+        
+        if normalisedScore <= 0.5 {
+            // Red to Yellow gradient for scores 0-50
+            let factor = normalisedScore * 2 // 0 to 1
+            return Color(red: 1.0, green: factor, blue: 0.0)
+        } else {
+            // Yellow to Green gradient for scores 50-100
+            let factor = (normalisedScore - 0.5) * 2 // 0 to 1
+            return Color(red: 1.0 - factor, green: 1.0, blue: 0.0)
+        }
+    }
+
+    func getScaleFactor(for score: Double, minScale: Double = 0.5, maxScale: Double = 3.0) -> Double {
+        let normalisedScore = max(0, min(100, score)) / 100.0
+        return maxScale - (normalisedScore * (maxScale - minScale))
+    }
 }
 
 extension Array where Element == Country {

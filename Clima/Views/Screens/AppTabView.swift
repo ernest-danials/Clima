@@ -10,12 +10,16 @@ import SwiftUI
 struct AppTabView: View {
     var body: some View {
         TabView {
-            Tab(TabViewItem.home.rawValue, systemImage: TabViewItem.home.imageName) {
-                HomeView()
+            Tab(TabViewItem.map.rawValue, systemImage: TabViewItem.map.imageName) {
+                MapView()
             }
             
-            Tab(TabViewItem.graphs.rawValue, systemImage: TabViewItem.graphs.imageName) {
-                Text("Graphs")
+            Tab(TabViewItem.charts.rawValue, systemImage: TabViewItem.charts.imageName) {
+                Text("Charts")
+            }
+            
+            Tab(TabViewItem.compare.rawValue, systemImage: TabViewItem.compare.imageName) {
+                Text("Compare")
             }
             
             Tab(TabViewItem.settings.rawValue, systemImage: TabViewItem.settings.imageName) {
