@@ -15,7 +15,7 @@ struct AppTabView: View {
             }
             
             Tab(TabViewItem.charts.rawValue, systemImage: TabViewItem.charts.imageName) {
-                Text("Charts")
+                ChartsView()
             }
             
             Tab(TabViewItem.compare.rawValue, systemImage: TabViewItem.compare.imageName) {
