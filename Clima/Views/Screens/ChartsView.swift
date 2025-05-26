@@ -12,11 +12,32 @@ struct ChartsView: View {
     @EnvironmentObject var countryDataManager: CountryDataManager
 
     @State private var displayedCharts: [ChartType] = ChartType.allCases
+    @State private var isShowingTopDisclaimer: Bool = true
     
     var body: some View {
         NavigationStack {
             ScrollView {
                 displayedChartsList
+                
+                if self.isShowingTopDisclaimer {
+                    HStack {
+                        Label("Clima uses data from 2022.", systemImage: "info.circle")
+                        
+                        Spacer()
+                        
+                        Button {
+                            withAnimation { self.isShowingTopDisclaimer = false }
+                            HapticManager.shared.impact(style: .soft)
+                        } label: {
+                            Image(systemName: "xmark.circle.fill")
+                        }.scaleButtonStyle(scaleAmount: 0.96)
+                    }
+                    .padding()
+                    .background(Material.ultraThin)
+                    .cornerRadius(13, corners: .allCorners)
+                    .padding([.horizontal, .top])
+                    .transition(.blurReplace)
+                }
                 
                 LazyVStack(spacing: 20) {
                     if self.displayedCharts.isEmpty {
@@ -35,6 +56,7 @@ struct ChartsView: View {
                         ForEach(ChartType.regionalCharts) { chart in
                             if displayedCharts.contains(chart) {
                                 getChartView(for: chart)
+                                    .alignViewVertically(to: .top)
                             }
                         }
                     }
@@ -93,9 +115,14 @@ struct ChartsView: View {
     
     // MARK: Top 10 Charts
     private var top10CountriesByTerritorialMtCO2Chart: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 5) {
             Text(ChartType.top10CountriesByTerritorialMtCO2.rawValue)
                 .customFont(size: 20, weight: .bold)
+            
+            Text(ChartType.top10CountriesByTerritorialMtCO2.description)
+                .customFont(size: 18)
+                .foregroundStyle(.secondary)
+                .padding(.bottom)
             
             Chart {
                 ForEach(self.countryDataManager.countries.sorted(by: { $0.territorialMtCO2 > $1.territorialMtCO2 }).prefix(10)) { country in
@@ -122,9 +149,14 @@ struct ChartsView: View {
     }
     
     private var top10CountriesByNDGainScoreChart: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 5) {
             Text(ChartType.top10CountriesByNDGainScore.rawValue)
                 .customFont(size: 20, weight: .bold)
+            
+            Text(ChartType.top10CountriesByNDGainScore.description)
+                .customFont(size: 18)
+                .foregroundStyle(.secondary)
+                .padding(.bottom)
             
             Chart {
                 ForEach(self.countryDataManager.countries.sorted(by: { $0.NDGainScore > $1.NDGainScore }).prefix(10)) { country in
@@ -150,9 +182,14 @@ struct ChartsView: View {
     }
     
     private var top10CountriesByClimaJusticeScoreChart: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 5) {
             Text(ChartType.top10CountriesByClimaJusticeScore.rawValue)
                 .customFont(size: 20, weight: .bold)
+            
+            Text(ChartType.top10CountriesByClimaJusticeScore.description)
+                .customFont(size: 18)
+                .foregroundStyle(.secondary)
+                .padding(.bottom)
             
             Chart {
                 let (minLog, rangeLog) = self.countryDataManager.countries.logCO2Scaling()
@@ -179,11 +216,52 @@ struct ChartsView: View {
         }.chartBackgroundStyle()
     }
     
+    private var bottom10CountriesByClimaJusticeScoreChart: some View {
+        VStack(alignment: .leading, spacing: 5) {
+            Text(ChartType.bottom10CountriesByClimaJusticeScore.rawValue)
+                .customFont(size: 20, weight: .bold)
+            
+            Text(ChartType.bottom10CountriesByClimaJusticeScore.description)
+                .customFont(size: 18)
+                .foregroundStyle(.secondary)
+                .padding(.bottom)
+            
+            Chart {
+                let (minLog, rangeLog) = self.countryDataManager.countries.logCO2Scaling()
+                
+                ForEach(self.countryDataManager.countries.sorted(by: { $0.getClimaJusticeScore(minLog: minLog, rangeLog: rangeLog) < $1.getClimaJusticeScore(minLog: minLog, rangeLog: rangeLog) }).prefix(10)) { country in
+                    BarMark(
+                        x: .value("Clima Justice Score", country.getClimaJusticeScore(minLog: minLog, rangeLog: rangeLog)),
+                        y: .value("Country", country.name)
+                    )
+                    .foregroundStyle(by: .value("Region", country.getRegion().rawValue))
+                    .cornerRadius(6)
+                    .annotation(position: .trailing) {
+                        Text(String(format: "%.1f", country.getClimaJusticeScore(minLog: minLog, rangeLog: rangeLog)))
+                            .minimumScaleFactor(0.3)
+                    }
+                }
+            }
+            .frame(height: 700)
+            .chartYAxis {
+                AxisMarks {
+                    AxisValueLabel().font(.system(size: 18, weight: .medium))
+                }
+            }
+            .chartXScale(domain: 0...45)
+        }.chartBackgroundStyle()
+    }
+    
     // MARK: Regional Charts
     private var territorialMtCO2ByRegionChart: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 5) {
             Text(ChartType.territorialMtCO2ByRegion.rawValue)
                 .customFont(size: 20, weight: .bold)
+            
+            Text(ChartType.territorialMtCO2ByRegion.description)
+                .customFont(size: 18)
+                .foregroundStyle(.secondary)
+                .padding(.bottom)
             
             Chart {
                 ForEach(Region.allCases) { region in
@@ -204,9 +282,14 @@ struct ChartsView: View {
     }
     
     private var ndGainScoreByRegionChart: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 5) {
             Text(ChartType.ndGainScoreByRegion.rawValue)
                 .customFont(size: 20, weight: .bold)
+            
+            Text(ChartType.ndGainScoreByRegion.description)
+                .customFont(size: 18)
+                .foregroundStyle(.secondary)
+                .padding(.bottom)
             
             Chart {
                 ForEach(Region.allCases) { region in
@@ -227,9 +310,14 @@ struct ChartsView: View {
     }
     
     private var climaJusticeScoreByRegionChart: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 5) {
             Text(ChartType.climaJusticeScoreByRegion.rawValue)
                 .customFont(size: 20, weight: .bold)
+            
+            Text(ChartType.climaJusticeScoreByRegion.description)
+                .customFont(size: 18)
+                .foregroundStyle(.secondary)
+                .padding(.bottom)
             
             Chart {
                 let (minLog, rangeLog) = self.countryDataManager.countries.logCO2Scaling()
@@ -253,9 +341,14 @@ struct ChartsView: View {
     
     // MARK: Comparative Charts
     private var territorialMtCO2vsNDGainScoreChart: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 5) {
             Text(ChartType.territorialMtCO2vsNDGainScore.rawValue)
                 .customFont(size: 20, weight: .bold)
+            
+            Text(ChartType.territorialMtCO2vsNDGainScore.description)
+                .customFont(size: 18)
+                .foregroundStyle(.secondary)
+                .padding(.bottom)
             
             Chart {
                 ForEach(self.countryDataManager.countries) { country in
@@ -291,9 +384,14 @@ struct ChartsView: View {
     }
     
     private var territorialMtCO2vsClimaJusticeScoreChart: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 5) {
             Text(ChartType.territorialMtCO2vsClimaJusticeScore.rawValue)
                 .customFont(size: 20, weight: .bold)
+            
+            Text(ChartType.territorialMtCO2vsClimaJusticeScore.description)
+                .customFont(size: 18)
+                .foregroundStyle(.secondary)
+                .padding(.bottom)
             
             Chart {
                 let (minLog, rangeLog) = self.countryDataManager.countries.logCO2Scaling()
@@ -331,9 +429,14 @@ struct ChartsView: View {
     }
     
     private var ndGainScorevsClimaJusticeScoreChart: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 5) {
             Text(ChartType.ndGainScorevsClimaJusticeScore.rawValue)
                 .customFont(size: 20, weight: .bold)
+            
+            Text(ChartType.ndGainScorevsClimaJusticeScore.description)
+                .customFont(size: 18)
+                .foregroundStyle(.secondary)
+                .padding(.bottom)
             
             Chart {
                 let (minLog, rangeLog) = self.countryDataManager.countries.logCO2Scaling()
@@ -374,6 +477,8 @@ struct ChartsView: View {
             top10CountriesByNDGainScoreChart
         case .top10CountriesByClimaJusticeScore:
             top10CountriesByClimaJusticeScoreChart
+        case .bottom10CountriesByClimaJusticeScore:
+            bottom10CountriesByClimaJusticeScoreChart
         case .territorialMtCO2ByRegion:
             territorialMtCO2ByRegionChart
         case .ndGainScoreByRegion:
