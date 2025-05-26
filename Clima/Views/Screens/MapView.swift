@@ -111,7 +111,7 @@ struct MapView: View {
                             .prioritiseScaleButtonStyle()
                         }
                     }
-                    .frame(width: max(300, geo.size.width / 4))
+                    .frame(width: min(300, geo.size.width / 4))
                     .safeAreaPadding(25)
                     .background(Material.ultraThin)
                     .cornerRadius(20, corners: .allCorners)
@@ -230,7 +230,7 @@ struct MapView: View {
                     .transition(.blurReplace)
             }
         }
-        .frame(width: max(300, geo.size.width / 4))
+        .frame(width: min(300, geo.size.width / 4))
         .scrollIndicators(.hidden)
         .safeAreaPadding(25)
         .background(Material.ultraThin)
