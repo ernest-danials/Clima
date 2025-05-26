@@ -19,6 +19,10 @@ struct ChartsView: View {
                 displayedChartsList
                 
                 LazyVStack(spacing: 20) {
+                    if self.displayedCharts.isEmpty {
+                        ContentUnavailableView("No Charts Selected", systemImage: "chart.pie.fill", description: Text("There are no charts selected to display."))
+                    }
+                    
                     LazyVStack(spacing: 15) {
                         ForEach(ChartType.top10Charts) { chart in
                             if displayedCharts.contains(chart) {
