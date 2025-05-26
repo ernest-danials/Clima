@@ -8,11 +8,19 @@
 import SwiftUI
 
 struct CompareView: View {
+    @EnvironmentObject var countryDataManager: CountryDataManager
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack {
+            ScrollView {
+                
+            }
+            .prioritiseScaleButtonStyle()
+            .navigationTitle("Compare")
+        }
     }
 }
 
 #Preview {
     CompareView()
+        .environmentObject(CountryDataManager())
 }
