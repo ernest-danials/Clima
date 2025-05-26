@@ -11,7 +11,7 @@ enum TabViewItem: String, Identifiable, CaseIterable {
     case map = "Map"
     case charts = "Charts"
     case compare = "Compare"
-    case settings = "Settings"
+    case resources = "Resources"
     
     var id: Self { self }
     
@@ -23,8 +23,8 @@ enum TabViewItem: String, Identifiable, CaseIterable {
             return "chart.xyaxis.line"
         case .compare:
             return "arrow.left.arrow.right"
-        case .settings:
-            return "gearshape"
+        case .resources:
+            return "richtext.page"
         }
     }
 }

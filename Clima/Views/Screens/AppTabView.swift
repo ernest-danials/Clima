@@ -22,8 +22,8 @@ struct AppTabView: View {
                 CompareView()
             }
             
-            Tab(TabViewItem.settings.rawValue, systemImage: TabViewItem.settings.imageName) {
-                Text("Settings")
+            Tab(TabViewItem.resources.rawValue, systemImage: TabViewItem.resources.imageName) {
+                ResourcesView()
             }
         }
         .tabViewStyle(.tabBarOnly)
