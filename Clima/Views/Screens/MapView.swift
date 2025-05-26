@@ -11,6 +11,8 @@ import MapKit
 struct MapView: View {
     @EnvironmentObject var countryDataManager: CountryDataManager
     
+    @State private var currentDeviceOrientation: UIDeviceOrientation = UIDevice.current.orientation
+    
     @State private var selectedCountry: Country? = nil
     @State private var mapCameraPosition: MapCameraPosition = .automatic
     @State private var searchText: String = ""
@@ -97,8 +99,20 @@ struct MapView: View {
                 .frame(maxHeight: geo.size.height)
                 .padding(.trailing, 20)
             }
+            .overlay {
+                if self.currentDeviceOrientation.isPortrait {
+                    ContentUnavailableView("Rotate to Explore", systemImage: "rectangle.portrait.rotate", description: Text("The Clima Map is optimised for landscape orientation. Please rotate your device to explore the map."))
+                        .background(Material.ultraThin)
+                        .ignoresSafeArea()
+                }
+            }
         }
         .safeAreaPadding(.all, 20)
+        .onRotate { newOrientation in
+            withAnimation {
+                self.currentDeviceOrientation = newOrientation
+            }
+        }
     }
     
     private func countryDetailView(geo: GeometryProxy) -> some View {

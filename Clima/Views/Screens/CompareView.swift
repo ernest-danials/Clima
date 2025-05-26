@@ -65,7 +65,7 @@ struct CompareView: View {
                     
                     // MARK: Comparison Area
                     VStack(spacing: 20) {
-                        Text("Compare")
+                        Text("Comparing")
                             .customFont(size: 24, weight: .bold)
                         
                         if let leftCountry = selectedCountryOnLeft, let rightCountry = selectedCountryOnRight {
