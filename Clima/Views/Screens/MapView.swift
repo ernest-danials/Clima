@@ -111,7 +111,7 @@ struct MapView: View {
                             .prioritiseScaleButtonStyle()
                         }
                     }
-                    .frame(width: max(300, geo.size.width / 3.5))
+                    .frame(width: max(300, geo.size.width / 4))
                     .safeAreaPadding(25)
                     .background(Material.ultraThin)
                     .cornerRadius(20, corners: .allCorners)
@@ -139,11 +139,17 @@ struct MapView: View {
                             .frame(width: 90)
                             .cornerRadius(11, corners: .allCorners)
                         
-                        Text(country.name)
-                            .customFont(size: 27, weight: .bold)
-                            .multilineTextAlignment(.center)
-                            .minimumScaleFactor(0.4)
-                            .contentTransition(.numericText())
+                        VStack {
+                            Text(country.name)
+                                .customFont(size: 27, weight: .bold)
+                                .multilineTextAlignment(.center)
+                                .minimumScaleFactor(0.4)
+                                .contentTransition(.numericText())
+                            
+                            Text(country.getRegion().rawValue)
+                                .customFont(size: 20, weight: .medium)
+                                .foregroundStyle(.gray)
+                        }
                         
                         VStack(spacing: 8) {
                             Image(systemName: "scale.3d")
@@ -224,7 +230,7 @@ struct MapView: View {
                     .transition(.blurReplace)
             }
         }
-        .frame(width: max(300, geo.size.width / 3.5))
+        .frame(width: max(300, geo.size.width / 4))
         .scrollIndicators(.hidden)
         .safeAreaPadding(25)
         .background(Material.ultraThin)
