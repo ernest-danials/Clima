@@ -19,7 +19,7 @@ struct AppTabView: View {
             }
             
             Tab(TabViewItem.compare.rawValue, systemImage: TabViewItem.compare.imageName) {
-                Text("Compare")
+                CompareView()
             }
             
             Tab(TabViewItem.settings.rawValue, systemImage: TabViewItem.settings.imageName) {
