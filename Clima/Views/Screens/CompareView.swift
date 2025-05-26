@@ -79,7 +79,7 @@ struct CompareView: View {
                             )
                         }
                     }
-                    .frame(width: (geo.size.width - 60) / 3)
+                    .frame(minWidth: geo.size.width / 3)
                     .padding()
                     .background(Material.ultraThin)
                     .cornerRadius(20, corners: .allCorners)
