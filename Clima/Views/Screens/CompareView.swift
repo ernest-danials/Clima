@@ -41,7 +41,6 @@ struct CompareView: View {
                                         
                                         Button {
                                             selectCountry(isSelected ? nil : country, for: .left)
-                                            HapticManager.shared.impact(style: .soft)
                                         } label: {
                                             CountryCard(country)
                                                 .overlay(alignment: .trailing) {
@@ -97,7 +96,6 @@ struct CompareView: View {
                                         
                                         Button {
                                             selectCountry(isSelected ? nil : country, for: .right)
-                                            HapticManager.shared.impact(style: .soft)
                                         } label: {
                                             CountryCard(country)
                                                 .overlay(alignment: .trailing) {
@@ -164,7 +162,6 @@ struct CompareView: View {
                                 } else {
                                     self.searchTextOnRight.removeAll()
                                 }
-                                HapticManager.shared.impact(style: .soft)
                             }
                         } label: {
                             Image(systemName: "xmark.circle.fill")
@@ -185,14 +182,12 @@ struct CompareView: View {
                         Menu("Name", systemImage: "character") {
                             Button {
                                 changeListSortOption(to: .nameAtoZ, for: listOption)
-                                HapticManager.shared.impact(style: .soft)
                             } label: {
                                 Label("A to Z", systemImage: (listOption == .left ? currentListSortOptionOnLeft : currentListSortOptionOnRight) == .nameAtoZ ? "checkmark" : "arrow.down")
                             }
                             
                             Button {
                                 changeListSortOption(to: .nameZtoA, for: listOption)
-                                HapticManager.shared.impact(style: .soft)
                             } label: {
                                 Label("Z to A", systemImage: (listOption == .left ? currentListSortOptionOnLeft : currentListSortOptionOnRight) == .nameZtoA ? "checkmark" : "arrow.up")
                             }
@@ -201,14 +196,12 @@ struct CompareView: View {
                         Menu("Clima Justice Score", systemImage: "scale.3d") {
                             Button {
                                 changeListSortOption(to: .climaJusticeScoreHighToLow, for: listOption)
-                                HapticManager.shared.impact(style: .soft)
                             } label: {
                                 Label("High to Low", systemImage: (listOption == .left ? currentListSortOptionOnLeft : currentListSortOptionOnRight) == .climaJusticeScoreHighToLow ? "checkmark" : "arrow.down")
                             }
                             
                             Button {
                                 changeListSortOption(to: .climaJusticeScoreLowToHigh, for: listOption)
-                                HapticManager.shared.impact(style: .soft)
                             } label: {
                                 Label("Low to High", systemImage: (listOption == .left ? currentListSortOptionOnLeft : currentListSortOptionOnRight) == .climaJusticeScoreLowToHigh ? "checkmark" : "arrow.up")
                             }
@@ -217,14 +210,12 @@ struct CompareView: View {
                         Menu("ND-Gain Score", systemImage: "shield.lefthalf.filled") {
                             Button {
                                 changeListSortOption(to: .ndGainScoreHighToLow, for: listOption)
-                                HapticManager.shared.impact(style: .soft)
                             } label: {
                                 Label("High to Low", systemImage: (listOption == .left ? currentListSortOptionOnLeft : currentListSortOptionOnRight) == .ndGainScoreHighToLow ? "checkmark" : "arrow.down")
                             }
                             
                             Button {
                                 changeListSortOption(to: .ndGainScoreLowToHigh, for: listOption)
-                                HapticManager.shared.impact(style: .soft)
                             } label: {
                                 Label("Low to High", systemImage: (listOption == .left ? currentListSortOptionOnLeft : currentListSortOptionOnRight) == .ndGainScoreLowToHigh ? "checkmark" : "arrow.up")
                             }
@@ -233,14 +224,12 @@ struct CompareView: View {
                         Menu("Territorial MtCO2", systemImage: "carbon.dioxide.cloud.fill") {
                             Button {
                                 changeListSortOption(to: .territorialMtCO2HighToLow, for: listOption)
-                                HapticManager.shared.impact(style: .soft)
                             } label: {
                                 Label("High to Low", systemImage: (listOption == .left ? currentListSortOptionOnLeft : currentListSortOptionOnRight) == .territorialMtCO2HighToLow ? "checkmark" : "arrow.down")
                             }
                             
                             Button {
                                 changeListSortOption(to: .territorialMtCO2LowToHigh, for: listOption)
-                                HapticManager.shared.impact(style: .soft)
                             } label: {
                                 Label("Low to High", systemImage: (listOption == .left ? currentListSortOptionOnLeft : currentListSortOptionOnRight) == .territorialMtCO2LowToHigh ? "checkmark" : "arrow.up")
                             }

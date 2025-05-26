@@ -74,7 +74,6 @@ struct MapView: View {
                                         ForEach(displayedCountriesOnList) { country in
                                             Button {
                                                 changeSelectedCountry(to: country)
-                                                HapticManager.shared.impact(style: .soft)
                                             } label: {
                                                 CountryCard(country)
                                                     .opacity(self.selectedCountry == country ? 0.5 : 1.0)
@@ -233,7 +232,6 @@ struct MapView: View {
                 
                 Button {
                     changeSelectedCountry(to: nil)
-                    HapticManager.shared.impact(style: .soft)
                 } label: {
                     Image(systemName: "xmark")
                         .customFont(size: 20, weight: .semibold)
@@ -257,7 +255,6 @@ struct MapView: View {
                         Button {
                             withAnimation {
                                 self.searchText.removeAll()
-                                HapticManager.shared.impact(style: .soft)
                             }
                         } label: {
                             Image(systemName: "xmark.circle.fill")
@@ -286,7 +283,6 @@ struct MapView: View {
                                         withAnimation { scrollProxy.scrollTo(id) }
                                     }
                                 }
-                                HapticManager.shared.impact(style: .soft)
                             } label: {
                                 Label("A to Z", systemImage: self.currentListSortOption == .nameAtoZ ? "checkmark" : "arrow.down")
                             }
@@ -298,7 +294,6 @@ struct MapView: View {
                                         withAnimation { scrollProxy.scrollTo(id) }
                                     }
                                 }
-                                HapticManager.shared.impact(style: .soft)
                             } label: {
                                 Label("Z to A", systemImage: self.currentListSortOption == .nameZtoA ? "checkmark" : "arrow.up")
                             }
@@ -312,7 +307,6 @@ struct MapView: View {
                                         withAnimation { scrollProxy.scrollTo(id) }
                                     }
                                 }
-                                HapticManager.shared.impact(style: .soft)
                             } label: {
                                 Label("High to Low", systemImage: self.currentListSortOption == .climaJusticeScoreHighToLow ? "checkmark" : "arrow.down")
                             }
@@ -324,7 +318,6 @@ struct MapView: View {
                                         withAnimation { scrollProxy.scrollTo(id) }
                                     }
                                 }
-                                HapticManager.shared.impact(style: .soft)
                             } label: {
                                 Label("Low to High", systemImage: self.currentListSortOption == .climaJusticeScoreLowToHigh ? "checkmark" : "arrow.up")
                             }
@@ -338,7 +331,6 @@ struct MapView: View {
                                         withAnimation { scrollProxy.scrollTo(id) }
                                     }
                                 }
-                                HapticManager.shared.impact(style: .soft)
                             } label: {
                                 Label("High to Low", systemImage: self.currentListSortOption == .ndGainScoreHighToLow ? "checkmark" : "arrow.down")
                             }
@@ -350,7 +342,6 @@ struct MapView: View {
                                         withAnimation { scrollProxy.scrollTo(id) }
                                     }
                                 }
-                                HapticManager.shared.impact(style: .soft)
                             } label: {
                                 Label("Low to High", systemImage: self.currentListSortOption == .ndGainScoreLowToHigh ? "checkmark" : "arrow.up")
                             }
@@ -364,7 +355,6 @@ struct MapView: View {
                                         withAnimation { scrollProxy.scrollTo(id) }
                                     }
                                 }
-                                HapticManager.shared.impact(style: .soft)
                             } label: {
                                 Label("High to Low", systemImage: self.currentListSortOption == .territorialMtCO2HighToLow ? "checkmark" : "arrow.down")
                             }
@@ -376,7 +366,6 @@ struct MapView: View {
                                         withAnimation { scrollProxy.scrollTo(id) }
                                     }
                                 }
-                                HapticManager.shared.impact(style: .soft)
                             } label: {
                                 Label("Low to High", systemImage: self.currentListSortOption == .territorialMtCO2LowToHigh ? "checkmark" : "arrow.up")
                             }
@@ -388,7 +377,6 @@ struct MapView: View {
                 }
                 .scaleButtonStyle(scaleAmount: 0.92)
                 .simultaneousGesture(TapGesture().onEnded {
-                    HapticManager.shared.impact(style: .soft)
                 })
             }
         }

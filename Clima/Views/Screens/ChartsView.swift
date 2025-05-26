@@ -27,7 +27,6 @@ struct ChartsView: View {
                                 
                                 Button {
                                     withAnimation { self.isShowingTopDisclaimer = false }
-                                    HapticManager.shared.impact(style: .soft)
                                 } label: {
                                     Image(systemName: "xmark.circle.fill")
                                 }.scaleButtonStyle(scaleAmount: 0.96)
@@ -87,7 +86,6 @@ struct ChartsView: View {
                     
                     Button {
                         toggleDisplayStatus(for: type)
-                        HapticManager.shared.impact(style: .soft)
                     } label: {
                         HStack {
                             Image(systemName: type.imageName)
