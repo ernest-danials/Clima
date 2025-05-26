@@ -26,28 +26,7 @@ struct MapView: View {
     }
     
     private var displayedCountriesOnList: [Country] {
-        let baseList = self.countryDataManager.countries.filter { $0.name.lowercased().replacingOccurrences(of: "ü", with: "u").hasPrefix(self.searchText.lowercased().replacingOccurrences(of: "ü", with: "u")) }
-        
-        switch self.currentListSortOption {
-        case .nameAtoZ:
-            return baseList.sorted { $0.name < $1.name }
-        case .nameZtoA:
-            return baseList.sorted { $0.name > $1.name }
-        case .climaJusticeScoreHighToLow:
-            let (minLog, rangeLog) = self.countryDataManager.countries.logCO2Scaling()
-            return baseList.sorted { $0.getClimaJusticeScore(minLog: minLog, rangeLog: rangeLog) > $1.getClimaJusticeScore(minLog: minLog, rangeLog: rangeLog) }
-        case .climaJusticeScoreLowToHigh:
-            let (minLog, rangeLog) = self.countryDataManager.countries.logCO2Scaling()
-            return baseList.sorted { $0.getClimaJusticeScore(minLog: minLog, rangeLog: rangeLog) < $1.getClimaJusticeScore(minLog: minLog, rangeLog: rangeLog) }
-        case .ndGainScoreHighToLow:
-            return baseList.sorted { $0.NDGainScore > $1.NDGainScore }
-        case .ndGainScoreLowToHigh:
-            return baseList.sorted { $0.NDGainScore < $1.NDGainScore }
-        case .territorialMtCO2HighToLow:
-            return baseList.sorted { $0.territorialMtCO2 > $1.territorialMtCO2 }
-        case .territorialMtCO2LowToHigh:
-            return baseList.sorted { $0.territorialMtCO2 < $1.territorialMtCO2 }
-        }
+        return self.countryDataManager.countries.getFilteredAndSortedCountries(countryDataManager: countryDataManager, searchText: self.searchText, sortingOption: self.currentListSortOption)
     }
     
     var body: some View {

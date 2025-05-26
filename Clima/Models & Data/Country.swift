@@ -100,10 +100,36 @@ extension Country {
     }
 }
 
+// MARK: Extensions for Array
 extension Array where Element == Country {
     func logCO2Scaling() -> (min: Double, range: Double) {
         let logs = self.map { log10($0.territorialMtCO2 + 1) }
         guard let min = logs.min(), let max = logs.max() else { return (0, 1) }
         return (min, max - min)
+    }
+    
+    func getFilteredAndSortedCountries(countryDataManager: CountryDataManager, searchText: String, sortingOption: CountrySortOption) -> [Country] {
+        let filteredCountriesWithSearchText = self.filter { $0.name.lowercased().replacingOccurrences(of: "ü", with: "u").hasPrefix(searchText.lowercased().replacingOccurrences(of: "ü", with: "u")) }
+        
+        switch sortingOption {
+        case .nameAtoZ:
+            return filteredCountriesWithSearchText.sorted { $0.name < $1.name }
+        case .nameZtoA:
+            return filteredCountriesWithSearchText.sorted { $0.name > $1.name }
+        case .climaJusticeScoreHighToLow:
+            let (minLog, rangeLog) = countryDataManager.countries.logCO2Scaling()
+            return filteredCountriesWithSearchText.sorted { $0.getClimaJusticeScore(minLog: minLog, rangeLog: rangeLog) > $1.getClimaJusticeScore(minLog: minLog, rangeLog: rangeLog) }
+        case .climaJusticeScoreLowToHigh:
+            let (minLog, rangeLog) = countryDataManager.countries.logCO2Scaling()
+            return filteredCountriesWithSearchText.sorted { $0.getClimaJusticeScore(minLog: minLog, rangeLog: rangeLog) < $1.getClimaJusticeScore(minLog: minLog, rangeLog: rangeLog) }
+        case .ndGainScoreHighToLow:
+            return filteredCountriesWithSearchText.sorted { $0.NDGainScore > $1.NDGainScore }
+        case .ndGainScoreLowToHigh:
+            return filteredCountriesWithSearchText.sorted { $0.NDGainScore < $1.NDGainScore }
+        case .territorialMtCO2HighToLow:
+            return filteredCountriesWithSearchText.sorted { $0.territorialMtCO2 > $1.territorialMtCO2 }
+        case .territorialMtCO2LowToHigh:
+            return filteredCountriesWithSearchText.sorted { $0.territorialMtCO2 < $1.territorialMtCO2 }
+        }
     }
 }
