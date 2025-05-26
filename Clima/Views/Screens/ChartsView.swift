@@ -17,58 +17,62 @@ struct ChartsView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                displayedChartsList
-                
-                if self.isShowingTopDisclaimer {
-                    HStack {
-                        Label("Clima uses data from 2022.", systemImage: "info.circle")
+                LazyVStack(pinnedViews: .sectionHeaders) {
+                    Section {
+                        if self.isShowingTopDisclaimer {
+                            HStack {
+                                Label("Clima uses data from 2022.", systemImage: "info.circle")
+                                
+                                Spacer()
+                                
+                                Button {
+                                    withAnimation { self.isShowingTopDisclaimer = false }
+                                    HapticManager.shared.impact(style: .soft)
+                                } label: {
+                                    Image(systemName: "xmark.circle.fill")
+                                }.scaleButtonStyle(scaleAmount: 0.96)
+                            }
+                            .padding()
+                            .background(Material.ultraThin)
+                            .cornerRadius(13, corners: .allCorners)
+                            .padding([.horizontal, .top])
+                            .transition(.blurReplace)
+                        }
                         
-                        Spacer()
-                        
-                        Button {
-                            withAnimation { self.isShowingTopDisclaimer = false }
-                            HapticManager.shared.impact(style: .soft)
-                        } label: {
-                            Image(systemName: "xmark.circle.fill")
-                        }.scaleButtonStyle(scaleAmount: 0.96)
+                        LazyVStack(spacing: 20) {
+                            if self.displayedCharts.isEmpty {
+                                ContentUnavailableView("No Charts Selected", systemImage: "chart.pie.fill", description: Text("There are no charts selected to display."))
+                            }
+                            
+                            LazyVStack(spacing: 15) {
+                                ForEach(ChartType.top10Charts) { chart in
+                                    if displayedCharts.contains(chart) {
+                                        getChartView(for: chart)
+                                    }
+                                }
+                            }
+                            
+                            LazyVGrid(columns: Array(repeating: .init(.flexible()), count: 2), spacing: 15) {
+                                ForEach(ChartType.regionalCharts) { chart in
+                                    if displayedCharts.contains(chart) {
+                                        getChartView(for: chart)
+                                            .alignViewVertically(to: .top)
+                                    }
+                                }
+                            }
+                            
+                            LazyVStack(spacing: 15) {
+                                ForEach(ChartType.comparativeCharts) { chart in
+                                    if displayedCharts.contains(chart) {
+                                        getChartView(for: chart)
+                                    }
+                                }
+                            }
+                        }.padding(.top)
+                    } header: {
+                        displayedChartsList.safeAreaPadding(.top)
                     }
-                    .padding()
-                    .background(Material.ultraThin)
-                    .cornerRadius(13, corners: .allCorners)
-                    .padding([.horizontal, .top])
-                    .transition(.blurReplace)
                 }
-                
-                LazyVStack(spacing: 20) {
-                    if self.displayedCharts.isEmpty {
-                        ContentUnavailableView("No Charts Selected", systemImage: "chart.pie.fill", description: Text("There are no charts selected to display."))
-                    }
-                    
-                    LazyVStack(spacing: 15) {
-                        ForEach(ChartType.top10Charts) { chart in
-                            if displayedCharts.contains(chart) {
-                                getChartView(for: chart)
-                            }
-                        }
-                    }
-                    
-                    LazyVGrid(columns: Array(repeating: .init(.flexible()), count: 2), spacing: 15) {
-                        ForEach(ChartType.regionalCharts) { chart in
-                            if displayedCharts.contains(chart) {
-                                getChartView(for: chart)
-                                    .alignViewVertically(to: .top)
-                            }
-                        }
-                    }
-                    
-                    LazyVStack(spacing: 15) {
-                        ForEach(ChartType.comparativeCharts) { chart in
-                            if displayedCharts.contains(chart) {
-                                getChartView(for: chart)
-                            }
-                        }
-                    }
-                }.padding(.top)
             }
             .prioritiseScaleButtonStyle()
             .navigationTitle("Charts")
@@ -97,9 +101,11 @@ struct ChartsView: View {
                             if isDisplayed {
                                 Capsule()
                                     .foregroundStyle(Color.accentColor)
+                                    .shadow(color: .black.opacity(0.5), radius: 7)
                             } else {
                                 Capsule()
                                     .fill(Material.ultraThin)
+                                    .shadow(color: .black.opacity(0.3), radius: 7)
                             }
                         }
                     }
@@ -108,6 +114,7 @@ struct ChartsView: View {
             }.scrollTargetLayout()
         }
         .prioritiseScaleButtonStyle()
+        .scrollClipDisabled()
         .scrollTargetBehavior(.viewAligned)
         .scrollIndicators(.hidden)
         .safeAreaPadding(.horizontal)
