@@ -118,7 +118,7 @@ struct ResourcesView: View {
                         VStack {
                             Text("Legal")
                                 .customFont(size: 23, weight: .bold)
-                            
+
                             Button {
                                 self.isShowingLicensesView = true
                             } label: {

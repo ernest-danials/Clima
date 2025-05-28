@@ -12,8 +12,8 @@
 	"argv": [
 		"/opt/homebrew/bin/xcode-build-server"
 	],
-	"workspace": "/Users/ernest/Desktop/Development/Clima/Clima/Clima.xcodeproj/project.xcworkspace",
-	"build_root": "/Users/ernest/Library/Developer/Xcode/DerivedData/Clima-arcxillpecnzezapgljxhsxfdrjv",
+	"workspace": "/Users/ernest/Desktop/Developer/Clima/Clima/Clima.xcodeproj/project.xcworkspace",
+	"build_root": "/Users/ernest/Library/Developer/Xcode/DerivedData/Clima-ecfdanurjtinrkbmojaddpjcowvz",
 	"scheme": "Clima",
 	"kind": "xcode"
 }
