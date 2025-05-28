@@ -29,4 +29,15 @@ final class CountryDataManager: ObservableObject {
             print("Error decoding JSON data: \(error)")
         }
     }
+    
+    func getCountryClimaJusticeScoreRank(for country: Country) -> Int {
+        let (minLog, rangeLog) = self.countries.logCO2Scaling()
+        let sortedCountries = countries.sorted(by: { $0.getClimaJusticeScore(minLog: minLog, rangeLog: rangeLog) > $1.getClimaJusticeScore(minLog: minLog, rangeLog: rangeLog) })
+        
+        guard let index = sortedCountries.firstIndex(of: country) else {
+            return 0
+        }
+        
+        return index + 1
+    }
 }

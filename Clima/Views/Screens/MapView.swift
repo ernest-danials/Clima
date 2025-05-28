@@ -136,6 +136,12 @@ struct MapView: View {
                         .cornerRadius(5, corners: .allCorners)
                         
                         VStack {
+                            let rank = self.countryDataManager.getCountryClimaJusticeScoreRank(for: country)
+                            Text("#\(rank)")
+                                .customFont(size: 20, weight: .semibold)
+                                .foregroundStyle(.gray)
+                                .contentTransition(.numericText(value: Double(rank)))
+                            
                             Text(country.name)
                                 .customFont(size: 27, weight: .bold)
                                 .multilineTextAlignment(.center)
@@ -143,7 +149,7 @@ struct MapView: View {
                                 .contentTransition(.numericText())
                             
                             Text(country.getRegion().rawValue)
-                                .customFont(size: 20, weight: .medium)
+                                .customFont(size: 17, weight: .medium)
                                 .foregroundStyle(.gray)
                         }
                         

@@ -269,6 +269,12 @@ struct CompareView: View {
                             .lineLimit(1)
                             .minimumScaleFactor(0.4)
                             .contentTransition(.numericText())
+                        
+                        let rank = self.countryDataManager.getCountryClimaJusticeScoreRank(for: leftCountry)
+                        Text("#\(rank)")
+                            .customFont(size: 13, weight: .medium)
+                            .foregroundStyle(.gray)
+                            .contentTransition(.numericText(value: Double(rank)))
                     }.alignView(to: .center)
                     
                     Image(systemName: "arrow.left.arrow.right")
@@ -291,6 +297,12 @@ struct CompareView: View {
                             .lineLimit(1)
                             .minimumScaleFactor(0.4)
                             .contentTransition(.numericText())
+                        
+                        let rank = self.countryDataManager.getCountryClimaJusticeScoreRank(for: rightCountry)
+                        Text("#\(rank)")
+                            .customFont(size: 13, weight: .medium)
+                            .foregroundStyle(.gray)
+                            .contentTransition(.numericText(value: Double(rank)))
                     }.alignView(to: .center)
                 }
                 
