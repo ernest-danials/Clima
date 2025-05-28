@@ -41,6 +41,7 @@ struct ChartsView: View {
                         LazyVStack(spacing: 20) {
                             if self.displayedCharts.isEmpty {
                                 ContentUnavailableView("No Charts Selected", systemImage: "chart.pie.fill", description: Text("There are no charts selected to display."))
+                                    .transition(.blurReplace)
                             }
                             
                             LazyVStack(spacing: 15) {

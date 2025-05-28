@@ -66,16 +66,14 @@ struct CompareView: View {
                     // MARK: Comparison Area
                     VStack(spacing: 20) {
                         Text("Comparing")
-                            .customFont(size: 24, weight: .bold)
+                            .customFont(size: 20, weight: .bold)
                         
                         if let leftCountry = selectedCountryOnLeft, let rightCountry = selectedCountryOnRight {
                             comparisonView(leftCountry: leftCountry, rightCountry: rightCountry)
+                                .transition(.blurReplace)
                         } else {
-                            ContentUnavailableView(
-                                "Select Two Countries",
-                                systemImage: "arrow.left.arrow.right",
-                                description: Text("Choose a country from each list to compare their climate data")
-                            )
+                            ContentUnavailableView("Select Two Countries", systemImage: "arrow.left.arrow.right", description: Text("Choose a country from each list to compare their climate data"))
+                                .transition(.blurReplace)
                         }
                     }
                     .frame(minWidth: geo.size.width / 3)

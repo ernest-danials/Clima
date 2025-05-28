@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct ResourcesView: View {
+    
+    @State private var isShowingLicensesView: Bool = false
+    @State private var selectedDataTypeForInterpretationInfo: DataType? = nil
+    
     var body: some View {
         GeometryReader { geo in
             NavigationStack {
@@ -80,23 +84,13 @@ struct ResourcesView: View {
                                 .customFont(size: 16)
                                 .foregroundStyle(.secondary)
                             
-                            Button {
-                                
-                            } label: {
-                                buttonLabel(title: "Clima Justice Score", imageName: "scale.3d", color: .orange, showArrow: false)
-                            }.scaleButtonStyle()
-                            
-                            Button {
-                                
-                            } label: {
-                                buttonLabel(title: "Territorial MtCO2", imageName: "carbon.dioxide.cloud.fill", color: .yellow, showArrow: false)
-                            }.scaleButtonStyle()
-                            
-                            Button {
-                                
-                            } label: {
-                                buttonLabel(title: "ND-GAIN Score", imageName: "shield.lefthalf.filled", color: .green, showArrow: false)
-                            }.scaleButtonStyle()
+                            ForEach(DataType.allCases) { type in
+                                Button {
+                                    self.selectedDataTypeForInterpretationInfo = type
+                                } label: {
+                                    buttonLabel(title: type.rawValue, imageName: type.imageName, color: type.color, showArrow: false)
+                                }.scaleButtonStyle()
+                            }
                         }
                         .alignViewVertically(to: .top)
                         .padding(25)
@@ -126,7 +120,7 @@ struct ResourcesView: View {
                                 .customFont(size: 23, weight: .bold)
                             
                             Button {
-                                
+                                self.isShowingLicensesView = true
                             } label: {
                                 buttonLabel(title: "Licenses", imageName: "text.document.fill", color: .blue, showArrow: false)
                             }.scaleButtonStyle()
@@ -154,6 +148,12 @@ struct ResourcesView: View {
                 }
                 .prioritiseScaleButtonStyle()
                 .navigationTitle("Resources")
+            }
+            .sheet(isPresented: $isShowingLicensesView) {
+                LicensesView()
+            }
+            .sheet(item: $selectedDataTypeForInterpretationInfo) { type in
+                DataInterpretationView(type)
             }
         }
     }
