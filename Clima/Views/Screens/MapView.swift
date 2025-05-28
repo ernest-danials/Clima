@@ -125,11 +125,15 @@ struct MapView: View {
                     VStack(spacing: 15) {
                         Spacer().frame(height: 10)
                         
-                        Image(country.id)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 90)
-                            .cornerRadius(11, corners: .allCorners)
+                        AsyncImage(url: URL(string: "https://cdn.ipregistry.co/flags/wikimedia/\(country.id).png")!) { image in
+                            image
+                                .resizable()
+                                .scaledToFit()
+                        } placeholder: {
+                            ProgressView()
+                        }
+                        .frame(width: 80)
+                        .cornerRadius(5, corners: .allCorners)
                         
                         VStack {
                             Text(country.name)

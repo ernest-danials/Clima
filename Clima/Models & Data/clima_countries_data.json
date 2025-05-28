@@ -1016,30 +1016,6 @@
     "NDGainScore": 68.83750785
   },
   {
-    "id": "ki",
-    "name": "Kiribati",
-    "latitude": 1.4167,
-    "longitude": 173,
-    "territorialMtCO2": 0.067531,
-    "NDGainScore": 43.620614
-  },
-  {
-    "id": "kw",
-    "name": "Kuwait",
-    "latitude": 29.3375,
-    "longitude": 47.6581,
-    "territorialMtCO2": 97.4606,
-    "NDGainScore": 55.197776
-  },
-  {
-    "id": "kg",
-    "name": "Kyrgyzstan",
-    "latitude": 41,
-    "longitude": 75,
-    "territorialMtCO2": 10.0321,
-    "NDGainScore": 53.514943
-  },
-  {
     "id": "ro",
     "name": "Romania",
     "latitude": 46,

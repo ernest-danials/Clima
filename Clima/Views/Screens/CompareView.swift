@@ -253,11 +253,15 @@ struct CompareView: View {
                 // Country Names and Flags
                 HStack(spacing: 20) {
                     VStack {
-                        Image(leftCountry.id)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 50, height: 35)
-                            .cornerRadius(5, corners: .allCorners)
+                        AsyncImage(url: URL(string: "https://cdn.ipregistry.co/flags/wikimedia/\(leftCountry.id).png")!) { image in
+                            image
+                                .resizable()
+                                .scaledToFit()
+                        } placeholder: {
+                            ProgressView()
+                        }
+                        .frame(width: 60)
+                        .cornerRadius(5, corners: .allCorners)
                         
                         Text(leftCountry.name)
                             .customFont(size: 14, weight: .bold)
@@ -271,11 +275,15 @@ struct CompareView: View {
                         .customFont(size: 20, weight: .medium)
                     
                     VStack {
-                        Image(rightCountry.id)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 50, height: 35)
-                            .cornerRadius(5, corners: .allCorners)
+                        AsyncImage(url: URL(string: "https://cdn.ipregistry.co/flags/wikimedia/\(rightCountry.id).png")!) { image in
+                            image
+                                .resizable()
+                                .scaledToFit()
+                        } placeholder: {
+                            ProgressView()
+                        }
+                        .frame(width: 60)
+                        .cornerRadius(5, corners: .allCorners)
                         
                         Text(rightCountry.name)
                             .customFont(size: 14, weight: .bold)
