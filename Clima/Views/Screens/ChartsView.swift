@@ -47,7 +47,7 @@ struct ChartsView: View {
                             LazyVStack(spacing: 15) {
                                 ForEach(ChartType.top10Charts) { chart in
                                     if displayedCharts.contains(chart) {
-                                        getChartView(for: chart)
+                                        Self.getChartView(for: chart, countryDataManager: countryDataManager)
                                     }
                                 }
                             }
@@ -55,7 +55,7 @@ struct ChartsView: View {
                             LazyVGrid(columns: Array(repeating: .init(.flexible()), count: 2), spacing: 15) {
                                 ForEach(ChartType.regionalCharts) { chart in
                                     if displayedCharts.contains(chart) {
-                                        getChartView(for: chart)
+                                        Self.getChartView(for: chart, countryDataManager: countryDataManager)
                                             .alignViewVertically(to: .top)
                                     }
                                 }
@@ -64,7 +64,7 @@ struct ChartsView: View {
                             LazyVStack(spacing: 15) {
                                 ForEach(ChartType.comparativeCharts) { chart in
                                     if displayedCharts.contains(chart) {
-                                        getChartView(for: chart)
+                                        Self.getChartView(for: chart, countryDataManager: countryDataManager)
                                     }
                                 }
                             }
@@ -120,7 +120,7 @@ struct ChartsView: View {
     }
     
     // MARK: Top 10 Charts
-    private var top10CountriesByTerritorialMtCO2Chart: some View {
+    private static func top10CountriesByTerritorialMtCO2Chart(countryDataManager: CountryDataManager) -> some View {
         VStack(alignment: .leading, spacing: 5) {
             Text(ChartType.top10CountriesByTerritorialMtCO2.rawValue)
                 .customFont(size: 20, weight: .bold)
@@ -131,7 +131,7 @@ struct ChartsView: View {
                 .padding(.bottom)
             
             Chart {
-                ForEach(self.countryDataManager.countries.sorted(by: { $0.territorialMtCO2 > $1.territorialMtCO2 }).prefix(10)) { country in
+                ForEach(countryDataManager.countries.sorted(by: { $0.territorialMtCO2 > $1.territorialMtCO2 }).prefix(10)) { country in
                     BarMark(
                         x: .value("Territorial MtCO2", country.territorialMtCO2),
                         y: .value("Country", country.name)
@@ -154,7 +154,7 @@ struct ChartsView: View {
         }.chartBackgroundStyle()
     }
     
-    private var top10CountriesByNDGainScoreChart: some View {
+    private static func top10CountriesByNDGainScoreChart(countryDataManager: CountryDataManager) -> some View {
         VStack(alignment: .leading, spacing: 5) {
             Text(ChartType.top10CountriesByNDGainScore.rawValue)
                 .customFont(size: 20, weight: .bold)
@@ -165,7 +165,7 @@ struct ChartsView: View {
                 .padding(.bottom)
             
             Chart {
-                ForEach(self.countryDataManager.countries.sorted(by: { $0.NDGainScore > $1.NDGainScore }).prefix(10)) { country in
+                ForEach(countryDataManager.countries.sorted(by: { $0.NDGainScore > $1.NDGainScore }).prefix(10)) { country in
                     BarMark(
                         x: .value("ND-Gain Score", country.NDGainScore),
                         y: .value("Country", country.name)
@@ -187,7 +187,7 @@ struct ChartsView: View {
         }.chartBackgroundStyle()
     }
     
-    private var top10CountriesByClimaJusticeScoreChart: some View {
+    private static func top10CountriesByClimaJusticeScoreChart(countryDataManager: CountryDataManager) -> some View {
         VStack(alignment: .leading, spacing: 5) {
             Text(ChartType.top10CountriesByClimaJusticeScore.rawValue)
                 .customFont(size: 20, weight: .bold)
@@ -198,9 +198,9 @@ struct ChartsView: View {
                 .padding(.bottom)
             
             Chart {
-                let (minLog, rangeLog) = self.countryDataManager.countries.logCO2Scaling()
+                let (minLog, rangeLog) = countryDataManager.countries.logCO2Scaling()
                 
-                ForEach(self.countryDataManager.countries.sorted(by: { $0.getClimaJusticeScore(minLog: minLog, rangeLog: rangeLog) > $1.getClimaJusticeScore(minLog: minLog, rangeLog: rangeLog) }).prefix(10)) { country in
+                ForEach(countryDataManager.countries.sorted(by: { $0.getClimaJusticeScore(minLog: minLog, rangeLog: rangeLog) > $1.getClimaJusticeScore(minLog: minLog, rangeLog: rangeLog) }).prefix(10)) { country in
                     BarMark(
                         x: .value("Clima Justice Score", country.getClimaJusticeScore(minLog: minLog, rangeLog: rangeLog)),
                         y: .value("Country", country.name)
@@ -222,7 +222,7 @@ struct ChartsView: View {
         }.chartBackgroundStyle()
     }
     
-    private var bottom10CountriesByClimaJusticeScoreChart: some View {
+    private static func bottom10CountriesByClimaJusticeScoreChart(countryDataManager: CountryDataManager) -> some View {
         VStack(alignment: .leading, spacing: 5) {
             Text(ChartType.bottom10CountriesByClimaJusticeScore.rawValue)
                 .customFont(size: 20, weight: .bold)
@@ -233,9 +233,9 @@ struct ChartsView: View {
                 .padding(.bottom)
             
             Chart {
-                let (minLog, rangeLog) = self.countryDataManager.countries.logCO2Scaling()
+                let (minLog, rangeLog) = countryDataManager.countries.logCO2Scaling()
                 
-                ForEach(self.countryDataManager.countries.sorted(by: { $0.getClimaJusticeScore(minLog: minLog, rangeLog: rangeLog) < $1.getClimaJusticeScore(minLog: minLog, rangeLog: rangeLog) }).prefix(10)) { country in
+                ForEach(countryDataManager.countries.sorted(by: { $0.getClimaJusticeScore(minLog: minLog, rangeLog: rangeLog) < $1.getClimaJusticeScore(minLog: minLog, rangeLog: rangeLog) }).prefix(10)) { country in
                     BarMark(
                         x: .value("Clima Justice Score", country.getClimaJusticeScore(minLog: minLog, rangeLog: rangeLog)),
                         y: .value("Country", country.name)
@@ -259,7 +259,7 @@ struct ChartsView: View {
     }
     
     // MARK: Regional Charts
-    private var territorialMtCO2ByRegionChart: some View {
+    private static func territorialMtCO2ByRegionChart(countryDataManager: CountryDataManager) -> some View {
         VStack(alignment: .leading, spacing: 5) {
             Text(ChartType.territorialMtCO2ByRegion.rawValue)
                 .customFont(size: 20, weight: .bold)
@@ -287,7 +287,7 @@ struct ChartsView: View {
         }.chartBackgroundStyle()
     }
     
-    private var ndGainScoreByRegionChart: some View {
+    private static func ndGainScoreByRegionChart(countryDataManager: CountryDataManager) -> some View {
         VStack(alignment: .leading, spacing: 5) {
             Text(ChartType.ndGainScoreByRegion.rawValue)
                 .customFont(size: 20, weight: .bold)
@@ -315,7 +315,7 @@ struct ChartsView: View {
         }.chartBackgroundStyle()
     }
     
-    private var climaJusticeScoreByRegionChart: some View {
+    private static func climaJusticeScoreByRegionChart(countryDataManager: CountryDataManager) -> some View {
         VStack(alignment: .leading, spacing: 5) {
             Text(ChartType.climaJusticeScoreByRegion.rawValue)
                 .customFont(size: 20, weight: .bold)
@@ -326,7 +326,7 @@ struct ChartsView: View {
                 .padding(.bottom)
             
             Chart {
-                let (minLog, rangeLog) = self.countryDataManager.countries.logCO2Scaling()
+                let (minLog, rangeLog) = countryDataManager.countries.logCO2Scaling()
                 
                 ForEach(Region.allCases) { region in
                     let countries = countryDataManager.countries.filter { $0.getRegion() == region }
@@ -346,7 +346,7 @@ struct ChartsView: View {
     }
     
     // MARK: Comparative Charts
-    private var territorialMtCO2vsNDGainScoreChart: some View {
+    private static func territorialMtCO2vsNDGainScoreChart(countryDataManager: CountryDataManager) -> some View {
         VStack(alignment: .leading, spacing: 5) {
             Text(ChartType.territorialMtCO2vsNDGainScore.rawValue)
                 .customFont(size: 20, weight: .bold)
@@ -357,7 +357,7 @@ struct ChartsView: View {
                 .padding(.bottom)
             
             Chart {
-                ForEach(self.countryDataManager.countries) { country in
+                ForEach(countryDataManager.countries) { country in
                     PointMark(
                         x: .value("Territorial MtCO2", country.territorialMtCO2),
                         y: .value("ND-Gain Score", country.NDGainScore)
@@ -389,7 +389,7 @@ struct ChartsView: View {
         }.chartBackgroundStyle()
     }
     
-    private var territorialMtCO2vsClimaJusticeScoreChart: some View {
+    private static func territorialMtCO2vsClimaJusticeScoreChart(countryDataManager: CountryDataManager) -> some View {
         VStack(alignment: .leading, spacing: 5) {
             Text(ChartType.territorialMtCO2vsClimaJusticeScore.rawValue)
                 .customFont(size: 20, weight: .bold)
@@ -400,9 +400,9 @@ struct ChartsView: View {
                 .padding(.bottom)
             
             Chart {
-                let (minLog, rangeLog) = self.countryDataManager.countries.logCO2Scaling()
+                let (minLog, rangeLog) = countryDataManager.countries.logCO2Scaling()
                 
-                ForEach(self.countryDataManager.countries) { country in
+                ForEach(countryDataManager.countries) { country in
                     PointMark(
                         x: .value("Territorial MtCO2", country.territorialMtCO2),
                         y: .value("Clima Justice Score", country.getClimaJusticeScore(minLog: minLog, rangeLog: rangeLog))
@@ -434,7 +434,7 @@ struct ChartsView: View {
         }.chartBackgroundStyle()
     }
     
-    private var ndGainScorevsClimaJusticeScoreChart: some View {
+    private static func ndGainScorevsClimaJusticeScoreChart(countryDataManager: CountryDataManager) -> some View {
         VStack(alignment: .leading, spacing: 5) {
             Text(ChartType.ndGainScorevsClimaJusticeScore.rawValue)
                 .customFont(size: 20, weight: .bold)
@@ -445,9 +445,9 @@ struct ChartsView: View {
                 .padding(.bottom)
             
             Chart {
-                let (minLog, rangeLog) = self.countryDataManager.countries.logCO2Scaling()
+                let (minLog, rangeLog) = countryDataManager.countries.logCO2Scaling()
                 
-                ForEach(self.countryDataManager.countries) { country in
+                ForEach(countryDataManager.countries) { country in
                     PointMark(
                         x: .value("ND-Gain Score", country.NDGainScore),
                         y: .value("Clima Justice Score", country.getClimaJusticeScore(minLog: minLog, rangeLog: rangeLog))
@@ -475,28 +475,28 @@ struct ChartsView: View {
     }
     
     @ViewBuilder
-    private func getChartView(for type: ChartType) -> some View {
+    static func getChartView(for type: ChartType, countryDataManager: CountryDataManager) -> some View {
         switch type {
         case .top10CountriesByTerritorialMtCO2:
-            top10CountriesByTerritorialMtCO2Chart
+            top10CountriesByTerritorialMtCO2Chart(countryDataManager: countryDataManager)
         case .top10CountriesByNDGainScore:
-            top10CountriesByNDGainScoreChart
+            top10CountriesByNDGainScoreChart(countryDataManager: countryDataManager)
         case .top10CountriesByClimaJusticeScore:
-            top10CountriesByClimaJusticeScoreChart
+            top10CountriesByClimaJusticeScoreChart(countryDataManager: countryDataManager)
         case .bottom10CountriesByClimaJusticeScore:
-            bottom10CountriesByClimaJusticeScoreChart
+            bottom10CountriesByClimaJusticeScoreChart(countryDataManager: countryDataManager)
         case .territorialMtCO2ByRegion:
-            territorialMtCO2ByRegionChart
+            territorialMtCO2ByRegionChart(countryDataManager: countryDataManager)
         case .ndGainScoreByRegion:
-            ndGainScoreByRegionChart
+            ndGainScoreByRegionChart(countryDataManager: countryDataManager)
         case .climaJusticeScoreByRegion:
-            climaJusticeScoreByRegionChart
+            climaJusticeScoreByRegionChart(countryDataManager: countryDataManager)
         case .territorialMtCO2vsNDGainScore:
-            territorialMtCO2vsNDGainScoreChart
+            territorialMtCO2vsNDGainScoreChart(countryDataManager: countryDataManager)
         case .territorialMtCO2vsClimaJusticeScore:
-            territorialMtCO2vsClimaJusticeScoreChart
+            territorialMtCO2vsClimaJusticeScoreChart(countryDataManager: countryDataManager)
         case .ndGainScorevsClimaJusticeScore:
-            ndGainScorevsClimaJusticeScoreChart
+            ndGainScorevsClimaJusticeScoreChart(countryDataManager: countryDataManager)
         }
     }
     
