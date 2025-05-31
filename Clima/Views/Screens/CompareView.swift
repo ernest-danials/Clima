@@ -24,6 +24,12 @@ struct CompareView: View {
         return self.countryDataManager.countries.getFilteredAndSortedCountries(countryDataManager: self.countryDataManager, searchText: self.searchTextOnRight, sortingOption: self.currentListSortOptionOnRight)
     }
     
+    let isForOnboarding: Bool
+    
+    init(isForOnboarding: Bool = false) {
+        self.isForOnboarding = isForOnboarding
+    }
+    
     var body: some View {
         NavigationStack {
             GeometryReader { geo in
@@ -117,7 +123,14 @@ struct CompareView: View {
                     }
                 }
                 .safeAreaPadding(.horizontal)
-                .navigationTitle("Compare")
+                .navigationTitle(isForOnboarding ? "" : "Compare")
+                .toolbar(isForOnboarding ? .hidden : .visible)
+                .disabled(isForOnboarding)
+                .redacted(reason: isForOnboarding ? .placeholder : [])
+                .onAppear {
+                    self.selectedCountryOnLeft = self.countryDataManager.countries[1]
+                    self.selectedCountryOnRight = self.countryDataManager.countries[5]
+                }
             }
         }
     }
