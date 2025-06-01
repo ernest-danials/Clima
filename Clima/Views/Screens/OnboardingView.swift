@@ -9,6 +9,7 @@ import SwiftUI
 
 struct OnboardingView: View {
     @EnvironmentObject var countryDataManager: CountryDataManager
+    @EnvironmentObject var onboardingPresentationManager: OnboardingPresentationManager
     
     @State private var currentStatus: OnboardingViewStatus = .welcomeToClima
     
@@ -38,9 +39,15 @@ struct OnboardingView: View {
             .safeAreaPadding(25)
             .frame(width: geo.size.width, height: geo.size.height)
             .contentShape(.rect)
-            .onTapGesture { changeCurrentStatus() }
+            .onTapGesture { 
+                if self.currentStatus == .thatIsIt {
+                    self.onboardingPresentationManager.dismissOnboarding()
+                } else {
+                    changeCurrentStatus() 
+                }
+            }
             .onTapGesture(count: 2) { changeCurrentStatus(forward: false) }
-        }
+        }.background()
     }
     
     // MARK: - Onboarding Items
@@ -275,4 +282,5 @@ struct OnboardingView: View {
 #Preview {
     OnboardingView()
         .environmentObject(CountryDataManager())
+        .environmentObject(OnboardingPresentationManager())
 }
