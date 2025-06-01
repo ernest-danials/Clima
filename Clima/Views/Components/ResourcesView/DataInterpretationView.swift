@@ -11,9 +11,11 @@ struct DataInterpretationView: View {
     @Environment(\.dismiss) var dismiss
     
     let dataType: DataType
+    let isForOnboarding: Bool
     
-    init(_ dataType: DataType) {
+    init(_ dataType: DataType, isForOnboarding: Bool = false) {
         self.dataType = dataType
+        self.isForOnboarding = isForOnboarding
     }
     
     var body: some View {
@@ -70,6 +72,7 @@ struct DataInterpretationView: View {
                     .fontWeight(.medium)
                 }
             }
+            .toolbar(self.isForOnboarding ? .hidden : .visible)
         }
     }
     
