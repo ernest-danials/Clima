@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AppTabView: View {
+    @EnvironmentObject var onboardingPresentationManager: OnboardingPresentationManager
     var body: some View {
         TabView {
             Tab(TabViewItem.map.rawValue, systemImage: TabViewItem.map.imageName) {
@@ -28,6 +29,12 @@ struct AppTabView: View {
         }
         .tabViewStyle(.tabBarOnly)
         .defaultAdaptableTabBarPlacement(.tabBar)
+        .task { onboardingPresentationManager.showOnboardingIfNecessary() }
+        .overlay {
+            if self.onboardingPresentationManager.isShowingOnboarding {
+                OnboardingView()
+            }
+        }
     }
 }
 

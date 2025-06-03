@@ -31,6 +31,16 @@ struct MapView: View {
         return self.countryDataManager.countries.getFilteredAndSortedCountries(countryDataManager: countryDataManager, searchText: self.searchText, sortingOption: self.currentListSortOption)
     }
     
+    let showList: Bool
+    let showDetails: Bool
+    let showAnnotations: Bool
+    
+    init(showList: Bool = true, showDetails: Bool = true, showAnnotations: Bool = true) {
+        self.showList = showList
+        self.showDetails = showDetails
+        self.showAnnotations = showAnnotations
+    }
+    
     var body: some View {
         GeometryReader { geo in
             ZStack(alignment: .trailing) {
@@ -42,7 +52,9 @@ struct MapView: View {
                         MapCircle(center: country.getCoordinate(), radius: 500000 * country.getScaleFactor(for: climaJusticeScore))
                             .foregroundStyle(country.getColorForClimaJusticeScore(climaJusticeScore).opacity(0.5))
                         
-                        Annotation(country.name, coordinate: country.getCoordinate()) {}
+                        if self.showAnnotations {
+                            Annotation(country.name, coordinate: country.getCoordinate()) {}
+                        }
                     }
                 }
                 .mapStyle(.imagery(elevation: .realistic))
@@ -58,7 +70,7 @@ struct MapView: View {
                 
                 HStack {
                     // MARK: Selected Country Detail
-                    if self.isShowingDetailView {
+                    if self.isShowingDetailView && self.showDetails {
                         countryDetailView(geo: geo)
                             .transition(.move(edge: .leading).combined(with: .blurReplace))
                     }
@@ -66,35 +78,37 @@ struct MapView: View {
                     Spacer()
                     
                     // MARK: Country List
-                    VStack {
-                        ScrollViewReader { scrollProxy in
-                            countryListHeader(scrollProxy: scrollProxy)
-                            
-                            ScrollView {
-                                LazyVStack(alignment: .leading) {
-                                    if !displayedCountriesOnList.isEmpty {
-                                        ForEach(displayedCountriesOnList) { country in
-                                            Button {
-                                                changeSelectedCountry(to: country)
-                                            } label: {
-                                                CountryCard(country)
-                                                    .opacity(self.selectedCountry == country ? 0.5 : 1.0)
+                    if self.showList {
+                        VStack {
+                            ScrollViewReader { scrollProxy in
+                                countryListHeader(scrollProxy: scrollProxy)
+                                
+                                ScrollView {
+                                    LazyVStack(alignment: .leading) {
+                                        if !displayedCountriesOnList.isEmpty {
+                                            ForEach(displayedCountriesOnList) { country in
+                                                Button {
+                                                    changeSelectedCountry(to: country)
+                                                } label: {
+                                                    CountryCard(country)
+                                                        .opacity(self.selectedCountry == country ? 0.5 : 1.0)
+                                                }
+                                                .scaleButtonStyle()
+                                                .disabled(self.selectedCountry == country)
                                             }
-                                            .scaleButtonStyle()
-                                            .disabled(self.selectedCountry == country)
+                                        } else {
+                                            countryListNoResultsView()
                                         }
-                                    } else {
-                                        countryListNoResultsView()
                                     }
                                 }
+                                .prioritiseScaleButtonStyle()
                             }
-                            .prioritiseScaleButtonStyle()
                         }
+                        .frame(width: min(300, geo.size.width / 4))
+                        .safeAreaPadding(25)
+                        .background(Material.ultraThin)
+                        .cornerRadius(20, corners: .allCorners)
                     }
-                    .frame(width: min(300, geo.size.width / 4))
-                    .safeAreaPadding(25)
-                    .background(Material.ultraThin)
-                    .cornerRadius(20, corners: .allCorners)
                 }
                 .frame(maxHeight: geo.size.height)
                 .padding(.trailing, 20)

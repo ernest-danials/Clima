@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ResourcesView: View {
+    @EnvironmentObject var onboardingPresentationManager: OnboardingPresentationManager
     
     @State private var isShowingLicensesView: Bool = false
     @State private var selectedDataTypeForInterpretationInfo: DataType? = nil
@@ -31,9 +32,21 @@ struct ResourcesView: View {
                         Text("Version " + "\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "Unknown") (\(Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "Unknown"))")
                             .customFont(size: 15, weight: .regular)
                             .foregroundStyle(.secondary)
+                        
+                        Button {
+                            self.onboardingPresentationManager.showOnboardingIfNecessary(overriding: true)
+                        } label: {
+                            Label("Show Onboarding", systemImage: "eyes")
+                                .customFont(size: 18, weight: .medium)
+                                .padding()
+                                .background(Material.ultraThin)
+                                .cornerRadius(15, corners: .allCorners)
+                        }
+                        .scaleButtonStyle()
+                        .padding(.top)
                     }
                     
-                    Divider().padding(.vertical)
+                    Divider().padding()
                     
                     LazyVGrid(columns: Array(repeating: GridItem(.adaptive(minimum: geo.size.width / 2, maximum: geo.size.width / 1.5)), count: 2), spacing: 25) {
                         VStack {
@@ -189,4 +202,5 @@ struct ResourcesView: View {
 
 #Preview {
     ResourcesView()
+        .environmentObject(OnboardingPresentationManager())
 }
