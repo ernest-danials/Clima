@@ -1,5 +1,5 @@
 //
-//  HomeView.swift
+//  MapView.swift
 //  Clima
 //
 //  Created by Myung Joon Kang on 2025-05-22.
