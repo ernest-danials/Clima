@@ -18,9 +18,11 @@ struct ResourcesView: View {
             NavigationStack {
                 ScrollView {
                     VStack {
-                        // Placeholder for the app icon
-                        RoundedRectangle(cornerRadius: 20)
+                        Image(.appIcon)
+                            .resizable()
+                            .scaledToFit()
                             .frame(width: 100, height: 100)
+                            .clipShape(RoundedRectangle(cornerRadius: 20))
                         
                         Text("Clima")
                             .customFont(size: 28, weight: .heavy)
