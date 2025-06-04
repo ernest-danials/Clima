@@ -26,7 +26,7 @@ Please make sure you're not making duplicate issues. When opening an issue, plea
 5. Push and create a pull request
 
 # Contribution Guidelines
-- Follow our Code of Conduct
+- Follow our [Code of Conduct](CODE_OF_CONDUCT.md)
 - Keep PRs focused to a single issue or enhancement
 
 # License
