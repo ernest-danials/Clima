@@ -33,4 +33,5 @@ Please make sure you're not making duplicate issues. When opening an issue, plea
 By contributing to Clima, you agree that your contributions will be licensed under the terms of the [MIT License](LICENSE)
 
 # Thank you! 🙏
+Your contributions help make Clima better for educators, students, and learners around the world.
    
