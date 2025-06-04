@@ -28,5 +28,11 @@ Clima is designed for educational purposes. If you're a teacher and would like t
 ## License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
+## Contributing
+Contributions are always welcome! Please feel free to submit a Pull Request. Before you do so, please take a moment to review our [Contributing Guide](CONTRIBUTING.md) for more details on opening an issue, PR process, etc.
+
+## Support
+Liked my project? Please give it a star ⭐!
+
 ## Contact
 For questions or feedback, please [contact me](https://myungjoon.com/contact)!
