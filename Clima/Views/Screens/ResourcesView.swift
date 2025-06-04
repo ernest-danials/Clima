@@ -55,7 +55,7 @@ struct ResourcesView: View {
                             Text("Clima is an open source project")
                                 .customFont(size: 23, weight: .bold)
                             
-                            Text("This project is open source for non-commercial use only.")
+                            Text("This project is open source under MIT license.")
                                 .customFont(size: 16)
                                 .foregroundStyle(.secondary)
                             
