@@ -26,7 +26,7 @@ Clima is an educational application developed using SwiftUI. It aims to help stu
 Clima is designed for educational purposes. If you're a teacher and would like to use Clima in your class, please use [our onboarding page](https://myungjoon.com/clima/onboarding) to guide your students to download the app.
 
 ## License
-This project is licensed under the MIT License. See the [LICENSE] file for details.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ## Contact
 For questions or feedback, please [contact me](https://myungjoon.com/contact)!
