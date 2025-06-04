@@ -11,8 +11,7 @@ Clima is an educational application developed using SwiftUI. It aims to help stu
 - [Developer website](https://myungjoon.com)
 
 ## Installation
-- Clima is available on the App Store for iPad and Mac. (Requires iPadOS 18.0 or later. Requires macOS Sequoia 15.0 or later and a Mac with Apple Silicon chip.)
-(App Store link will be added soon.)
+- Clima is available on the [App Store](https://apps.apple.com/app/clima-climate-justice/id6746771138) for iPad and Mac. (Requires iPadOS 18.0 or later. Requires macOS Sequoia 15.0 or later and a Mac with Apple Silicon chip.)
 
 - To install and run Clima locally:
   1. Ensure you have [Xcode](https://developer.apple.com/xcode/) installed on your Mac.
