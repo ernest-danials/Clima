@@ -128,8 +128,10 @@ struct CompareView: View {
                 .disabled(isForOnboarding)
                 .redacted(reason: isForOnboarding ? .placeholder : [])
                 .onAppear {
-                    self.selectedCountryOnLeft = self.countryDataManager.countries[1]
-                    self.selectedCountryOnRight = self.countryDataManager.countries[5]
+                    if isForOnboarding {
+                        self.selectedCountryOnLeft = self.countryDataManager.countries[1]
+                        self.selectedCountryOnRight = self.countryDataManager.countries[5]
+                    }
                 }
             }
         }
