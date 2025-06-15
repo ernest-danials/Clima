@@ -70,7 +70,7 @@ extension Country {
         return 1.0 - (raw - minLog) / rangeLog
     }
     
-    private var ndGainComponent: Double { NDGainScore / 100.0 }
+    private var ndGainComponent: Double { 1.0 - (NDGainScore / 100.0) }
     
     func getClimaJusticeScore(minLog: Double, rangeLog: Double) -> Double {
         let c = co2Component(minLog: minLog, rangeLog: rangeLog)

@@ -110,12 +110,12 @@ struct DataInterpretationView: View {
             
             Where:
             • C = CO2 Component: Normalised inverse of log(territorial emissions + 1)
-            • G = Gain Component: ND-Gain Score / 100
+            • G = Gain Component: Inverted ND-Gain Score (1 - ND-Gain Score / 100)
             
             The CO2 component is calculated as:
             C = 1 - (log₁₀(emissions + 1) - min_log) / range_log
             
-            This formula ensures that countries with low emissions and high vulnerability receive higher scores, whilst countries with high emissions and low vulnerability receive lower scores.
+            This formula ensures that countries with low emissions and high vulnerability (low ND-GAIN) receive higher scores, whilst those with high emissions and strong readiness (high ND-GAIN) receive lower scores.
             """
             
         case .territorialMtCO2:
