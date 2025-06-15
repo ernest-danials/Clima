@@ -439,12 +439,22 @@ struct CompareView: View {
     
     private func getComparisonText(value: Double, otherValue: Double, isHigherBetter: Bool, format: String) -> String {
         let difference = abs(value - otherValue)
-        let percentDifference = (difference / min(value, otherValue)) * 100
+        let denominator = min(value, otherValue)
+        let percentDifference: Double?
+        if denominator == 0 {
+            percentDifference = nil
+        } else {
+            percentDifference = (difference / denominator) * 100
+        }
         
         // Arrow reflects absolute difference only (not whether it's "better")
         let symbol = value > otherValue ? "↑" : "↓"
         
-        return "\(symbol) \(String(format: format, difference)) (\(String(format: "%.1f", percentDifference))%)"
+        if let percentDifference {
+            return "\(symbol) \(String(format: format, difference)) (\(String(format: "%.1f", percentDifference))%)"
+        } else {
+            return "\(symbol) \(String(format: format, difference))"
+        }
     }
     
     private func changeListSortOption(to option: CountrySortOption, for listOption: ListOption) {
