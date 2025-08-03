@@ -1,6 +1,8 @@
 # Clima
 Clima is an educational application developed using SwiftUI. It aims to help students and educators explore and understand climate justice through interactive visualisations.
 
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/ernest-danials/Clima)
+
 ## Features
 - Map: Explore an interactive map to understand climate justice visually.
 - Charts: Get insights by browsing climate data through various charts.
