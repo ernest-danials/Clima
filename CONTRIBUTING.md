@@ -11,7 +11,7 @@ Please make sure you're not making duplicate issues. When opening an issue, plea
 ## How to Contribute
 1. Fork the repository, then clone your fork:
    ```bash
-   git clone https://github.com/your-username/Clima.git
+   git clone https://github.com/ernest-danials/Clima.git
    cd Clima
    ```
 2. Create a feature-specific branch
