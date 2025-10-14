@@ -15,6 +15,9 @@ struct ClimaApp: App {
     var body: some Scene {
         WindowGroup {
             AppTabView()
+                .onOpenURL { url in
+                    print("Opened from:", url)
+                }
                 .environmentObject(countryDataManager)
                 .environmentObject(onboardingPresentationManager)
         }

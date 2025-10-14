@@ -79,35 +79,69 @@ struct MapView: View {
                     
                     // MARK: Country List
                     if self.showList {
-                        VStack {
-                            ScrollViewReader { scrollProxy in
-                                countryListHeader(scrollProxy: scrollProxy)
-                                
-                                ScrollView {
-                                    LazyVStack(alignment: .leading) {
-                                        if !displayedCountriesOnList.isEmpty {
-                                            ForEach(displayedCountriesOnList) { country in
-                                                Button {
-                                                    changeSelectedCountry(to: country)
-                                                } label: {
-                                                    CountryCard(country)
-                                                        .opacity(self.selectedCountry == country ? 0.5 : 1.0)
+                        if #available(iOS 26.0, *) {
+                            VStack {
+                                ScrollViewReader { scrollProxy in
+                                    countryListHeader(scrollProxy: scrollProxy)
+                                        .padding(.bottom, 10)
+                                    
+                                    ScrollView {
+                                        LazyVStack(alignment: .leading) {
+                                            if !displayedCountriesOnList.isEmpty {
+                                                ForEach(displayedCountriesOnList) { country in
+                                                    Button {
+                                                        changeSelectedCountry(to: country)
+                                                    } label: {
+                                                        CountryCard(country)
+                                                            .opacity(self.selectedCountry == country ? 0.5 : 1.0)
+                                                    }
+                                                    .scaleButtonStyle()
+                                                    .disabled(self.selectedCountry == country)
                                                 }
-                                                .scaleButtonStyle()
-                                                .disabled(self.selectedCountry == country)
+                                            } else {
+                                                countryListNoResultsView()
                                             }
-                                        } else {
-                                            countryListNoResultsView()
                                         }
                                     }
+                                    .prioritiseScaleButtonStyle()
                                 }
-                                .prioritiseScaleButtonStyle()
                             }
+                            .frame(width: min(300, geo.size.width / 4))
+                            .safeAreaPadding(25)
+                            .glassEffect(in: RoundedRectangle(cornerRadius: 20))
+                            .cornerRadius(20, corners: .allCorners)
+                        } else {
+                            VStack {
+                                ScrollViewReader { scrollProxy in
+                                    countryListHeader(scrollProxy: scrollProxy)
+                                        .padding(.bottom, 10)
+                                    
+                                    ScrollView {
+                                        LazyVStack(alignment: .leading) {
+                                            if !displayedCountriesOnList.isEmpty {
+                                                ForEach(displayedCountriesOnList) { country in
+                                                    Button {
+                                                        changeSelectedCountry(to: country)
+                                                    } label: {
+                                                        CountryCard(country)
+                                                            .opacity(self.selectedCountry == country ? 0.5 : 1.0)
+                                                    }
+                                                    .scaleButtonStyle()
+                                                    .disabled(self.selectedCountry == country)
+                                                }
+                                            } else {
+                                                countryListNoResultsView()
+                                            }
+                                        }
+                                    }
+                                    .prioritiseScaleButtonStyle()
+                                }
+                            }
+                            .frame(width: min(300, geo.size.width / 4))
+                            .safeAreaPadding(25)
+                            .background(Material.ultraThin)
+                            .cornerRadius(20, corners: .allCorners)
                         }
-                        .frame(width: min(300, geo.size.width / 4))
-                        .safeAreaPadding(25)
-                        .background(Material.ultraThin)
-                        .cornerRadius(20, corners: .allCorners)
                     }
                 }
                 .frame(maxHeight: geo.size.height)
@@ -129,135 +163,162 @@ struct MapView: View {
         }
     }
     
+    @ViewBuilder
     private func countryDetailView(geo: GeometryProxy) -> some View {
-        VStack {
-            if let country = self.selectedCountry {
-                ScrollView {
-                    let (minLog, rangeLog) = self.countryDataManager.countries.logCO2Scaling()
-                    let climaJusticeScore = country.getClimaJusticeScore(minLog: minLog, rangeLog: rangeLog)
-                    
-                    VStack(spacing: 15) {
-                        Spacer().frame(height: 10)
-                        
-                        AsyncImage(url: URL(string: "https://cdn.ipregistry.co/flags/wikimedia/\(country.id).png")!) { image in
-                            image
-                                .resizable()
-                                .scaledToFit()
-                        } placeholder: {
-                            ProgressView()
-                        }
-                        .frame(width: 80)
-                        .cornerRadius(5, corners: .allCorners)
-                        
-                        VStack {
-                            let rank = self.countryDataManager.getCountryClimaJusticeScoreRank(for: country)
-                            Text("#\(rank)")
-                                .customFont(size: 20, weight: .semibold)
-                                .foregroundStyle(.gray)
-                                .contentTransition(.numericText(value: Double(rank)))
-                            
-                            Text(country.name)
-                                .customFont(size: 27, weight: .bold)
-                                .multilineTextAlignment(.center)
-                                .minimumScaleFactor(0.4)
-                                .contentTransition(.numericText())
-                            
-                            Text(country.getRegion().rawValue)
-                                .customFont(size: 17, weight: .medium)
-                                .foregroundStyle(.gray)
-                        }
-                        
-                        VStack(spacing: 8) {
-                            Image(systemName: "scale.3d")
-                                .customFont(size: 35)
-                                .foregroundStyle(.secondary)
-                                
-                            Text("Clima Justice Score")
-                                .customFont(size: 19, weight: .bold)
-                            
-                            Text(String(format: "%.1f", climaJusticeScore))
-                                .customFont(size: 20, weight: .heavy)
-                                .contentTransition(.numericText(value: climaJusticeScore))
-                            
-                            LinearGradient(colors: [.red, .green], startPoint: .leading, endPoint: .trailing)
-                                .frame(height: 10)
-                                .cornerRadius(10, corners: .allCorners)
-                                .overlay {
-                                    GeometryReader { geometry in
-                                        Circle()
-                                            .fill(.white)
-                                            .frame(width: 18, height: 18)
-                                            .shadow(color: .black.opacity(0.2), radius: 2, x: 0, y: 1)
-                                            .position(
-                                                x: geometry.size.width * (climaJusticeScore / 100.0),
-                                                y: geometry.size.height / 2
-                                            )
-                                            .animation(.spring(response: 0.5, dampingFraction: 0.8), value: climaJusticeScore)
-                                    }
-                                }
-                        }
-                        .alignView(to: .center)
-                        .padding()
-                        .background(Material.ultraThin)
-                        .cornerRadius(16, corners: .allCorners)
-                        
-                        VStack {
-                            Image(systemName: "shield.lefthalf.filled")
-                                .customFont(size: 35)
-                                .foregroundStyle(.secondary)
-                                .padding(.bottom, 3)
-                            
-                            Text("ND-Gain Score")
-                                .customFont(size: 17, weight: .medium)
-                                .multilineTextAlignment(.center)
-                            
-                            Text(String(format: "%.1f", country.NDGainScore))
-                                .customFont(size: 18, weight: .bold)
-                                .contentTransition(.numericText(value: country.NDGainScore))
-                        }
-                        .alignView(to: .center)
-                        .padding()
-                        .background(Material.ultraThin)
-                        .cornerRadius(16, corners: .allCorners)
-                        
-                        VStack {
-                            Image(systemName: "carbon.dioxide.cloud.fill")
-                                .customFont(size: 35)
-                                .foregroundStyle(.secondary)
-                                .padding(.bottom, 3)
-                            
-                            Text("Territorial MtCO2")
-                                .customFont(size: 17, weight: .medium)
-                                .multilineTextAlignment(.center)
-                            
-                            Text(String(format: "%.1f", country.territorialMtCO2))
-                                .customFont(size: 18, weight: .bold)
-                                .contentTransition(.numericText(value: country.territorialMtCO2))
-                        }
-                        .alignView(to: .center)
-                        .padding()
-                        .background(Material.ultraThin)
-                        .cornerRadius(16, corners: .allCorners)
+        if #available(iOS 26.0, *) {
+            VStack {
+                if let country = self.selectedCountry {
+                    countryDetailViewContent(country: country)
+                } else {
+                    ContentUnavailableView("Select a Country", systemImage: "flag.fill", description: Text("Select a country from the list to view its details"))
+                        .transition(.blurReplace)
+                }
+            }
+            .frame(width: min(300, geo.size.width / 4))
+            .scrollIndicators(.hidden)
+            .safeAreaPadding(25)
+            .glassEffect(in: RoundedRectangle(cornerRadius: 20))
+            .onChange(of: self.mapCameraPosition) { _, _ in
+                if self.selectedCountry == nil && self.mapCameraPosition != .automatic {
+                    withAnimation(.spring) {
+                        self.isShowingDetailView = false
                     }
                 }
-                .transition(.blurReplace)
-            } else {
-                ContentUnavailableView("Select a Country", systemImage: "flag.fill", description: Text("Select a country from the list to view its details"))
-                    .transition(.blurReplace)
             }
-        }
-        .frame(width: min(300, geo.size.width / 4))
-        .scrollIndicators(.hidden)
-        .safeAreaPadding(25)
-        .background(Material.ultraThin)
-        .cornerRadius(20, corners: .allCorners)
-        .onChange(of: self.mapCameraPosition) { _, _ in
-            if self.selectedCountry == nil && self.mapCameraPosition != .automatic {
-                withAnimation(.spring) {
-                    self.isShowingDetailView = false
+        } else {
+            VStack {
+                if let country = self.selectedCountry {
+                    countryDetailViewContent(country: country)
+                } else {
+                    ContentUnavailableView("Select a Country", systemImage: "flag.fill", description: Text("Select a country from the list to view its details"))
+                        .transition(.blurReplace)
+                }
+            }
+            .frame(width: min(300, geo.size.width / 4))
+            .scrollIndicators(.hidden)
+            .safeAreaPadding(25)
+            .background(Material.ultraThin)
+            .cornerRadius(20, corners: .allCorners)
+            .onChange(of: self.mapCameraPosition) { _, _ in
+                if self.selectedCountry == nil && self.mapCameraPosition != .automatic {
+                    withAnimation(.spring) {
+                        self.isShowingDetailView = false
+                    }
                 }
             }
         }
+    }
+    
+    private func countryDetailViewContent(country: Country) -> some View {
+        ScrollView {
+            let (minLog, rangeLog) = self.countryDataManager.countries.logCO2Scaling()
+            let climaJusticeScore = country.getClimaJusticeScore(minLog: minLog, rangeLog: rangeLog)
+            
+            VStack(spacing: 15) {
+                Spacer().frame(height: 10)
+                
+                AsyncImage(url: URL(string: "https://cdn.ipregistry.co/flags/wikimedia/\(country.id).png")!) { image in
+                    image
+                        .resizable()
+                        .scaledToFit()
+                } placeholder: {
+                    ProgressView()
+                }
+                .frame(width: 80)
+                .cornerRadius(5, corners: .allCorners)
+                
+                VStack {
+                    let rank = self.countryDataManager.getCountryClimaJusticeScoreRank(for: country)
+                    Text("#\(rank)")
+                        .customFont(size: 20, weight: .semibold)
+                        .foregroundStyle(.gray)
+                        .contentTransition(.numericText(value: Double(rank)))
+                    
+                    Text(country.name)
+                        .customFont(size: 27, weight: .bold)
+                        .multilineTextAlignment(.center)
+                        .minimumScaleFactor(0.4)
+                        .contentTransition(.numericText())
+                    
+                    Text(country.getRegion().rawValue)
+                        .customFont(size: 17, weight: .medium)
+                        .foregroundStyle(.gray)
+                }
+                
+                VStack(spacing: 8) {
+                    Image(systemName: "scale.3d")
+                        .customFont(size: 35)
+                        .foregroundStyle(.secondary)
+                        
+                    Text("Clima Justice Score")
+                        .customFont(size: 19, weight: .bold)
+                    
+                    Text(String(format: "%.1f", climaJusticeScore))
+                        .customFont(size: 20, weight: .heavy)
+                        .contentTransition(.numericText(value: climaJusticeScore))
+                    
+                    LinearGradient(colors: [.red, .green], startPoint: .leading, endPoint: .trailing)
+                        .frame(height: 10)
+                        .cornerRadius(10, corners: .allCorners)
+                        .overlay {
+                            GeometryReader { geometry in
+                                Circle()
+                                    .fill(.white)
+                                    .frame(width: 18, height: 18)
+                                    .shadow(color: .black.opacity(0.2), radius: 2, x: 0, y: 1)
+                                    .position(
+                                        x: geometry.size.width * (climaJusticeScore / 100.0),
+                                        y: geometry.size.height / 2
+                                    )
+                                    .animation(.spring(response: 0.5, dampingFraction: 0.8), value: climaJusticeScore)
+                            }
+                        }
+                }
+                .alignView(to: .center)
+                .padding()
+                .background(Material.ultraThin)
+                .cornerRadius(16, corners: .allCorners)
+                
+                VStack {
+                    Image(systemName: "shield.lefthalf.filled")
+                        .customFont(size: 35)
+                        .foregroundStyle(.secondary)
+                        .padding(.bottom, 3)
+                    
+                    Text("ND-Gain Score")
+                        .customFont(size: 17, weight: .medium)
+                        .multilineTextAlignment(.center)
+                    
+                    Text(String(format: "%.1f", country.NDGainScore))
+                        .customFont(size: 18, weight: .bold)
+                        .contentTransition(.numericText(value: country.NDGainScore))
+                }
+                .alignView(to: .center)
+                .padding()
+                .background(Material.ultraThin)
+                .cornerRadius(16, corners: .allCorners)
+                
+                VStack {
+                    Image(systemName: "carbon.dioxide.cloud.fill")
+                        .customFont(size: 35)
+                        .foregroundStyle(.secondary)
+                        .padding(.bottom, 3)
+                    
+                    Text("Territorial MtCO2")
+                        .customFont(size: 17, weight: .medium)
+                        .multilineTextAlignment(.center)
+                    
+                    Text(String(format: "%.1f", country.territorialMtCO2))
+                        .customFont(size: 18, weight: .bold)
+                        .contentTransition(.numericText(value: country.territorialMtCO2))
+                }
+                .alignView(to: .center)
+                .padding()
+                .background(Material.ultraThin)
+                .cornerRadius(16, corners: .allCorners)
+            }
+        }
+        .transition(.blurReplace)
     }
     
     private func countryListHeader(scrollProxy: ScrollViewProxy) -> some View {

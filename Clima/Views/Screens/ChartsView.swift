@@ -11,104 +11,150 @@ import Charts
 struct ChartsView: View {
     @EnvironmentObject var countryDataManager: CountryDataManager
 
+    @available(*, deprecated, message: "Toggling visibility of charts has been deprecated. Use currentlyFocusedChart to scroll to a specific chart instead.")
     @State private var displayedCharts: [ChartType] = ChartType.allCases
+    
+    @State private var currentlyFocusedChart: ChartType? = nil
     @State private var isShowingTopDisclaimer: Bool = true
     
     var body: some View {
         NavigationStack {
-            ScrollView {
-                LazyVStack(pinnedViews: .sectionHeaders) {
-                    Section {
-                        if self.isShowingTopDisclaimer {
-                            HStack {
-                                Label("Clima uses data from 2022.", systemImage: "info.circle")
+            ScrollViewReader { scrollProxy in
+                ScrollView {
+                    LazyVStack(pinnedViews: .sectionHeaders) {
+                        Section {
+
+                            
+                            LazyVStack(spacing: 20) {
+//                                if self.displayedCharts.isEmpty {
+//                                    ContentUnavailableView("No Charts Selected", systemImage: "chart.pie.fill", description: Text("There are no charts selected to display."))
+//                                        .transition(.blurReplace)
+//                                }
                                 
-                                Spacer()
+                                LazyVStack(spacing: 15) {
+                                    ForEach(ChartType.top10Charts) { chart in
+                                        //if displayedCharts.contains(chart) {
+                                            Self.getChartView(for: chart, countryDataManager: countryDataManager)
+                                        //}
+                                    }
+                                }
                                 
-                                Button {
-                                    withAnimation { self.isShowingTopDisclaimer = false }
-                                } label: {
-                                    Image(systemName: "xmark.circle.fill")
-                                }.scaleButtonStyle(scaleAmount: 0.96)
+                                LazyVGrid(columns: Array(repeating: .init(.flexible()), count: 2), spacing: 15) {
+                                    ForEach(ChartType.regionalCharts) { chart in
+                                        //if displayedCharts.contains(chart) {
+                                            Self.getChartView(for: chart, countryDataManager: countryDataManager)
+                                                .alignViewVertically(to: .top)
+                                        //}
+                                    }
+                                }
+                                
+                                LazyVStack(spacing: 15) {
+                                    ForEach(ChartType.comparativeCharts) { chart in
+                                        //if displayedCharts.contains(chart) {
+                                            Self.getChartView(for: chart, countryDataManager: countryDataManager)
+                                        //}
+                                    }
+                                }
+                            }.padding(.top)
+                        } header: {
+                            VStack(spacing: 5) {
+                                displayedChartsList.safeAreaPadding(.top)
+                                
+                                if self.isShowingTopDisclaimer {
+                                    if #available(iOS 26.0, *) {
+                                        HStack {
+                                            Label("Clima uses data from 2022.", systemImage: "info.circle")
+                                            
+                                            Spacer()
+                                            
+                                            Button {
+                                                withAnimation { self.isShowingTopDisclaimer = false }
+                                            } label: {
+                                                Image(systemName: "xmark.circle.fill")
+                                            }.scaleButtonStyle(scaleAmount: 0.96)
+                                        }
+                                        .padding()
+                                        .glassEffect(in: RoundedRectangle(cornerRadius: 20))
+                                        .padding([.horizontal, .top])
+                                        .padding(.horizontal)
+                                        .transition(.blurReplace)
+                                    } else {
+                                        HStack {
+                                            Label("Clima uses data from 2022.", systemImage: "info.circle")
+                                            
+                                            Spacer()
+                                            
+                                            Button {
+                                                withAnimation { self.isShowingTopDisclaimer = false }
+                                            } label: {
+                                                Image(systemName: "xmark.circle.fill")
+                                            }.scaleButtonStyle(scaleAmount: 0.96)
+                                        }
+                                        .padding()
+                                        .background(Material.ultraThin)
+                                        .cornerRadius(13, corners: .allCorners)
+                                        .padding([.horizontal, .top])
+                                        .padding(.horizontal)
+                                        .transition(.blurReplace)
+                                    }
+                                }
                             }
-                            .padding()
-                            .background(Material.ultraThin)
-                            .cornerRadius(13, corners: .allCorners)
-                            .padding([.horizontal, .top])
-                            .transition(.blurReplace)
                         }
-                        
-                        LazyVStack(spacing: 20) {
-                            if self.displayedCharts.isEmpty {
-                                ContentUnavailableView("No Charts Selected", systemImage: "chart.pie.fill", description: Text("There are no charts selected to display."))
-                                    .transition(.blurReplace)
-                            }
-                            
-                            LazyVStack(spacing: 15) {
-                                ForEach(ChartType.top10Charts) { chart in
-                                    if displayedCharts.contains(chart) {
-                                        Self.getChartView(for: chart, countryDataManager: countryDataManager)
-                                    }
-                                }
-                            }
-                            
-                            LazyVGrid(columns: Array(repeating: .init(.flexible()), count: 2), spacing: 15) {
-                                ForEach(ChartType.regionalCharts) { chart in
-                                    if displayedCharts.contains(chart) {
-                                        Self.getChartView(for: chart, countryDataManager: countryDataManager)
-                                            .alignViewVertically(to: .top)
-                                    }
-                                }
-                            }
-                            
-                            LazyVStack(spacing: 15) {
-                                ForEach(ChartType.comparativeCharts) { chart in
-                                    if displayedCharts.contains(chart) {
-                                        Self.getChartView(for: chart, countryDataManager: countryDataManager)
-                                    }
-                                }
-                            }
-                        }.padding(.top)
-                    } header: {
-                        displayedChartsList.safeAreaPadding(.top)
+                    }
+                }
+                .prioritiseScaleButtonStyle()
+                .navigationTitle("Charts")
+                .onChange(of: self.currentlyFocusedChart) { _, newValue in
+                    guard let target = newValue else { return }
+                    
+                    withAnimation {
+                        scrollProxy.scrollTo(target, anchor: .top)
                     }
                 }
             }
-            .prioritiseScaleButtonStyle()
-            .navigationTitle("Charts")
         }
     }
     
     private var displayedChartsList: some View {
         ScrollView(.horizontal) {
             HStack {
-                ForEach(ChartType.allCases) { type in
-                    let isDisplayed = (self.displayedCharts.contains(type))
+                ForEach(ChartType.allCases) { chart in
+                    //let isDisplayed = (self.displayedCharts.contains(type))
                     
-                    Button {
-                        toggleDisplayStatus(for: type)
-                    } label: {
-                        HStack {
-                            Image(systemName: type.imageName)
-                            
-                            Text(type.rawValue)
-                                .customFont(size: 18, weight: .medium)
+                    if #available(iOS 26.0, *) {
+                        Button {
+                            focusChart(chart)
+                        } label: {
+                            HStack {
+                                Image(systemName: chart.imageName)
+                                
+                                Text(chart.rawValue)
+                                    .customFont(size: 18, weight: .medium)
+                            }
+                            .foregroundStyle(.white)
+                            .padding()
                         }
-                        .foregroundStyle(isDisplayed ? Color.white : .primary)
-                        .padding()
-                        .background {
-                            if isDisplayed {
+                        .buttonStyle(.glassProminent)
+                    } else {
+                        Button {
+                            focusChart(chart)
+                        } label: {
+                            HStack {
+                                Image(systemName: chart.imageName)
+                                
+                                Text(chart.rawValue)
+                                    .customFont(size: 18, weight: .medium)
+                            }
+                            .foregroundStyle(.white)
+                            .padding()
+                            .background {
                                 Capsule()
                                     .foregroundStyle(Color.accentColor)
                                     .shadow(color: .black.opacity(0.5), radius: 7)
-                            } else {
-                                Capsule()
-                                    .fill(Material.ultraThin)
-                                    .shadow(color: .black.opacity(0.3), radius: 7)
                             }
                         }
+                        .scaleButtonStyle()
                     }
-                    .scaleButtonStyle()
                 }
             }.scrollTargetLayout()
         }
@@ -478,28 +524,29 @@ struct ChartsView: View {
     static func getChartView(for type: ChartType, countryDataManager: CountryDataManager) -> some View {
         switch type {
         case .top10CountriesByTerritorialMtCO2:
-            top10CountriesByTerritorialMtCO2Chart(countryDataManager: countryDataManager)
+            top10CountriesByTerritorialMtCO2Chart(countryDataManager: countryDataManager).id(type)
         case .top10CountriesByNDGainScore:
-            top10CountriesByNDGainScoreChart(countryDataManager: countryDataManager)
+            top10CountriesByNDGainScoreChart(countryDataManager: countryDataManager).id(type)
         case .top10CountriesByClimaJusticeScore:
-            top10CountriesByClimaJusticeScoreChart(countryDataManager: countryDataManager)
+            top10CountriesByClimaJusticeScoreChart(countryDataManager: countryDataManager).id(type)
         case .bottom10CountriesByClimaJusticeScore:
-            bottom10CountriesByClimaJusticeScoreChart(countryDataManager: countryDataManager)
+            bottom10CountriesByClimaJusticeScoreChart(countryDataManager: countryDataManager).id(type)
         case .territorialMtCO2ByRegion:
-            territorialMtCO2ByRegionChart(countryDataManager: countryDataManager)
+            territorialMtCO2ByRegionChart(countryDataManager: countryDataManager).id(type)
         case .ndGainScoreByRegion:
-            ndGainScoreByRegionChart(countryDataManager: countryDataManager)
+            ndGainScoreByRegionChart(countryDataManager: countryDataManager).id(type)
         case .climaJusticeScoreByRegion:
-            climaJusticeScoreByRegionChart(countryDataManager: countryDataManager)
+            climaJusticeScoreByRegionChart(countryDataManager: countryDataManager).id(type)
         case .territorialMtCO2vsNDGainScore:
-            territorialMtCO2vsNDGainScoreChart(countryDataManager: countryDataManager)
+            territorialMtCO2vsNDGainScoreChart(countryDataManager: countryDataManager).id(type)
         case .territorialMtCO2vsClimaJusticeScore:
-            territorialMtCO2vsClimaJusticeScoreChart(countryDataManager: countryDataManager)
+            territorialMtCO2vsClimaJusticeScoreChart(countryDataManager: countryDataManager).id(type)
         case .ndGainScorevsClimaJusticeScore:
-            ndGainScorevsClimaJusticeScoreChart(countryDataManager: countryDataManager)
+            ndGainScorevsClimaJusticeScoreChart(countryDataManager: countryDataManager).id(type)
         }
     }
     
+    @available(*, deprecated, message: "Toggling visibility of charts has been deprecated. Use focusChart() to scroll to a specific chart instead.")
     private func toggleDisplayStatus(for type: ChartType) {
         withAnimation {
             if self.displayedCharts.contains(type) {
@@ -508,6 +555,10 @@ struct ChartsView: View {
                 displayedCharts.append(type)
             }
         }
+    }
+    
+    private func focusChart(_ chart: ChartType) {
+        currentlyFocusedChart = chart
     }
 }
 

@@ -114,15 +114,15 @@ struct ResourcesView: View {
                         .alignViewVertically(to: .top)
                         
                         VStack {
-                            Text("Our Websites")
+                            Text("Websites")
                                 .customFont(size: 23, weight: .bold)
                             
                             Link(destination: URL(string: "https://myungjoon.com/clima")!) {
-                                buttonLabel(title: "Our Homepage", imageName: "globe", color: .blue)
+                                buttonLabel(title: "Project Website", imageName: "globe", color: .blue)
                             }.scaleButtonStyle()
                             
                             Link(destination: URL(string: "https://myungjoon.com")!) {
-                                buttonLabel(title: "Our Developer's Website", imageName: "globe", color: .blue)
+                                buttonLabel(title: "Developer's Website", imageName: "globe", color: .blue)
                             }.scaleButtonStyle()
                         }
                         .alignViewVertically(to: .top)
@@ -148,7 +148,7 @@ struct ResourcesView: View {
                                 buttonLabel(title: "Terms of Service", imageName: "text.document.fill", color: .blue)
                             }.scaleButtonStyle()
                             
-                            Text("Copyright © 2025 Clima by Myung Joon Kang. All rights reserved.")
+                            Text("Copyright © 2025 Myung Joon Kang. All rights reserved.")
                                 .customFont(size: 15)
                                 .foregroundStyle(.secondary)
                                 .padding(.top, 2)

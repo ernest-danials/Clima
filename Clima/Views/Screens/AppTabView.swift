@@ -41,4 +41,5 @@ struct AppTabView: View {
 #Preview {
     AppTabView()
         .environmentObject(CountryDataManager())
+        .environmentObject(OnboardingPresentationManager())
 }
