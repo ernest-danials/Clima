@@ -7,10 +7,12 @@
 
 import SwiftUI
 import MapKit
+import UniversalGlass
 
 struct MapView: View {
     @EnvironmentObject var countryDataManager: CountryDataManager
     
+    @available(*, deprecated, message: "Blocking MapView when in portrait has been removed.")
     @State private var currentDeviceOrientation: UIDeviceOrientation = UIDevice.current.orientation
     
     @State private var selectedCountry: Country? = nil
@@ -79,136 +81,83 @@ struct MapView: View {
                     
                     // MARK: Country List
                     if self.showList {
-                        if #available(iOS 26.0, *) {
-                            VStack {
-                                ScrollViewReader { scrollProxy in
-                                    countryListHeader(scrollProxy: scrollProxy)
-                                        .padding(.bottom, 10)
-                                    
-                                    ScrollView {
-                                        LazyVStack(alignment: .leading) {
-                                            if !displayedCountriesOnList.isEmpty {
-                                                ForEach(displayedCountriesOnList) { country in
-                                                    Button {
-                                                        changeSelectedCountry(to: country)
-                                                    } label: {
-                                                        CountryCard(country)
-                                                            .opacity(self.selectedCountry == country ? 0.5 : 1.0)
-                                                    }
-                                                    .scaleButtonStyle()
-                                                    .disabled(self.selectedCountry == country)
+                        VStack {
+                            ScrollViewReader { scrollProxy in
+                                countryListHeader(scrollProxy: scrollProxy)
+                                    .padding(.bottom, 10)
+                                
+                                ScrollView {
+                                    LazyVStack(alignment: .leading) {
+                                        if !displayedCountriesOnList.isEmpty {
+                                            ForEach(displayedCountriesOnList) { country in
+                                                Button {
+                                                    changeSelectedCountry(to: country)
+                                                } label: {
+                                                    CountryCard(country)
+                                                        .opacity(self.selectedCountry == country ? 0.5 : 1.0)
                                                 }
-                                            } else {
-                                                countryListNoResultsView()
+                                                .scaleButtonStyle()
+                                                .disabled(self.selectedCountry == country)
                                             }
+                                        } else {
+                                            countryListNoResultsView()
                                         }
                                     }
-                                    .prioritiseScaleButtonStyle()
                                 }
+                                .prioritiseScaleButtonStyle()
                             }
-                            .frame(width: min(300, geo.size.width / 4))
-                            .safeAreaPadding(25)
-                            .glassEffect(in: RoundedRectangle(cornerRadius: 20))
-                            .cornerRadius(20, corners: .allCorners)
-                        } else {
-                            VStack {
-                                ScrollViewReader { scrollProxy in
-                                    countryListHeader(scrollProxy: scrollProxy)
-                                        .padding(.bottom, 10)
-                                    
-                                    ScrollView {
-                                        LazyVStack(alignment: .leading) {
-                                            if !displayedCountriesOnList.isEmpty {
-                                                ForEach(displayedCountriesOnList) { country in
-                                                    Button {
-                                                        changeSelectedCountry(to: country)
-                                                    } label: {
-                                                        CountryCard(country)
-                                                            .opacity(self.selectedCountry == country ? 0.5 : 1.0)
-                                                    }
-                                                    .scaleButtonStyle()
-                                                    .disabled(self.selectedCountry == country)
-                                                }
-                                            } else {
-                                                countryListNoResultsView()
-                                            }
-                                        }
-                                    }
-                                    .prioritiseScaleButtonStyle()
-                                }
-                            }
-                            .frame(width: min(300, geo.size.width / 4))
-                            .safeAreaPadding(25)
-                            .background(Material.ultraThin)
-                            .cornerRadius(20, corners: .allCorners)
                         }
+                        .frame(width: min(300, geo.size.width / 4))
+                        .safeAreaPadding(25)
+                        //.glassEffect(in: RoundedRectangle(cornerRadius: 20))
+                        .universalGlassEffect(in: RoundedRectangle(cornerRadius: 20))
+                        .cornerRadius(20, corners: .allCorners)
                     }
                 }
                 .frame(maxHeight: geo.size.height)
                 .padding(.trailing, 20)
             }
-            .overlay {
-                if self.currentDeviceOrientation.isPortrait {
-                    ContentUnavailableView("Rotate to Explore", systemImage: "rectangle.portrait.rotate", description: Text("The Clima Map is optimised for landscape orientation. Please rotate your device to explore the map."))
-                        .background(Material.ultraThin)
-                        .ignoresSafeArea()
-                }
-            }
+//            .overlay {
+//                if self.currentDeviceOrientation.isPortrait {
+//                    ContentUnavailableView("Rotate to Explore", systemImage: "rectangle.portrait.rotate", description: Text("The Clima Map is optimised for landscape orientation. Please rotate your device to explore the map."))
+//                        .background(Material.ultraThin)
+//                        .ignoresSafeArea()
+//                }
+//            }
         }
         .safeAreaPadding(.all, 20)
-        .onRotate { newOrientation in
-            withAnimation {
-                self.currentDeviceOrientation = newOrientation
+//        .onRotate { newOrientation in
+//            withAnimation {
+//                self.currentDeviceOrientation = newOrientation
+//            }
+//        }
+    }
+    
+    @ViewBuilder
+    private func countryDetailView(geo: GeometryProxy) -> some View {
+        VStack {
+            if let country = self.selectedCountry {
+                countryDetailViewContent(country: country)
+            } else {
+                ContentUnavailableView("Select a Country", systemImage: "flag.fill", description: Text("Select a country from the list to view its details"))
+                    .transition(.blurReplace)
+            }
+        }
+        .frame(width: min(300, geo.size.width / 4))
+        .scrollIndicators(.hidden)
+        .safeAreaPadding(25)
+        //.glassEffect(in: RoundedRectangle(cornerRadius: 20))
+        .universalGlassEffect(in: RoundedRectangle(cornerRadius: 20))
+        .onChange(of: self.mapCameraPosition) { _, _ in
+            if self.selectedCountry == nil && self.mapCameraPosition != .automatic {
+                withAnimation(.spring) {
+                    self.isShowingDetailView = false
+                }
             }
         }
     }
     
     @ViewBuilder
-    private func countryDetailView(geo: GeometryProxy) -> some View {
-        if #available(iOS 26.0, *) {
-            VStack {
-                if let country = self.selectedCountry {
-                    countryDetailViewContent(country: country)
-                } else {
-                    ContentUnavailableView("Select a Country", systemImage: "flag.fill", description: Text("Select a country from the list to view its details"))
-                        .transition(.blurReplace)
-                }
-            }
-            .frame(width: min(300, geo.size.width / 4))
-            .scrollIndicators(.hidden)
-            .safeAreaPadding(25)
-            .glassEffect(in: RoundedRectangle(cornerRadius: 20))
-            .onChange(of: self.mapCameraPosition) { _, _ in
-                if self.selectedCountry == nil && self.mapCameraPosition != .automatic {
-                    withAnimation(.spring) {
-                        self.isShowingDetailView = false
-                    }
-                }
-            }
-        } else {
-            VStack {
-                if let country = self.selectedCountry {
-                    countryDetailViewContent(country: country)
-                } else {
-                    ContentUnavailableView("Select a Country", systemImage: "flag.fill", description: Text("Select a country from the list to view its details"))
-                        .transition(.blurReplace)
-                }
-            }
-            .frame(width: min(300, geo.size.width / 4))
-            .scrollIndicators(.hidden)
-            .safeAreaPadding(25)
-            .background(Material.ultraThin)
-            .cornerRadius(20, corners: .allCorners)
-            .onChange(of: self.mapCameraPosition) { _, _ in
-                if self.selectedCountry == nil && self.mapCameraPosition != .automatic {
-                    withAnimation(.spring) {
-                        self.isShowingDetailView = false
-                    }
-                }
-            }
-        }
-    }
-    
     private func countryDetailViewContent(country: Country) -> some View {
         ScrollView {
             let (minLog, rangeLog) = self.countryDataManager.countries.logCO2Scaling()
@@ -229,7 +178,9 @@ struct MapView: View {
                 
                 VStack {
                     let rank = self.countryDataManager.getCountryClimaJusticeScoreRank(for: country)
-                    Text("#\(rank)")
+                    let totalCountries = self.countryDataManager.countries.count
+                    
+                    Text("\(rank)/\(totalCountries)")
                         .customFont(size: 20, weight: .semibold)
                         .foregroundStyle(.gray)
                         .contentTransition(.numericText(value: Double(rank)))
@@ -334,9 +285,10 @@ struct MapView: View {
                 } label: {
                     Image(systemName: "xmark")
                         .customFont(size: 20, weight: .semibold)
-                        .foregroundColor(.white)
                 }
                 .scaleButtonStyle(scaleAmount: 0.96)
+                .simultaneousGesture(TapGesture().onEnded {
+                })
                 .disabled(self.selectedCountry == nil)
                 .opacity(self.selectedCountry == nil ? 0.0 : 1.0)
             }

@@ -7,11 +7,12 @@
 
 import SwiftUI
 import Charts
+import UniversalGlass
 
 struct ChartsView: View {
     @EnvironmentObject var countryDataManager: CountryDataManager
 
-    @available(*, deprecated, message: "Toggling visibility of charts has been deprecated. Use currentlyFocusedChart to scroll to a specific chart instead.")
+    @available(*, deprecated, message: "Toggling visibility of charts is deprecated. Use currentlyFocusedChart to scroll to a specific chart instead.")
     @State private var displayedCharts: [ChartType] = ChartType.allCases
     
     @State private var currentlyFocusedChart: ChartType? = nil
@@ -61,42 +62,23 @@ struct ChartsView: View {
                                 displayedChartsList.safeAreaPadding(.top)
                                 
                                 if self.isShowingTopDisclaimer {
-                                    if #available(iOS 26.0, *) {
-                                        HStack {
-                                            Label("Clima uses data from 2022.", systemImage: "info.circle")
-                                            
-                                            Spacer()
-                                            
-                                            Button {
-                                                withAnimation { self.isShowingTopDisclaimer = false }
-                                            } label: {
-                                                Image(systemName: "xmark.circle.fill")
-                                            }.scaleButtonStyle(scaleAmount: 0.96)
-                                        }
-                                        .padding()
-                                        .glassEffect(in: RoundedRectangle(cornerRadius: 20))
-                                        .padding([.horizontal, .top])
-                                        .padding(.horizontal)
-                                        .transition(.blurReplace)
-                                    } else {
-                                        HStack {
-                                            Label("Clima uses data from 2022.", systemImage: "info.circle")
-                                            
-                                            Spacer()
-                                            
-                                            Button {
-                                                withAnimation { self.isShowingTopDisclaimer = false }
-                                            } label: {
-                                                Image(systemName: "xmark.circle.fill")
-                                            }.scaleButtonStyle(scaleAmount: 0.96)
-                                        }
-                                        .padding()
-                                        .background(Material.ultraThin)
-                                        .cornerRadius(13, corners: .allCorners)
-                                        .padding([.horizontal, .top])
-                                        .padding(.horizontal)
-                                        .transition(.blurReplace)
+                                    HStack {
+                                        Label("Clima uses data from 2022.", systemImage: "info.circle")
+                                        
+                                        Spacer()
+                                        
+                                        Button {
+                                            withAnimation { self.isShowingTopDisclaimer = false }
+                                        } label: {
+                                            Image(systemName: "xmark.circle.fill")
+                                        }.scaleButtonStyle(scaleAmount: 0.96)
                                     }
+                                    .padding()
+                                    //.glassEffect(in: RoundedRectangle(cornerRadius: 20))
+                                    .universalGlassEffect(in: RoundedRectangle(cornerRadius: 20))
+                                    .padding([.horizontal, .top])
+                                    .padding(.horizontal)
+                                    .transition(.blurReplace)
                                 }
                             }
                         }
@@ -121,40 +103,19 @@ struct ChartsView: View {
                 ForEach(ChartType.allCases) { chart in
                     //let isDisplayed = (self.displayedCharts.contains(type))
                     
-                    if #available(iOS 26.0, *) {
-                        Button {
-                            focusChart(chart)
-                        } label: {
-                            HStack {
-                                Image(systemName: chart.imageName)
-                                
-                                Text(chart.rawValue)
-                                    .customFont(size: 18, weight: .medium)
-                            }
-                            .foregroundStyle(.white)
-                            .padding()
+                    Button {
+                        focusChart(chart)
+                    } label: {
+                        HStack {
+                            Image(systemName: chart.imageName)
+                            
+                            Text(chart.rawValue)
+                                .customFont(size: 18, weight: .medium)
                         }
-                        .buttonStyle(.glassProminent)
-                    } else {
-                        Button {
-                            focusChart(chart)
-                        } label: {
-                            HStack {
-                                Image(systemName: chart.imageName)
-                                
-                                Text(chart.rawValue)
-                                    .customFont(size: 18, weight: .medium)
-                            }
-                            .foregroundStyle(.white)
-                            .padding()
-                            .background {
-                                Capsule()
-                                    .foregroundStyle(Color.accentColor)
-                                    .shadow(color: .black.opacity(0.5), radius: 7)
-                            }
-                        }
-                        .scaleButtonStyle()
+                        .foregroundStyle(.white)
+                        .padding()
                     }
+                    .buttonStyle(UniversalGlassProminentButtonStyle())
                 }
             }.scrollTargetLayout()
         }

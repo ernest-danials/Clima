@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		177332C92EA2C863009D5EEB /* UniversalGlass in Frameworks */ = {isa = PBXBuildFile; productRef = 177332C82EA2C863009D5EEB /* UniversalGlass */; };
+		177332CB2EA2C863009D5EEB /* UniversalGlassBackports in Frameworks */ = {isa = PBXBuildFile; productRef = 177332CA2EA2C863009D5EEB /* UniversalGlassBackports */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		172FE22E2DDF8C2A002E5AB2 /* Clima.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Clima.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -36,6 +41,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				177332C92EA2C863009D5EEB /* UniversalGlass in Frameworks */,
+				177332CB2EA2C863009D5EEB /* UniversalGlassBackports in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +85,8 @@
 			);
 			name = Clima;
 			packageProductDependencies = (
+				177332C82EA2C863009D5EEB /* UniversalGlass */,
+				177332CA2EA2C863009D5EEB /* UniversalGlassBackports */,
 			);
 			productName = Clima;
 			productReference = 172FE22E2DDF8C2A002E5AB2 /* Clima.app */;
@@ -91,7 +100,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1630;
-				LastUpgradeCheck = 1630;
+				LastUpgradeCheck = 2600;
 				TargetAttributes = {
 					172FE22D2DDF8C2A002E5AB2 = {
 						CreatedOnToolsVersion = 16.3;
@@ -107,6 +116,9 @@
 			);
 			mainGroup = 172FE2252DDF8C2A002E5AB2;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				177332C72EA2C863009D5EEB /* XCRemoteSwiftPackageReference "UniversalGlass" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 172FE22F2DDF8C2A002E5AB2 /* Products */;
 			projectDirPath = "";
@@ -197,6 +209,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -254,6 +267,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -287,7 +301,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.myungjoonkang.Clima;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -327,7 +341,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.myungjoonkang.Clima;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -361,6 +375,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		177332C72EA2C863009D5EEB /* XCRemoteSwiftPackageReference "UniversalGlass" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Aeastr/UniversalGlass";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		177332C82EA2C863009D5EEB /* UniversalGlass */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 177332C72EA2C863009D5EEB /* XCRemoteSwiftPackageReference "UniversalGlass" */;
+			productName = UniversalGlass;
+		};
+		177332CA2EA2C863009D5EEB /* UniversalGlassBackports */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 177332C72EA2C863009D5EEB /* XCRemoteSwiftPackageReference "UniversalGlass" */;
+			productName = UniversalGlassBackports;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 172FE2262DDF8C2A002E5AB2 /* Project object */;
 }

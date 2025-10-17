@@ -1,0 +1,15 @@
+{
+  "originHash" : "fdbc2f7a1284a06c2ea25c322bc2b52ac9dfbff4f24ccdafa9d7aecea6e57c61",
+  "pins" : [
+    {
+      "identity" : "universalglass",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Aeastr/UniversalGlass",
+      "state" : {
+        "revision" : "a30fd4e72ba2ef43d51698bd882d012d113679af",
+        "version" : "0.0.2"
+      }
+    }
+  ],
+  "version" : 3
+}

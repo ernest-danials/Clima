@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UniversalGlass
 
 struct CompareView: View {
     @EnvironmentObject var countryDataManager: CountryDataManager
@@ -70,40 +71,22 @@ struct CompareView: View {
                     }
                     
                     // MARK: Comparison Area
-                    if #available(iOS 26.0, *) {
-                        VStack(spacing: 20) {
-                            Text("Comparing")
-                                .customFont(size: 20, weight: .bold)
-                            
-                            if let leftCountry = selectedCountryOnLeft, let rightCountry = selectedCountryOnRight {
-                                comparisonView(leftCountry: leftCountry, rightCountry: rightCountry)
-                                    .transition(.blurReplace)
-                            } else {
-                                ContentUnavailableView("Select Two Countries", systemImage: "arrow.left.arrow.right", description: Text("Choose a country from each list to compare their climate data"))
-                                    .transition(.blurReplace)
-                            }
+                    VStack(spacing: 20) {
+                        Text("Comparing")
+                            .customFont(size: 20, weight: .bold)
+                        
+                        if let leftCountry = selectedCountryOnLeft, let rightCountry = selectedCountryOnRight {
+                            comparisonView(leftCountry: leftCountry, rightCountry: rightCountry)
+                                .transition(.blurReplace)
+                        } else {
+                            ContentUnavailableView("Select Two Countries", systemImage: "arrow.left.arrow.right", description: Text("Choose a country from each list to compare their climate data"))
+                                .transition(.blurReplace)
                         }
-                        .frame(minWidth: geo.size.width / 3)
-                        .padding()
-                        .glassEffect(in: RoundedRectangle(cornerRadius: 20))
-                    } else {
-                        VStack(spacing: 20) {
-                            Text("Comparing")
-                                .customFont(size: 20, weight: .bold)
-                            
-                            if let leftCountry = selectedCountryOnLeft, let rightCountry = selectedCountryOnRight {
-                                comparisonView(leftCountry: leftCountry, rightCountry: rightCountry)
-                                    .transition(.blurReplace)
-                            } else {
-                                ContentUnavailableView("Select Two Countries", systemImage: "arrow.left.arrow.right", description: Text("Choose a country from each list to compare their climate data"))
-                                    .transition(.blurReplace)
-                            }
-                        }
-                        .frame(minWidth: geo.size.width / 3)
-                        .padding()
-                        .background(Material.thin)
-                        .cornerRadius(20, corners: .allCorners)
                     }
+                    .frame(minWidth: geo.size.width / 3)
+                    .padding()
+                    //.glassEffect(in: RoundedRectangle(cornerRadius: 20))
+                    .universalGlassEffect(in: RoundedRectangle(cornerRadius: 20))
                     
                     // MARK: Right Country List
                     VStack {
