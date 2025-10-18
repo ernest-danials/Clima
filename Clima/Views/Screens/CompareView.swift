@@ -199,53 +199,53 @@ struct CompareView: View {
                             } label: {
                                 Label("A to Z", systemImage: (listOption == .left ? currentListSortOptionOnLeft : currentListSortOptionOnRight) == .nameAtoZ ? "checkmark" : "arrow.down")
                             }
-                            
+
                             Button {
                                 changeListSortOption(to: .nameZtoA, for: listOption)
                             } label: {
                                 Label("Z to A", systemImage: (listOption == .left ? currentListSortOptionOnLeft : currentListSortOptionOnRight) == .nameZtoA ? "checkmark" : "arrow.up")
                             }
                         }
-                        
+
                         Menu("Clima Justice Score", systemImage: "scale.3d") {
                             Button {
                                 changeListSortOption(to: .climaJusticeScoreHighToLow, for: listOption)
                             } label: {
-                                Label("High to Low", systemImage: (listOption == .left ? currentListSortOptionOnLeft : currentListSortOptionOnRight) == .climaJusticeScoreHighToLow ? "checkmark" : "arrow.down")
+                                Label("High to Low", systemImage: (listOption == .left ? currentListSortOptionOnLeft : currentListSortOptionOnRight) == .climaJusticeScoreHighToLow ? "checkmark" : "arrow.down.right")
                             }
-                            
+
                             Button {
                                 changeListSortOption(to: .climaJusticeScoreLowToHigh, for: listOption)
                             } label: {
-                                Label("Low to High", systemImage: (listOption == .left ? currentListSortOptionOnLeft : currentListSortOptionOnRight) == .climaJusticeScoreLowToHigh ? "checkmark" : "arrow.up")
+                                Label("Low to High", systemImage: (listOption == .left ? currentListSortOptionOnLeft : currentListSortOptionOnRight) == .climaJusticeScoreLowToHigh ? "checkmark" : "arrow.up.right")
                             }
                         }
-                        
+
                         Menu("ND-Gain Score", systemImage: "shield.lefthalf.filled") {
                             Button {
                                 changeListSortOption(to: .ndGainScoreHighToLow, for: listOption)
                             } label: {
-                                Label("High to Low", systemImage: (listOption == .left ? currentListSortOptionOnLeft : currentListSortOptionOnRight) == .ndGainScoreHighToLow ? "checkmark" : "arrow.down")
+                                Label("High to Low", systemImage: (listOption == .left ? currentListSortOptionOnLeft : currentListSortOptionOnRight) == .ndGainScoreHighToLow ? "checkmark" : "arrow.down.right")
                             }
-                            
+
                             Button {
                                 changeListSortOption(to: .ndGainScoreLowToHigh, for: listOption)
                             } label: {
-                                Label("Low to High", systemImage: (listOption == .left ? currentListSortOptionOnLeft : currentListSortOptionOnRight) == .ndGainScoreLowToHigh ? "checkmark" : "arrow.up")
+                                Label("Low to High", systemImage: (listOption == .left ? currentListSortOptionOnLeft : currentListSortOptionOnRight) == .ndGainScoreLowToHigh ? "checkmark" : "arrow.up.right")
                             }
                         }
-                        
+
                         Menu("Territorial MtCO2", systemImage: "carbon.dioxide.cloud.fill") {
                             Button {
                                 changeListSortOption(to: .territorialMtCO2HighToLow, for: listOption)
                             } label: {
-                                Label("High to Low", systemImage: (listOption == .left ? currentListSortOptionOnLeft : currentListSortOptionOnRight) == .territorialMtCO2HighToLow ? "checkmark" : "arrow.down")
+                                Label("High to Low", systemImage: (listOption == .left ? currentListSortOptionOnLeft : currentListSortOptionOnRight) == .territorialMtCO2HighToLow ? "checkmark" : "arrow.down.right")
                             }
-                            
+
                             Button {
                                 changeListSortOption(to: .territorialMtCO2LowToHigh, for: listOption)
                             } label: {
-                                Label("Low to High", systemImage: (listOption == .left ? currentListSortOptionOnLeft : currentListSortOptionOnRight) == .territorialMtCO2LowToHigh ? "checkmark" : "arrow.up")
+                                Label("Low to High", systemImage: (listOption == .left ? currentListSortOptionOnLeft : currentListSortOptionOnRight) == .territorialMtCO2LowToHigh ? "checkmark" : "arrow.up.right")
                             }
                         }
                     }
@@ -287,7 +287,9 @@ struct CompareView: View {
                             .contentTransition(.numericText())
                         
                         let rank = self.countryDataManager.getCountryClimaJusticeScoreRank(for: leftCountry)
-                        Text("#\(rank)")
+                        let totalCountries = self.countryDataManager.countries.count
+                        
+                        Text("#\(rank)/\(totalCountries)")
                             .customFont(size: 13, weight: .medium)
                             .foregroundStyle(.gray)
                             .contentTransition(.numericText(value: Double(rank)))
@@ -315,7 +317,9 @@ struct CompareView: View {
                             .contentTransition(.numericText())
                         
                         let rank = self.countryDataManager.getCountryClimaJusticeScoreRank(for: rightCountry)
-                        Text("#\(rank)")
+                        let totalCountries = self.countryDataManager.countries.count
+                        
+                        Text("#\(rank)/\(totalCountries)")
                             .customFont(size: 13, weight: .medium)
                             .foregroundStyle(.gray)
                             .contentTransition(.numericText(value: Double(rank)))

@@ -19,6 +19,8 @@ struct MapView: View {
     @State private var mapCameraPosition: MapCameraPosition = .automatic
     @State private var searchText: String = ""
     @State private var isShowingDetailView: Bool = true
+    
+    @State private var isShowingCountryListSortView: Bool = false
     @State private var currentListSortOption: CountrySortOption = .nameAtoZ
     
     private var displayedCountriesOnMap: [Country] {
@@ -180,7 +182,7 @@ struct MapView: View {
                     let rank = self.countryDataManager.getCountryClimaJusticeScoreRank(for: country)
                     let totalCountries = self.countryDataManager.countries.count
                     
-                    Text("\(rank)/\(totalCountries)")
+                    Text("#\(rank)/\(totalCountries)")
                         .customFont(size: 20, weight: .semibold)
                         .foregroundStyle(.gray)
                         .contentTransition(.numericText(value: Double(rank)))
@@ -324,111 +326,17 @@ struct MapView: View {
                     }
                 }
                 
-                Menu {
-                    Section("Sort by") {
-                        Menu("Name", systemImage: "character") {
-                            Button {
-                                changeListSortOption(to: .nameAtoZ)
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                                    if let id = self.displayedCountriesOnList.first?.id {
-                                        withAnimation { scrollProxy.scrollTo(id) }
-                                    }
-                                }
-                            } label: {
-                                Label("A to Z", systemImage: self.currentListSortOption == .nameAtoZ ? "checkmark" : "arrow.down")
-                            }
-                            
-                            Button {
-                                changeListSortOption(to: .nameZtoA)
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                                    if let id = self.displayedCountriesOnList.first?.id {
-                                        withAnimation { scrollProxy.scrollTo(id) }
-                                    }
-                                }
-                            } label: {
-                                Label("Z to A", systemImage: self.currentListSortOption == .nameZtoA ? "checkmark" : "arrow.up")
-                            }
-                        }
-                        
-                        Menu("Clima Justice Score", systemImage: "scale.3d") {
-                            Button {
-                                changeListSortOption(to: .climaJusticeScoreHighToLow)
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                                    if let id = self.displayedCountriesOnList.first?.id {
-                                        withAnimation { scrollProxy.scrollTo(id) }
-                                    }
-                                }
-                            } label: {
-                                Label("High to Low", systemImage: self.currentListSortOption == .climaJusticeScoreHighToLow ? "checkmark" : "arrow.down")
-                            }
-                            
-                            Button {
-                                changeListSortOption(to: .climaJusticeScoreLowToHigh)
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                                    if let id = self.displayedCountriesOnList.first?.id {
-                                        withAnimation { scrollProxy.scrollTo(id) }
-                                    }
-                                }
-                            } label: {
-                                Label("Low to High", systemImage: self.currentListSortOption == .climaJusticeScoreLowToHigh ? "checkmark" : "arrow.up")
-                            }
-                        }
-                        
-                        Menu("ND-Gain Score", systemImage: "shield.lefthalf.filled") {
-                            Button {
-                                changeListSortOption(to: .ndGainScoreHighToLow)
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                                    if let id = self.displayedCountriesOnList.first?.id {
-                                        withAnimation { scrollProxy.scrollTo(id) }
-                                    }
-                                }
-                            } label: {
-                                Label("High to Low", systemImage: self.currentListSortOption == .ndGainScoreHighToLow ? "checkmark" : "arrow.down")
-                            }
-                            
-                            Button {
-                                changeListSortOption(to: .ndGainScoreLowToHigh)
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                                    if let id = self.displayedCountriesOnList.first?.id {
-                                        withAnimation { scrollProxy.scrollTo(id) }
-                                    }
-                                }
-                            } label: {
-                                Label("Low to High", systemImage: self.currentListSortOption == .ndGainScoreLowToHigh ? "checkmark" : "arrow.up")
-                            }
-                        }
-                        
-                        Menu("Territorial MtCO2", systemImage: "carbon.dioxide.cloud.fill") {
-                            Button {
-                                changeListSortOption(to: .territorialMtCO2HighToLow)
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                                    if let id = self.displayedCountriesOnList.first?.id {
-                                        withAnimation { scrollProxy.scrollTo(id) }
-                                    }
-                                }
-                            } label: {
-                                Label("High to Low", systemImage: self.currentListSortOption == .territorialMtCO2HighToLow ? "checkmark" : "arrow.down")
-                            }
-                            
-                            Button {
-                                changeListSortOption(to: .territorialMtCO2LowToHigh)
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                                    if let id = self.displayedCountriesOnList.first?.id {
-                                        withAnimation { scrollProxy.scrollTo(id) }
-                                    }
-                                }
-                            } label: {
-                                Label("Low to High", systemImage: self.currentListSortOption == .territorialMtCO2LowToHigh ? "checkmark" : "arrow.up")
-                            }
-                        }
-                    }
+                Button {
+                    self.isShowingCountryListSortView = true
                 } label: {
                     Image(systemName: "arrow.up.arrow.down")
                         .customFont(size: 20, weight: .semibold)
                 }
                 .scaleButtonStyle(scaleAmount: 0.92)
-                .simultaneousGesture(TapGesture().onEnded {
-                })
+                .simultaneousGesture(TapGesture().onEnded {})
+                .sheet(isPresented: $isShowingCountryListSortView) {
+                    countryListSortView(scrollProxy: scrollProxy)
+                }
             }
         }
     }
@@ -448,6 +356,187 @@ struct MapView: View {
         }
         .padding(.vertical, 20)
         .alignView(to: .center)
+    }
+    
+    @ViewBuilder
+    private func countryListSortView(scrollProxy: ScrollViewProxy) -> some View {
+        NavigationStack {
+            List {
+                Section {
+                    Button {
+                        changeListSortOption(to: .nameAtoZ)
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            if let id = self.displayedCountriesOnList.first?.id {
+                                withAnimation { scrollProxy.scrollTo(id) }
+                            }
+                        }
+                    } label: {
+                        HStack {
+                            Label("A to Z", systemImage: "arrow.down")
+                            Spacer()
+                            if self.currentListSortOption == .nameAtoZ {
+                                Image(systemName: "checkmark")
+                            }
+                        }
+                    }
+                    
+                    Button {
+                        changeListSortOption(to: .nameZtoA)
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            if let id = self.displayedCountriesOnList.first?.id {
+                                withAnimation { scrollProxy.scrollTo(id) }
+                            }
+                        }
+                    } label: {
+                        HStack {
+                            Label("Z to A", systemImage: "arrow.up")
+                            Spacer()
+                            if self.currentListSortOption == .nameZtoA {
+                                Image(systemName: "checkmark")
+                            }
+                        }
+                    }
+                } header: {
+                    Label("Name", systemImage: "character")
+                }
+                
+                Section {
+                    Button {
+                        changeListSortOption(to: .climaJusticeScoreHighToLow)
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            if let id = self.displayedCountriesOnList.first?.id {
+                                withAnimation { scrollProxy.scrollTo(id) }
+                            }
+                        }
+                    } label: {
+                        HStack {
+                            Label("High to Low", systemImage: "arrow.down.right")
+                            Spacer()
+                            if self.currentListSortOption == .climaJusticeScoreHighToLow {
+                                Image(systemName: "checkmark")
+                            }
+                        }
+                    }
+                    
+                    Button {
+                        changeListSortOption(to: .climaJusticeScoreLowToHigh)
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            if let id = self.displayedCountriesOnList.first?.id {
+                                withAnimation { scrollProxy.scrollTo(id) }
+                            }
+                        }
+                    } label: {
+                        HStack {
+                            Label("Low to High", systemImage: "arrow.up.right")
+                            Spacer()
+                            if self.currentListSortOption == .climaJusticeScoreLowToHigh {
+                                Image(systemName: "checkmark")
+                            }
+                        }
+                    }
+                } header: {
+                    Label("Clima Justice Score", systemImage: "scale.3d")
+                }
+                
+                Section {
+                    Button {
+                        changeListSortOption(to: .ndGainScoreHighToLow)
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            if let id = self.displayedCountriesOnList.first?.id {
+                                withAnimation { scrollProxy.scrollTo(id) }
+                            }
+                        }
+                    } label: {
+                        HStack {
+                            Label("High to Low", systemImage: "arrow.down.right")
+                            Spacer()
+                            if self.currentListSortOption == .ndGainScoreHighToLow {
+                                Image(systemName: "checkmark")
+                            }
+                        }
+                    }
+                    
+                    Button {
+                        changeListSortOption(to: .ndGainScoreLowToHigh)
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            if let id = self.displayedCountriesOnList.first?.id {
+                                withAnimation { scrollProxy.scrollTo(id) }
+                            }
+                        }
+                    } label: {
+                        HStack {
+                            Label("Low to High", systemImage: "arrow.up.right")
+                            Spacer()
+                            if self.currentListSortOption == .ndGainScoreLowToHigh {
+                                Image(systemName: "checkmark")
+                            }
+                        }
+                    }
+                } header: {
+                    Label("ND-Gain Score", systemImage: "shield.lefthalf.filled")
+                }
+                
+                Section {
+                    Button {
+                        changeListSortOption(to: .territorialMtCO2HighToLow)
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            if let id = self.displayedCountriesOnList.first?.id {
+                                withAnimation { scrollProxy.scrollTo(id) }
+                            }
+                        }
+                    } label: {
+                        HStack {
+                            Label("High to Low", systemImage: "arrow.down.right")
+                            Spacer()
+                            if self.currentListSortOption == .territorialMtCO2HighToLow {
+                                Image(systemName: "checkmark")
+                            }
+                        }
+                    }
+                    
+                    Button {
+                        changeListSortOption(to: .territorialMtCO2LowToHigh)
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            if let id = self.displayedCountriesOnList.first?.id {
+                                withAnimation { scrollProxy.scrollTo(id) }
+                            }
+                        }
+                    } label: {
+                        HStack {
+                            Label("Low to High", systemImage: "arrow.up.right")
+                            Spacer()
+                            if self.currentListSortOption == .territorialMtCO2LowToHigh {
+                                Image(systemName: "checkmark")
+                            }
+                        }
+                    }
+                } header: {
+                    Label("Territorial MtCO2", systemImage: "carbon.dioxide.cloud.fill")
+                }
+            }
+            .safeAreaPadding(.bottom)
+            .listStyle(.insetGrouped)
+            .navigationTitle("Sort")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    if #available(iOS 26.0, *) {
+                        Button {
+                            self.isShowingCountryListSortView = false
+                        } label: {
+                            Image(systemName: "checkmark")
+                                .fontWeight(.medium)
+                                .foregroundStyle(.white)
+                        }
+                        .buttonStyle(.glassProminent)
+                    } else {
+                        Button("Done") {
+                            self.isShowingCountryListSortView = false
+                        }
+                    }
+                }
+            }
+        }
     }
     
     private func changeSelectedCountry(to country: Country?) {
