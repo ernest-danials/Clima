@@ -287,10 +287,10 @@ struct MapView: View {
                 } label: {
                     Image(systemName: "xmark")
                         .customFont(size: 20, weight: .semibold)
+                        .padding(5)
                 }
+                .contentShape(.rect)
                 .scaleButtonStyle(scaleAmount: 0.96)
-                .simultaneousGesture(TapGesture().onEnded {
-                })
                 .disabled(self.selectedCountry == nil)
                 .opacity(self.selectedCountry == nil ? 0.0 : 1.0)
             }
@@ -331,9 +331,10 @@ struct MapView: View {
                 } label: {
                     Image(systemName: "arrow.up.arrow.down")
                         .customFont(size: 20, weight: .semibold)
+                        .padding(5)
                 }
+                .contentShape(.rect)
                 .scaleButtonStyle(scaleAmount: 0.92)
-                .simultaneousGesture(TapGesture().onEnded {})
                 .sheet(isPresented: $isShowingCountryListSortView) {
                     countryListSortView(scrollProxy: scrollProxy)
                 }

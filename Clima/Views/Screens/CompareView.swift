@@ -87,6 +87,7 @@ struct CompareView: View {
                     .padding()
                     //.glassEffect(in: RoundedRectangle(cornerRadius: 20))
                     .universalGlassEffect(in: RoundedRectangle(cornerRadius: 20))
+                    .safeAreaPadding(.bottom)
                     
                     // MARK: Right Country List
                     VStack {
@@ -186,10 +187,9 @@ struct CompareView: View {
                         .transition(.blurReplace)
                     }
                 }
-                .padding(.horizontal, 12)
-                .padding(.vertical, 10)
-                .background(Material.ultraThin)
-                .cornerRadius(12, corners: .allCorners)
+                .padding(12)
+                .universalGlassEffect(in: RoundedRectangle(cornerRadius: 15))
+                //.cornerRadius(12, corners: .allCorners)
                 
                 Menu {
                     Section("Sort by") {
