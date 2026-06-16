@@ -205,7 +205,7 @@ struct ChartsView: View {
                 .padding(.bottom)
             
             Chart {
-                let (minLog, rangeLog) = countryDataManager.countries.logCO2Scaling()
+                let (minLog, rangeLog) = countryDataManager.logCO2Scale
                 
                 ForEach(countryDataManager.countries.sorted(by: { $0.getClimaJusticeScore(minLog: minLog, rangeLog: rangeLog) > $1.getClimaJusticeScore(minLog: minLog, rangeLog: rangeLog) }).prefix(10)) { country in
                     BarMark(
@@ -240,7 +240,7 @@ struct ChartsView: View {
                 .padding(.bottom)
             
             Chart {
-                let (minLog, rangeLog) = countryDataManager.countries.logCO2Scaling()
+                let (minLog, rangeLog) = countryDataManager.logCO2Scale
                 
                 ForEach(countryDataManager.countries.sorted(by: { $0.getClimaJusticeScore(minLog: minLog, rangeLog: rangeLog) < $1.getClimaJusticeScore(minLog: minLog, rangeLog: rangeLog) }).prefix(10)) { country in
                     BarMark(
@@ -333,7 +333,7 @@ struct ChartsView: View {
                 .padding(.bottom)
             
             Chart {
-                let (minLog, rangeLog) = countryDataManager.countries.logCO2Scaling()
+                let (minLog, rangeLog) = countryDataManager.logCO2Scale
                 
                 ForEach(Region.allCases) { region in
                     let countries = countryDataManager.countries.filter { $0.getRegion() == region }
@@ -407,7 +407,7 @@ struct ChartsView: View {
                 .padding(.bottom)
             
             Chart {
-                let (minLog, rangeLog) = countryDataManager.countries.logCO2Scaling()
+                let (minLog, rangeLog) = countryDataManager.logCO2Scale
                 
                 ForEach(countryDataManager.countries) { country in
                     PointMark(
@@ -452,7 +452,7 @@ struct ChartsView: View {
                 .padding(.bottom)
             
             Chart {
-                let (minLog, rangeLog) = countryDataManager.countries.logCO2Scaling()
+                let (minLog, rangeLog) = countryDataManager.logCO2Scale
                 
                 ForEach(countryDataManager.countries) { country in
                     PointMark(

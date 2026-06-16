@@ -50,7 +50,7 @@ struct MapView: View {
             ZStack(alignment: .trailing) {
                 Map(position: $mapCameraPosition) {
                     ForEach(self.displayedCountriesOnMap) { country in
-                        let (minLog, rangeLog) = self.countryDataManager.countries.logCO2Scaling()
+                        let (minLog, rangeLog) = self.countryDataManager.logCO2Scale
                         let climaJusticeScore = country.getClimaJusticeScore(minLog: minLog, rangeLog: rangeLog)
                         
                         MapCircle(center: country.getCoordinate(), radius: 500000 * country.getScaleFactor(for: climaJusticeScore))
@@ -162,9 +162,9 @@ struct MapView: View {
     @ViewBuilder
     private func countryDetailViewContent(country: Country) -> some View {
         ScrollView {
-            let (minLog, rangeLog) = self.countryDataManager.countries.logCO2Scaling()
+            let (minLog, rangeLog) = self.countryDataManager.logCO2Scale
             let climaJusticeScore = country.getClimaJusticeScore(minLog: minLog, rangeLog: rangeLog)
-            
+
             VStack(spacing: 15) {
                 Spacer().frame(height: 10)
                 
