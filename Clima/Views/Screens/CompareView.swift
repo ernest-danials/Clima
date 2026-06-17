@@ -260,7 +260,7 @@ struct CompareView: View {
     }
     
     private func comparisonView(leftCountry: Country, rightCountry: Country) -> some View {
-        let (minLog, rangeLog) = countryDataManager.countries.logCO2Scaling()
+        let (minLog, rangeLog) = countryDataManager.logCO2Scale
         let leftClimaJusticeScore = leftCountry.getClimaJusticeScore(minLog: minLog, rangeLog: rangeLog)
         let rightClimaJusticeScore = rightCountry.getClimaJusticeScore(minLog: minLog, rangeLog: rangeLog)
         

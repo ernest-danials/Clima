@@ -117,10 +117,10 @@ extension Array where Element == Country {
         case .nameZtoA:
             return filteredCountriesWithSearchText.sorted { $0.name > $1.name }
         case .climaJusticeScoreHighToLow:
-            let (minLog, rangeLog) = countryDataManager.countries.logCO2Scaling()
+            let (minLog, rangeLog) = countryDataManager.logCO2Scale
             return filteredCountriesWithSearchText.sorted { $0.getClimaJusticeScore(minLog: minLog, rangeLog: rangeLog) > $1.getClimaJusticeScore(minLog: minLog, rangeLog: rangeLog) }
         case .climaJusticeScoreLowToHigh:
-            let (minLog, rangeLog) = countryDataManager.countries.logCO2Scaling()
+            let (minLog, rangeLog) = countryDataManager.logCO2Scale
             return filteredCountriesWithSearchText.sorted { $0.getClimaJusticeScore(minLog: minLog, rangeLog: rangeLog) < $1.getClimaJusticeScore(minLog: minLog, rangeLog: rangeLog) }
         case .ndGainScoreHighToLow:
             return filteredCountriesWithSearchText.sorted { $0.NDGainScore > $1.NDGainScore }
